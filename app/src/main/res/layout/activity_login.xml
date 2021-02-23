@@ -15,7 +15,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:background="@color/white"
+        android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:background="@color/white"
+        android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -43,8 +43,21 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="@+id/passwordEditTextLogin"
         app:layout_constraintStart_toStartOf="@+id/passwordEditTextLogin"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLogin" />
+
+    <TextView
+        android:id="@+id/registerTextViewLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Register instead?"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/loginButtonLogin"
+        app:layout_constraintStart_toStartOf="@+id/loginButtonLogin"
+        app:layout_constraintTop_toBottomOf="@+id/loginButtonLogin" />
 </androidx.constraintlayout.widget.ConstraintLayout>
