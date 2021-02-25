@@ -15,12 +15,13 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_register)
 
         // Instantiating UI elements
         val register = findViewById<Button>(R.id.registerButtonRegister)
@@ -50,6 +51,7 @@ class RegisterActivity : AppCompatActivity() {
 
     var selectedPhotoUri: Uri? = null
 
+    // Called when the select photo button is pressed
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -60,16 +62,17 @@ class RegisterActivity : AppCompatActivity() {
             // Gives location of image data
             selectedPhotoUri = data.data
 
-            // Frontend needs to resolve this. Bitmap has depreciated and is no longer supported.
-            // Need another way of showing selected image on the circle
+            // CircleImageView from GitHub
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
 
-            val bitmapDrawable = BitmapDrawable(bitmap)
-            val photo = findViewById<Button>(R.id.photoButtonRegister)
-            photo.setBackgroundDrawable(bitmapDrawable)
+            val imageView = findViewById<CircleImageView>(R.id.photoImageViewRegister)
+            imageView.setImageBitmap(bitmap)
+            val photoButton = findViewById<Button>(R.id.photoButtonRegister)
+            photoButton.alpha = 0f
         }
     }
 
+    // Called when the register button is pressed
     private fun performRegister() {
         // Instantiating UI elements
         val email = findViewById<EditText>(R.id.emailEditTextRegister)
@@ -99,6 +102,7 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 
+    // Called when function for register button is pressed to upload photo to Firebase Storage
     private fun photoUploadToFirebase() {
         if (selectedPhotoUri == null) return
 
@@ -121,6 +125,7 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 
+    // Called in photo upload function to save user to Firebase Database
     private fun saveUserToDatabase(profileImageUrl: String) {
         val auth = FirebaseAuth.getInstance()
         val database = FirebaseDatabase.getInstance()
