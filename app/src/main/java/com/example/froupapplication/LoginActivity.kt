@@ -1,5 +1,6 @@
 package com.example.froupapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -36,6 +37,11 @@ class LoginActivity: AppCompatActivity() {
                     if (task.isSuccessful) {
                         val user = auth.currentUser
                         Log.d("LoginActivity", "Login Successful! UID: ${user!!.uid}")
+
+                        val intent = Intent(this, LatestMessagesActivity::class.java)
+                        // Clears intent list and back button goes to home screen
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
                     }
                     else {
                         Log.w("MainActivity", "Registration failed", task.exception)
