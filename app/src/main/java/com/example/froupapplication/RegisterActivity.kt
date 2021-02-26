@@ -2,7 +2,6 @@ package com.example.froupapplication
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -63,6 +62,7 @@ class RegisterActivity : AppCompatActivity() {
             selectedPhotoUri = data.data
 
             // CircleImageView from GitHub
+            // https://github.com/hdodenhof/CircleImageView
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
 
             val imageView = findViewById<CircleImageView>(R.id.photoImageViewRegister)
@@ -137,6 +137,11 @@ class RegisterActivity : AppCompatActivity() {
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "User saved to Firebase Database")
+
+                val intent = Intent(this, LatestMessagesActivity::class.java)
+                // Clears intent list and back button goes to home screen
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
             }
             .addOnFailureListener {
                 // Blank for the time being
@@ -144,4 +149,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 }
 
-class User(val uid: String, val username: String, val profileImageUrl: String)
+class User(val uid: String, val username: String, val profileImageUrl: String) {
+    // No-argument constructor
+    constructor() : this("", "", "")
+}
