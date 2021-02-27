@@ -8,9 +8,10 @@ import com.xwray.groupie.GroupieViewHolder
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_chat_log.*
+import kotlinx.android.synthetic.main.chat_from_row.view.*
+import kotlinx.android.synthetic.main.chat_to_row.view.*
 
 class ChatLogActivity : AppCompatActivity() {
 
@@ -23,7 +24,9 @@ class ChatLogActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat_log)
         val chatLogSendButton = findViewById<Button>(R.id.sendButtonChatLog)
 
-        supportActionBar?.title = "Chat Log"
+        // Grabs selected user from NewMessageActivity
+        val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
+        supportActionBar?.title = user?.username
 
         setupDummyData()
 
@@ -49,21 +52,30 @@ class ChatLogActivity : AppCompatActivity() {
 
     private fun setupDummyData(){
         val adapter = GroupAdapter<GroupieViewHolder>()
-        val recyclerview_chat_log = findViewById<RecyclerView>(R.id.chatLogRecyclerViewChatLog)
+        val chatLogRecyclerView = findViewById<RecyclerView>(R.id.chatLogRecyclerViewChatLog)
 
         adapter.add(ChatFromItem("From message"))
         adapter.add(ChatToItem("To message"))
+        adapter.add(ChatFromItem("From message"))
+        adapter.add(ChatToItem("To message"))
+        adapter.add(ChatFromItem("From message"))
+        adapter.add(ChatToItem("To message"))
+        adapter.add(ChatFromItem("From message"))
+        adapter.add(ChatToItem("To message"))
+        adapter.add(ChatFromItem("From message"))
+        adapter.add(ChatToItem("To message"))
+        adapter.add(ChatFromItem("From message"))
+        adapter.add(ChatToItem("To message"))
+        adapter.add(ChatFromItem("From message"))
+        adapter.add(ChatToItem("To message"))
 
-        recyclerview_chat_log.adapter = adapter
-
-        val recyclerView = findViewById<RecyclerView>(R.id.newMessageRecyclerView)
-        recyclerView.adapter = adapter
+        chatLogRecyclerView.adapter = adapter
     }
 }
 
 class ChatFromItem(val text: String): Item<GroupieViewHolder>(){
     override fun bind(viewHolder: GroupieViewHolder, position: Int){
-        viewHolder.itemView.textView_from_row.text = text
+        viewHolder.itemView.textViewChatFromRow.text = text
     }
     override fun getLayout(): Int{
         return R.layout.chat_from_row
@@ -72,7 +84,7 @@ class ChatFromItem(val text: String): Item<GroupieViewHolder>(){
 
 class ChatToItem(val text: String): Item<GroupieViewHolder>(){
     override fun bind(viewHolder: GroupieViewHolder, position: Int){
-        viewHolder.itemView.textView_to_row.text = text
+        viewHolder.itemView.textViewChatToRow.text = text
     }
     override fun getLayout(): Int{
         return R.layout.chat_to_row
