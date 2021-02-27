@@ -48,6 +48,4 @@ class LatestMessagesActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.navigation_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
-    //can yous see this?
-    // Yes, I can! Let's go!
 }
