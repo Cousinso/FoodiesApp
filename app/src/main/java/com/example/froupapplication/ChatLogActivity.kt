@@ -6,6 +6,7 @@ import com.xwray.groupie.GroupieViewHolder
 import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
+import kotlinx.android.synthetic.main.activity_chat_log.*
 
 class ChatLogActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,27 +19,28 @@ class ChatLogActivity : AppCompatActivity() {
     }
     private fun setupDummyData(){
         val adapter = GroupAdapter<GroupieViewHolder>()
+        val recyclerview_chat_log = findViewById<RecyclerView>(R.id.chatLogRecyclerViewChatLog)
 
-        adapter.add(ChatFromItem())
-        adapter.add(ChatToItem())
+        adapter.add(ChatFromItem("From message"))
+        adapter.add(ChatToItem("To message"))
 
-        //recyclerview_chat_log.adapter = adapter
+        recyclerview_chat_log.adapter = adapter
 
     }
 }
 
-class ChatFromItem: Item<GroupieViewHolder>(){
+class ChatFromItem(val text: String): Item<GroupieViewHolder>(){
     override fun bind(viewHolder: GroupieViewHolder, position: Int){
-        viewHolder.itemView.textView_from_row.text = "From message "
+        viewHolder.itemView.textView_from_row.text = text
     }
     override fun getLayout(): Int{
         return R.layout.chat_from_row
     }
 }
 
-class ChatToItem: Item<GroupieViewHolder>(){
+class ChatToItem(val text: String): Item<GroupieViewHolder>(){
     override fun bind(viewHolder: GroupieViewHolder, position: Int){
-        viewHolder.itemView.textView_to_row.text = "This is the longer row text message"
+        viewHolder.itemView.textView_to_row.text = text
     }
     override fun getLayout(): Int{
         return R.layout.chat_to_row
