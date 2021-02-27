@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.xwray.groupie.GroupieViewHolder
 import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_chat_log.*
 
@@ -15,34 +16,22 @@ class ChatLogActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Chat Log"
 
-        setupDummyData()
-    }
-    private fun setupDummyData(){
         val adapter = GroupAdapter<GroupieViewHolder>()
-        val recyclerview_chat_log = findViewById<RecyclerView>(R.id.chatLogRecyclerViewChatLog)
 
-        adapter.add(ChatFromItem("From message"))
-        adapter.add(ChatToItem("To message"))
+        adapter.add(ChatItem())
+        adapter.add(ChatItem())
+        adapter.add(ChatItem())
 
-        recyclerview_chat_log.adapter = adapter
-
+        val recyclerView = findViewById<RecyclerView>(R.id.newMessageRecyclerView)
+        recyclerView.adapter = adapter
     }
 }
 
-class ChatFromItem(val text: String): Item<GroupieViewHolder>(){
-    override fun bind(viewHolder: GroupieViewHolder, position: Int){
-        viewHolder.itemView.textView_from_row.text = text
-    }
-    override fun getLayout(): Int{
-        return R.layout.chat_from_row
-    }
-}
+class ChatItem : Item<GroupieViewHolder>() {
+    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
 
-class ChatToItem(val text: String): Item<GroupieViewHolder>(){
-    override fun bind(viewHolder: GroupieViewHolder, position: Int){
-        viewHolder.itemView.textView_to_row.text = text
     }
-    override fun getLayout(): Int{
-        return R.layout.chat_to_row
+    override fun getLayout(): Int {
+        return R.layout.message_from_row
     }
 }
