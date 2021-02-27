@@ -20,7 +20,7 @@ class ChatLogActivity : AppCompatActivity() {
         val adapter = GroupAdapter<GroupieViewHolder>()
 
         adapter.add(ChatFromItem())
-        //adapter.add(chatToItem())
+        adapter.add(ChatToItem())
 
         //recyclerview_chat_log.adapter = adapter
 
@@ -30,5 +30,17 @@ class ChatLogActivity : AppCompatActivity() {
 class ChatFromItem: Item<GroupieViewHolder>(){
     override fun bind(viewHolder: GroupieViewHolder, position: Int){
         viewHolder.itemView.textView_from_row.text = "From message "
+    }
+    override fun getLayout(): Int{
+        return R.layout.chat_from_row
+    }
+}
+
+class ChatToItem: Item<GroupieViewHolder>(){
+    override fun bind(viewHolder: GroupieViewHolder, position: Int){
+        viewHolder.itemView.textView_to_row.text = "This is the longer row text message"
+    }
+    override fun getLayout(): Int{
+        return R.layout.chat_to_row
     }
 }
