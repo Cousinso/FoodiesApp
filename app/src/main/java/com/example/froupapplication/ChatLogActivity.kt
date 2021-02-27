@@ -21,16 +21,17 @@ class ChatLogActivity : AppCompatActivity() {
 
         val adapter = GroupAdapter<GroupieViewHolder>()
 
-        adapter.add(ChatFromItem("test"))
-        adapter.add(ChatFromItem("test"))
-        adapter.add(ChatFromItem("test"))
+        adapter.add(ChatFromItem())
+        adapter.add(ChatFromItem())
+        adapter.add(ChatFromItem())
+        adapter.add(ChatFromItem())
 
         val recyclerView = findViewById<RecyclerView>(R.id.chatLogRecyclerViewChatLog)
         recyclerView.adapter = adapter
     }
 }
 
-class ChatFromItem(val text: String) : Item<GroupieViewHolder>() {
+class ChatFromItem : Item<GroupieViewHolder>() {
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
 
     }
