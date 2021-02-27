@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import com.xwray.groupie.GroupieViewHolder
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
@@ -39,8 +40,7 @@ class ChatLogActivity : AppCompatActivity() {
     class ChatMessage(val text: String)
     //saves message to firebase
     private fun performSendMessage(){
-        //I wasn't sure if this was the equivalent
-        val text = messageEditTextChatLog.text.toString()
+        val text = findViewById<EditText>(R.id.messageEditTextChatLog).text.toString()
         val reference = FirebaseDatabase.getInstance().getReference("/messages").push()
         val chatMessage = ChatMessage(text)
 
