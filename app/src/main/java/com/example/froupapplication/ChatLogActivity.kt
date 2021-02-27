@@ -1,7 +1,10 @@
 package com.example.froupapplication
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
 import com.xwray.groupie.GroupieViewHolder
 import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.GroupAdapter
@@ -18,16 +21,16 @@ class ChatLogActivity : AppCompatActivity() {
 
         val adapter = GroupAdapter<GroupieViewHolder>()
 
-        adapter.add(ChatItem())
-        adapter.add(ChatItem())
-        adapter.add(ChatItem())
+        adapter.add(ChatFromItem("test"))
+        adapter.add(ChatFromItem("test"))
+        adapter.add(ChatFromItem("test"))
 
-        val recyclerView = findViewById<RecyclerView>(R.id.newMessageRecyclerView)
+        val recyclerView = findViewById<RecyclerView>(R.id.chatLogRecyclerViewChatLog)
         recyclerView.adapter = adapter
     }
 }
 
-class ChatItem : Item<GroupieViewHolder>() {
+class ChatFromItem(val text: String) : Item<GroupieViewHolder>() {
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
 
     }
