@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.xwray.groupie.GroupieViewHolder
 import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Item
 
 class ChatLogActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,10 +19,16 @@ class ChatLogActivity : AppCompatActivity() {
     private fun setupDummyData(){
         val adapter = GroupAdapter<GroupieViewHolder>()
 
-        //adapter.add(chatFromItem())
+        adapter.add(ChatFromItem())
         //adapter.add(chatToItem())
 
         //recyclerview_chat_log.adapter = adapter
 
+    }
+}
+
+class ChatFromItem: Item<GroupieViewHolder>(){
+    override fun bind(viewHolder: GroupieViewHolder, position: Int){
+        viewHolder.itemView.textView_from_row.text = "From message "
     }
 }
