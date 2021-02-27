@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700" >
+    android:background="@android:color/holo_orange_light">
 
     <EditText
         android:id="@+id/emailEditTextLogin"
@@ -20,6 +20,7 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:paddingLeft="16dp"
+        android:textColorHint="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,6 +35,7 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingLeft="16dp"
+        android:textColorHint="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toEndOf="@+id/emailEditTextLogin"
         app:layout_constraintStart_toStartOf="@+id/emailEditTextLogin"
         app:layout_constraintTop_toBottomOf="@+id/emailEditTextLogin" />
@@ -45,6 +47,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/rounded_edittext"
         android:text="Login"
+        app:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toEndOf="@+id/passwordEditTextLogin"
         app:layout_constraintStart_toStartOf="@+id/passwordEditTextLogin"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLogin" />
@@ -55,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Register instead?"
-        android:textColor="@color/white"
+        android:textColor="@android:color/holo_orange_dark"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/loginButtonLogin"
         app:layout_constraintStart_toStartOf="@+id/loginButtonLogin"

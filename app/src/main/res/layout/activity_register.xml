@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
-    tools:context=".RegisterActivity" >
+    android:background="@android:color/holo_orange_light"
+    tools:context=".RegisterActivity">
 
     <EditText
         android:id="@+id/emailEditTextRegister"
@@ -15,6 +15,7 @@
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Email"
+        android:textColorHint="@android:color/holo_orange_dark"
         android:inputType="textEmailAddress"
         android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="@+id/usernameEditTextRegister"
@@ -29,6 +30,7 @@
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Password"
+        android:textColorHint="@android:color/holo_orange_dark"
         android:inputType="textPassword"
         android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="@+id/emailEditTextRegister"
@@ -47,6 +49,7 @@
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Username"
+        android:textColorHint="@android:color/holo_orange_dark"
         android:inputType="textPersonName"
         android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,6 +63,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/rounded_edittext"
         android:text="Register"
+        app:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toEndOf="@+id/passwordEditTextRegister"
         app:layout_constraintStart_toStartOf="@+id/passwordEditTextRegister"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTextRegister" />
@@ -70,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Login instead?"
-        android:textColor="@color/white"
+        android:textColor="@android:color/holo_orange_dark"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/registerButtonRegister"
         app:layout_constraintStart_toStartOf="@+id/registerButtonRegister"
@@ -87,6 +91,7 @@
         android:layout_marginRight="32dp"
         android:background="@drawable/circle_button"
         android:text="Select Photo"
+        app:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
