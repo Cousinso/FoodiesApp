@@ -53,7 +53,7 @@ class UserItem(val user: User) : Item<GroupieViewHolder>() {
         viewHolder.itemView.usernameTextViewNewMessage.text = user.username
         Picasso.get().load(user.profileImageUrl).into(viewHolder.itemView.photoImageViewNewMessages)
     }
-    override fun getLayout(): Int {
+    override fun getLayout() : Int {
         return R.layout.user_row_new_message
     }
 }
