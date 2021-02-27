@@ -1,5 +1,6 @@
 package com.example.froupapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -41,6 +42,13 @@ class NewMessageActivity : AppCompatActivity() {
                         adapter.add(UserItem(user))
                     }
                 }
+
+                // Sends user to chat logs with a person
+                adapter.setOnItemClickListener { item, view ->
+                    val intent = Intent(view.context, ChatLogActivity::class.java)
+                    startActivity(intent)
+                }
+
                 val recyclerView = findViewById<RecyclerView>(R.id.newMessageRecyclerView)
                 recyclerView.adapter = adapter
             }

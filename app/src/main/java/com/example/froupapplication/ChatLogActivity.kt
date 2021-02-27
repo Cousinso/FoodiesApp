@@ -11,6 +11,8 @@ class ChatLogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
 
+        supportActionBar?.title = "Chat Log"
+
         setupDummyData()
     }
     private fun setupDummyData(){
@@ -20,5 +22,6 @@ class ChatLogActivity : AppCompatActivity() {
         //adapter.add(chatToItem())
 
         //recyclerview_chat_log.adapter = adapter
+
     }
 }
