@@ -7,6 +7,10 @@ import android.widget.Button
 import android.widget.EditText
 import com.xwray.groupie.GroupieViewHolder
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
@@ -19,30 +23,77 @@ class ChatLogActivity : AppCompatActivity() {
     companion object{
         val TAG = "ChatLog"
     }
+    //Allows objects to be added to recycler view adapter
+    val adapter = GroupAdapter<GroupieViewHolder>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
         val chatLogSendButton = findViewById<Button>(R.id.sendButtonChatLog)
 
+        chatLogRecyclerViewChatLog.adapter = adapter
         // Grabs selected user from NewMessageActivity
         val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
         supportActionBar?.title = user?.username
 
-        setupDummyData()
+        //No more dummies. Smart people only
+        //setupDummyData()
 
+        listenForMessages()
         chatLogSendButton.setOnClickListener{
             Log.d(TAG, "Attempt to send message...")
             performSendMessage()
         }
     }
+    private fun listenForMessages(){
+        val ref = FirebaseDatabase.getInstance().getReference("/messages")
 
-    class ChatMessage(val text: String)
+        ref.addChildEventListener(object: ChildEventListener{
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                val chatMessage = snapshot.getValue(ChatMessage::class.java)
+
+                if(chatMessage != null) {
+                    Log.d(TAG, chatMessage.text)
+                    if (chatMessage.fromID == FirebaseAuth.getInstance().uid) {
+                        adapter.add(ChatFromItem(chatMessage.text))
+                    } else {
+                        adapter.add(ChatToItem(chatMessage.text))
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+
+            }
+        })
+    }
+
+
     //saves message to firebase
     private fun performSendMessage(){
         val text = findViewById<EditText>(R.id.messageEditTextChatLog).text.toString()
         val reference = FirebaseDatabase.getInstance().getReference("/messages").push()
-        val chatMessage = ChatMessage(text)
+        val fromID = FirebaseAuth.getInstance().uid
+        val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
+        //not sure why it needs a ?
+        val toID = user?.uid
+
+        if(fromID == null) return
+        if(toID == null) return
+
+        val chatMessage = ChatMessage(reference.key!!, fromID, toID, System.currentTimeMillis()/1000, text)
 
         reference.setValue(chatMessage)
                 .addOnSuccessListener {
