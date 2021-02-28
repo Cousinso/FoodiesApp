@@ -49,7 +49,9 @@ class ChatLogActivity : AppCompatActivity() {
         }
     }
     private fun listenForMessages(){
-        val ref = FirebaseDatabase.getInstance().getReference("/messages")
+        val fromID = FirebaseAuth.getInstance().uid
+        val toID = toUser?.uid
+        val ref = FirebaseDatabase.getInstance().getReference("/user-messages/$fromID/$toID")
 
         ref.addChildEventListener(object: ChildEventListener{
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
@@ -87,12 +89,14 @@ class ChatLogActivity : AppCompatActivity() {
     //saves message to firebase
     private fun performSendMessage(){
         val text = findViewById<EditText>(R.id.messageEditTextChatLog).text.toString()
-        val reference = FirebaseDatabase.getInstance().getReference("/messages").push()
+//        val reference = FirebaseDatabase.getInstance().getReference("/messages").push()
+
         val fromID = FirebaseAuth.getInstance().uid
         val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
         //not sure why it needs a ?
         val toID = user?.uid
-
+        val reference = FirebaseDatabase.getInstance().getReference("/user-messages/$fromID/$toID").push()
+        val toReference = FirebaseDatabase.getInstance().getReference("/user-messages/$toID/$fromID").push()
         if(fromID == null) return
         if(toID == null) return
 
@@ -101,8 +105,10 @@ class ChatLogActivity : AppCompatActivity() {
         reference.setValue(chatMessage)
                 .addOnSuccessListener {
                     Log.d(TAG, "Saved chat message: ${reference.key}")
+                    messageEditTextChatLog.text.clear()
+                    chatLogRecyclerViewChatLog.scrollToPosition(adapter.itemCount - 1)
                 }
-    }
+        toReference.setValue(chatMessage)
 
 //    private fun setupDummyData(){
 //        val adapter = GroupAdapter<GroupieViewHolder>()
