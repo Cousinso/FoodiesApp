@@ -62,7 +62,8 @@ class ChatLogActivity : AppCompatActivity() {
                 if (chatMessage != null) {
                     Log.d(TAG, chatMessage.text)
                     if (chatMessage.fromID == FirebaseAuth.getInstance().uid) {
-                        adapter.add(ChatFromItem(chatMessage.text))
+                        val currentUser = LatestMessagesActivity.currentUser
+                        adapter.add(ChatFromItem(chatMessage.text, currentUser))
                     } else {
                         adapter.add(ChatToItem(chatMessage.text, toUser))
                     }
@@ -118,28 +119,19 @@ class ChatLogActivity : AppCompatActivity() {
 //
 //        adapter.add(ChatFromItem("From message"))
 //        adapter.add(ChatToItem("To message"))
-//        adapter.add(ChatFromItem("From message"))
-//        adapter.add(ChatToItem("To message"))
-//        adapter.add(ChatFromItem("From message"))
-//        adapter.add(ChatToItem("To message"))
-//        adapter.add(ChatFromItem("From message"))
-//        adapter.add(ChatToItem("To message"))
-//        adapter.add(ChatFromItem("From message"))
-//        adapter.add(ChatToItem("To message"))
-//        adapter.add(ChatFromItem("From message"))
-//        adapter.add(ChatToItem("To message"))
-//        adapter.add(ChatFromItem("From message"))
-//        adapter.add(ChatToItem("To message"))
 //
 //        chatLogRecyclerView.adapter = adapter
 //    }
     }
 
-    class ChatFromItem(val text: String) : Item<GroupieViewHolder>() {
+    class ChatFromItem(val text: String, val user: User?) : Item<GroupieViewHolder>() {
         override fun bind(viewHolder: GroupieViewHolder, position: Int) {
             viewHolder.itemView.textViewChatFromRow.text = text
 
             // Load user image into chat log
+            val uri = user?.profileImageUrl
+            val target = viewHolder.itemView.photoImageViewChatFromRow
+            Picasso.get().load(uri).into(target)
         }
 
         override fun getLayout(): Int {
