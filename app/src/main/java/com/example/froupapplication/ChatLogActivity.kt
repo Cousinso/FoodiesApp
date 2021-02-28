@@ -25,7 +25,7 @@ class ChatLogActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat_log)
         val chatLogSendButton = findViewById<Button>(R.id.sendButtonChatLog)
 
-        // Grabs selected user from NewMessageActivity
+        // Grabs selected user data from NewMessageActivity
         val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
         supportActionBar?.title = user?.username
 
