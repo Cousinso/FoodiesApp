@@ -9,13 +9,15 @@
         android:id="@+id/textViewChatFromRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:background="@drawable/rounded_edittext"
         android:maxWidth="240dp"
         android:padding="16dp"
         android:text="This is my message that will hopefully wrap into multiple lines"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/photoImageViewChatFromRow"
         app:layout_constraintStart_toEndOf="@+id/photoImageViewChatFromRow"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/photoImageViewChatFromRow" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/photoImageViewChatFromRow"
