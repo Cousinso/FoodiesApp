@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -61,7 +63,6 @@ class RegisterActivity : AppCompatActivity() {
             // Gives location of image data
             selectedPhotoUri = data.data
 
-            // CircleImageView from GitHub
             // https://github.com/hdodenhof/CircleImageView
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
 
@@ -115,9 +116,9 @@ class RegisterActivity : AppCompatActivity() {
                 Log.d("RegisterActivity", "Image uploaded! Image path: ${it.metadata?.path}")
 
                 ref.downloadUrl.addOnCompleteListener {
-                    Log.d("RegisterActivity", "File location: $it")
+                    Log.d("RegisterActivity", "File location: ${it.result}")
 
-                    saveUserToDatabase(it.toString())
+                    saveUserToDatabase(it.result.toString())
                 }
             }
             .addOnFailureListener {
@@ -149,7 +150,9 @@ class RegisterActivity : AppCompatActivity() {
     }
 }
 
-class User(val uid: String, val username: String, val profileImageUrl: String) {
+// User class made into a parcelable
+@Parcelize
+class User(val uid: String, val username: String, val profileImageUrl: String) : Parcelable {
     // No-argument constructor
     constructor() : this("", "", "")
 }
