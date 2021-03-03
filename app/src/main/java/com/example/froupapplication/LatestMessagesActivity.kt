@@ -35,7 +35,8 @@ class LatestMessagesActivity : AppCompatActivity() {
     }
     class LatestMessageRow(val chatMessage: ChatMessage): Item<GroupieViewHolder>(){
         override fun bind(viewHolder: GroupieViewHolder, position: Int){
-                viewHolder.itemView.username_textview_latest_message.text = chatMessage.text
+                viewHolder.itemView.username_textview_latest_message.text = chatMessage.fromID
+                viewHolder.itemView.latest_message_textview.text = chatMessage.text
         }
         override fun getLayout(): Int {
             return R.layout.latest_messages_row
