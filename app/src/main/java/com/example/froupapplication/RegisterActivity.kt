@@ -138,7 +138,7 @@ class RegisterActivity : AppCompatActivity() {
         val ref = database.getReference("/users/${auth.uid}")
         val username = findViewById<EditText>(R.id.usernameEditTextRegister)
 
-        val user = User(auth.uid ?: "", username.text.toString(), profileImageUrl, "", "", "", "")
+        val user = User(auth.uid ?: "", username.text.toString(), profileImageUrl, "", "")
 
         ref.setValue(user)
             .addOnSuccessListener {
@@ -154,7 +154,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 }
 
-class User(val uid: String, val username: String, val profileImageUrl: String, val food1: String, val food2: String, val food3: String, val Bio: String) {
+class User(val uid: String, val username: String, val profileImageUrl: String, val food: String, val Bio: String) {
     // No-argument constructor
-    constructor() : this("","","","","","","")
+    constructor() : this("","","","","")
 }
