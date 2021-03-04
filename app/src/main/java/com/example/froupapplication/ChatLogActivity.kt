@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_chat_log.*
+import kotlinx.android.synthetic.main.activity_latest_messages.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
 
@@ -68,6 +69,8 @@ class ChatLogActivity : AppCompatActivity() {
                         adapter.add(ChatToItem(chatMessage.text, toUser))
                     }
                 }
+
+                chatLogRecyclerViewChatLog.scrollToPosition(adapter.itemCount - 1)
             }
 
             override fun onCancelled(error: DatabaseError) {
