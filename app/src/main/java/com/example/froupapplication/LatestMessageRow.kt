@@ -11,6 +11,8 @@ import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.latest_messages_row.view.*
 
 class LatestMessageRow(val chatMessage: ChatMessage): Item<GroupieViewHolder>(){
+    var otherPersonUser: User? = null
+
     override fun bind(viewHolder: GroupieViewHolder, position: Int){
         val otherPersonID: String
         if (chatMessage.fromID == FirebaseAuth.getInstance().uid) {
@@ -23,10 +25,10 @@ class LatestMessageRow(val chatMessage: ChatMessage): Item<GroupieViewHolder>(){
         val ref = FirebaseDatabase.getInstance().getReference("/users/$otherPersonID")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val user = snapshot.getValue(User::class.java)
-                viewHolder.itemView.username_textview_latest_message.text = user?.username
+                otherPersonUser = snapshot.getValue(User::class.java)
+                viewHolder.itemView.username_textview_latest_message.text = otherPersonUser?.username
                 val targetImage = viewHolder.itemView.imageView_latest_message
-                Picasso.get().load(user?.profileImageUrl).into(targetImage)
+                Picasso.get().load(otherPersonUser?.profileImageUrl).into(targetImage)
             }
 
             override fun onCancelled(error: DatabaseError) {

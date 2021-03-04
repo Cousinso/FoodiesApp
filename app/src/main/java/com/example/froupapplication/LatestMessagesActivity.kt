@@ -34,6 +34,10 @@ class LatestMessagesActivity : AppCompatActivity() {
         adapter.setOnItemClickListener { item, view ->
             Log.d(TAG, "Latest message row pressed!")
             val intent = Intent(this, ChatLogActivity::class.java)
+
+            val row = item as LatestMessageRow
+
+            intent.putExtra(NewMessageActivity.USER_KEY, row.otherPersonUser)
             startActivity(intent)
         }
 

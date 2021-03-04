@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.chat_to_row.view.*
 class ChatLogActivity : AppCompatActivity() {
 
     companion object {
-        val TAG = "ChatLog"
+        val TAG = "ChatLogActivity"
     }
 
     //Allows objects to be added to recycler view adapter
