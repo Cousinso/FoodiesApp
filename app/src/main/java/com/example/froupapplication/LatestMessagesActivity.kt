@@ -6,8 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -16,6 +19,7 @@ import kotlinx.android.synthetic.main.latest_messages_row.view.*
 
 class LatestMessagesActivity : AppCompatActivity() {
     companion object {
+        val TAG = "LatestMessagesActivity"
         var currentUser: User? = null
     }
 
@@ -24,6 +28,14 @@ class LatestMessagesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_latest_messages)
 
         recyclerView_latest_messages.adapter = adapter
+        recyclerView_latest_messages.addItemDecoration(DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL))
+
+        adapter.setOnItemClickListener { item, view ->
+            Log.d(TAG, "Latest message row pressed!")
+            val intent = Intent(this, ChatLogActivity::class.java)
+            startActivity(intent)
+        }
 
         //setUpDummyRows()
         listenForLatestMessages()
@@ -33,15 +45,7 @@ class LatestMessagesActivity : AppCompatActivity() {
         // Check if user has logged in
         verifyLogin()
     }
-    class LatestMessageRow(val chatMessage: ChatMessage): Item<GroupieViewHolder>(){
-        override fun bind(viewHolder: GroupieViewHolder, position: Int){
-                viewHolder.itemView.username_textview_latest_message.text = chatMessage.fromID
-                viewHolder.itemView.latest_message_textview.text = chatMessage.text
-        }
-        override fun getLayout(): Int {
-            return R.layout.latest_messages_row
-        }
-    }
+
 
     val latestMessagesMap = HashMap<String, ChatMessage>()
 
@@ -93,6 +97,7 @@ class LatestMessagesActivity : AppCompatActivity() {
 //
 //
 //    }
+
     private fun getCurrentUser() {
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
