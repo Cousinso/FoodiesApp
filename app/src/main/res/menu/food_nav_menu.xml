@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/food_latest_messages"
-        android:title="Latest Messages"
+        android:title="Messages"
         app:showAsAction="ifRoom"/>
     <item android:id="@+id/food_sign_out"
         android:title="Sign Out"

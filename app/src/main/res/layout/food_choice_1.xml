@@ -8,11 +8,12 @@
     <ImageView
         android:id="@+id/foodImageView1"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_gallery"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button

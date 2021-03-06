@@ -3,14 +3,26 @@ package com.example.froupapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
+import android.telephony.mbms.MbmsErrors
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
+import com.xwray.groupie.GroupieAdapter
+import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.synthetic.main.activity_food_selection.*
+import kotlinx.android.synthetic.main.food_choice_1.view.*
+import kotlinx.android.synthetic.main.user_row_new_message.view.*
 
 class FoodSelectionActivity : AppCompatActivity() {
     companion object {
@@ -24,6 +36,13 @@ class FoodSelectionActivity : AppCompatActivity() {
 
         getCurrentUser()
         verifyLogin()
+
+        supportActionBar?.title = "Food Selection"
+        val adapter = GroupieAdapter()
+
+        recyclerViewFoodSelection.adapter = adapter
+
+        fetchFood()
     }
 
     private fun getCurrentUser() {
@@ -51,6 +70,29 @@ class FoodSelectionActivity : AppCompatActivity() {
         }
     }
 
+    private fun fetchFood() {
+        val ref = FirebaseDatabase.getInstance().getReference("/foods")
+        ref.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val adapter = GroupieAdapter()
+
+                snapshot.children.forEach {
+                    Log.d("FoodSelectionActivity", it.toString())
+                    val food = it.getValue(Food::class.java)
+                    if (food != null) {
+                        adapter.add(FoodItem(food))
+                    }
+                }
+
+                recyclerViewFoodSelection.adapter = adapter
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.food_latest_messages -> {
@@ -71,4 +113,19 @@ class FoodSelectionActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.food_nav_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
+}
+
+class FoodItem(val food: Food): Item<GroupieViewHolder>() {
+    override fun getLayout(): Int {
+        return R.layout.food_choice_1
+    }
+    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+        Picasso.get().load(food.foodImageUrl).into(viewHolder.itemView.foodImageView1)
+    }
+}
+
+@Parcelize
+class Food(val fid: String, val food: String, val foodImageUrl: String) : Parcelable {
+    // No-argument constructor
+    constructor() : this("", "", "")
 }
