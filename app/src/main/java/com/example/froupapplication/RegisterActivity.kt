@@ -25,17 +25,13 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         // Instantiating UI elements
-        val register = findViewById<Button>(R.id.registerButtonRegister)
+        val register = findViewById<Button>(R.id.registerButtonProfile)
         val login = findViewById<TextView>(R.id.loginTextViewRegister)
         val photo = findViewById<Button>(R.id.photoButtonRegister)
 
         register.setOnClickListener {
             Log.d("RegisterActivity", "Register pressed!")
             performRegister()
-
-            // Go to profile activity
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
         }
 
         login.setOnClickListener {
@@ -143,15 +139,14 @@ class RegisterActivity : AppCompatActivity() {
         val ref = database.getReference("/users/${auth.uid}")
         val username = findViewById<EditText>(R.id.usernameEditTextRegister)
 
-        val user = User(auth.uid ?: "", username.text.toString(), profileImageUrl)
+        val user = User(auth.uid ?: "", username.text.toString(), profileImageUrl, "", "")
 
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "User saved to Firebase Database")
 
-                val intent = Intent(this, LatestMessagesActivity::class.java)
-                // Clears intent list and back button goes to home screen
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                // Go to profile activity
+                val intent = Intent(this, ProfileActivity::class.java)
                 startActivity(intent)
             }
             .addOnFailureListener {
@@ -160,9 +155,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 }
 
-// User class made into a parcelable
 @Parcelize
-class User(val uid: String, val username: String, val profileImageUrl: String) : Parcelable {
+class User(val uid: String, val username: String, val profileImageUrl: String, val food: String, val Bio: String) : Parcelable {
     // No-argument constructor
-    constructor() : this("", "", "")
+    constructor() : this("","","","","")
 }
