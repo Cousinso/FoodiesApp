@@ -9,7 +9,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
-
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -38,28 +39,16 @@ class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         spinner1.onItemSelectedListener = this
 
-
         val auth = FirebaseAuth.getInstance()
-        val user = auth.currentUser
-        /*val food2 = user.
-
-        val profileUpdates = userProfileChangeRequest {
-            
-            user.food = food1
-            user.Bio = bio.text.toString()
-        }
-
-        user!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Log.d("ProfileActivity", "User profile updated.")
-            }
-        }*/
-
+        val foodReference = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("food")
+        val bioReference = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("bio")
 
         // Go to main activity
         register.setOnClickListener {
             Log.d("ProfileActivity", "Food: $food1")
             Log.d("ProfileActivity", "Bio: ${bio.text.toString()}")
+            foodReference.setValue(food1)
+            bioReference.setValue(bio.text.toString())
 
             val intent = Intent(this, LatestMessagesActivity::class.java)
             // Clears intent list and back button goes to home screen
