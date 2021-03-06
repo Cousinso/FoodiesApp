@@ -30,7 +30,12 @@ class RegisterActivity : AppCompatActivity() {
         val photo = findViewById<Button>(R.id.photoButtonRegister)
 
         register.setOnClickListener {
+            Log.d("RegisterActivity", "Register pressed!")
             performRegister()
+
+            // Go to profile activity
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
         }
 
         login.setOnClickListener {
@@ -79,8 +84,13 @@ class RegisterActivity : AppCompatActivity() {
         val email = findViewById<EditText>(R.id.emailEditTextRegister)
         val password = findViewById<EditText>(R.id.passwordEditTextRegister)
 
-        if (email.text.toString().isEmpty() || password.text.toString().isEmpty()) {
-            Toast.makeText(this, "Please enter email/password", Toast.LENGTH_SHORT).show()
+        if (email.text.toString().isEmpty() ) {
+            Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (password.text.toString().isEmpty()) {
+            Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show()
             return
         }
 
