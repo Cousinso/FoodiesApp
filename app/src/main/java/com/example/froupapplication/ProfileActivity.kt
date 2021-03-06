@@ -3,11 +3,14 @@ package com.example.froupapplication
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.os.Parcelable
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+
+
 
 class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
     var food1 = ""
@@ -36,8 +39,9 @@ class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
         spinner1.onItemSelectedListener = this
 
 
-        /*val auth = FirebaseAuth.getInstance()
+        val auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
+        /*val food2 = user.
 
         val profileUpdates = userProfileChangeRequest {
             
