@@ -1,5 +1,6 @@
 package com.example.froupapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +25,10 @@ class NewMessageActivity : AppCompatActivity() {
         getUsersFromDatabase()
     }
 
+    companion object {
+        val USER_KEY = "USER_KEY"
+    }
+
     private fun getUsersFromDatabase() {
         val ref = FirebaseDatabase.getInstance().getReference("/users")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
@@ -41,6 +46,18 @@ class NewMessageActivity : AppCompatActivity() {
                         adapter.add(UserItem(user))
                     }
                 }
+
+                // Sends user to chat logs with a person
+                adapter.setOnItemClickListener { item, view ->
+                    val userItem = item as UserItem
+
+                    // Sends selected user data to ChatLogActivity
+                    val intent = Intent(view.context, ChatLogActivity::class.java)
+                    intent.putExtra(USER_KEY, userItem.user)
+                    startActivity(intent)
+                    finish()
+                }
+
                 val recyclerView = findViewById<RecyclerView>(R.id.newMessageRecyclerView)
                 recyclerView.adapter = adapter
             }
@@ -53,7 +70,7 @@ class UserItem(val user: User) : Item<GroupieViewHolder>() {
         viewHolder.itemView.usernameTextViewNewMessage.text = user.username
         Picasso.get().load(user.profileImageUrl).into(viewHolder.itemView.photoImageViewNewMessages)
     }
-    override fun getLayout(): Int {
+    override fun getLayout() : Int {
         return R.layout.user_row_new_message
     }
 }

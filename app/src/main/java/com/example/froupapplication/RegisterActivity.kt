@@ -64,7 +64,6 @@ class RegisterActivity : AppCompatActivity() {
             // Gives location of image data
             selectedPhotoUri = data.data
 
-            // CircleImageView from GitHub
             // https://github.com/hdodenhof/CircleImageView
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
 
@@ -123,9 +122,9 @@ class RegisterActivity : AppCompatActivity() {
                 Log.d("RegisterActivity", "Image uploaded! Image path: ${it.metadata?.path}")
 
                 ref.downloadUrl.addOnCompleteListener {
-                    Log.d("RegisterActivity", "File location: $it")
+                    Log.d("RegisterActivity", "File location: ${it.result}")
 
-                    saveUserToDatabase(it.toString())
+                    saveUserToDatabase(it.result.toString())
                 }
             }
             .addOnFailureListener {
