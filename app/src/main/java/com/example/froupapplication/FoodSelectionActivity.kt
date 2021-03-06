@@ -21,6 +21,7 @@ import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_food_selection.*
+import kotlinx.android.synthetic.main.food_choice_1.*
 import kotlinx.android.synthetic.main.food_choice_1.view.*
 import kotlinx.android.synthetic.main.user_row_new_message.view.*
 
@@ -28,6 +29,7 @@ class FoodSelectionActivity : AppCompatActivity() {
     companion object {
         val TAG = "FoodSelection"
         val currentUser: User? = null
+        val FOOD_KEY = "FOOD_KEY"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,9 +40,6 @@ class FoodSelectionActivity : AppCompatActivity() {
         verifyLogin()
 
         supportActionBar?.title = "Food Selection"
-        val adapter = GroupieAdapter()
-
-        recyclerViewFoodSelection.adapter = adapter
 
         fetchFood()
     }
@@ -84,6 +83,14 @@ class FoodSelectionActivity : AppCompatActivity() {
                     }
                 }
 
+                // Sends user to chat logs with a person
+                adapter.setOnItemClickListener { item, view ->
+                    val foodItem = item as FoodItem
+                    val intent = Intent(view.context, SelectedFoodActivity::class.java)
+                    intent.putExtra(FOOD_KEY, foodItem.food)
+                    startActivity(intent)
+                }
+
                 recyclerViewFoodSelection.adapter = adapter
             }
             override fun onCancelled(error: DatabaseError) {
@@ -121,6 +128,10 @@ class FoodItem(val food: Food): Item<GroupieViewHolder>() {
     }
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         Picasso.get().load(food.foodImageUrl).into(viewHolder.itemView.foodImageView1)
+//        viewHolder.itemView.yesButtonFoodChoice1.setOnClickListener {
+//            Log.d("FoodSelectionActivity", it.toString())
+//            val intent = Intent(it.context, SelectedFoodActivity::class.java)
+//        }
     }
 }
 
