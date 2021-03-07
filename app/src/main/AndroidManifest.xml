@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FroupApplication">
         <activity android:name=".TestProfileActivity"></activity>
-        <activity android:name=".ProfileTestActivity" />
         <activity android:name=".SelectedFoodActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
