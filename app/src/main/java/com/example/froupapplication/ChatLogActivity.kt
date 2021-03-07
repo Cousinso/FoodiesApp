@@ -56,7 +56,7 @@ class ChatLogActivity : AppCompatActivity() {
         }
         adapter.setOnItemClickListener { item, view ->
 //            val userItem = item as ChatToItem
-            val intent = Intent(view.context, ProfileTestActivity::class.java)
+            val intent = Intent(view.context, TestProfileActivity::class.java)
             intent.putExtra("User", toUser)
             startActivity(intent)
         }
