@@ -27,6 +27,8 @@ class LatestMessagesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_latest_messages)
 
+        supportActionBar?.title = ""
+
         recyclerView_latest_messages.adapter = adapter
         recyclerView_latest_messages.addItemDecoration(DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL))

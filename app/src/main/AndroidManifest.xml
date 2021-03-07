@@ -9,6 +9,18 @@
         android:roundIcon="@mipmap/burger_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FroupApplication">
+        <activity android:name=".ProfileTestActivity"></activity>
+        <activity android:name=".SelectedFoodActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FoodSelectionActivity" />
+        </activity>
+        <activity android:name=".FoodSelectionActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".ChatLogActivity">
             <meta-data
@@ -21,15 +33,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LatestMessagesActivity" />
         </activity>
-
         <activity android:name=".LatestMessagesActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FoodSelectionActivity" />
         </activity>
-        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
 
         <activity android:name=".ProfileActivity"/>

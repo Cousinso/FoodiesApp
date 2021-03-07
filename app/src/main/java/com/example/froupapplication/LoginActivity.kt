@@ -35,7 +35,7 @@ class LoginActivity: AppCompatActivity() {
                         val user = auth.currentUser
                         Log.d("LoginActivity", "Login Successful! UID: ${user!!.uid}")
 
-                        val intent = Intent(this, LatestMessagesActivity::class.java)
+                        val intent = Intent(this, FoodSelectionActivity::class.java)
                         // Clears intent list and back button goes to home screen
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)

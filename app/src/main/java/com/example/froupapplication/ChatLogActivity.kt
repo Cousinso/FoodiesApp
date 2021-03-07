@@ -1,10 +1,13 @@
 package com.example.froupapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import com.xwray.groupie.GroupieViewHolder
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -35,6 +38,7 @@ class ChatLogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
         val chatLogSendButton = findViewById<Button>(R.id.sendButtonChatLog)
+        val chatFromImage = findViewById<ImageView>(R.id.photoImageViewChatFromRow)
 
         chatLogRecyclerViewChatLog.adapter = adapter
         // Grabs selected user from NewMessageActivity
@@ -45,10 +49,18 @@ class ChatLogActivity : AppCompatActivity() {
         //setupDummyData()
 
         listenForMessages()
+
         chatLogSendButton.setOnClickListener {
             Log.d(TAG, "Attempt to send message...")
             performSendMessage()
         }
+        adapter.setOnItemClickListener { item, view ->
+//            val userItem = item as ChatToItem
+            val intent = Intent(view.context, ProfileTestActivity::class.java)
+            intent.putExtra("User", toUser)
+            startActivity(intent)
+        }
+
     }
 
     private fun listenForMessages() {
@@ -146,6 +158,7 @@ class ChatLogActivity : AppCompatActivity() {
         override fun getLayout(): Int {
             return R.layout.chat_from_row
         }
+
     }
 
     class ChatToItem(val text: String, val user: User?) : Item<GroupieViewHolder>() {
