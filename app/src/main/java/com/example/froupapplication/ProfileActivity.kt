@@ -3,13 +3,12 @@ package com.example.froupapplication
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.os.Parcelable
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
-
+import com.google.firebase.database.*
 
 
 class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -38,34 +37,27 @@ class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         spinner1.onItemSelectedListener = this
 
-
         val auth = FirebaseAuth.getInstance()
-        val user = auth.currentUser
-        /*val food2 = user.
+        val foodReference = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("food")
+        val bioReference = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("bio")
 
-        val profileUpdates = userProfileChangeRequest {
-            
-            user.food = food1
-            user.Bio = bio.text.toString()
-        }
 
-        user!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Log.d("ProfileActivity", "User profile updated.")
-            }
-        }*/
 
 
         // Go to main activity
-        register.setOnClickListener {
-            Log.d("ProfileActivity", "Food: $food1")
-            Log.d("ProfileActivity", "Bio: ${bio.text.toString()}")
+            register.setOnClickListener {
+                Log.d("ProfileActivity", "Food: $food1")
+                Log.d("ProfileActivity", "Bio: ${bio.text.toString()}")
+                foodReference.setValue(food1)
+                bioReference.setValue(bio.text.toString())
 
-            val intent = Intent(this, LatestMessagesActivity::class.java)
-            // Clears intent list and back button goes to home screen
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-        }
+                val intent = Intent(this, LatestMessagesActivity::class.java)
+                // Clears intent list and back button goes to home screen
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+
+
     }
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
         //this.result = parent?.getItemAtPosition(pos).toString()
