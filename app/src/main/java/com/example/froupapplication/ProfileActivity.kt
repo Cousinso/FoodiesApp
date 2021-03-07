@@ -42,10 +42,12 @@ class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val auth = FirebaseAuth.getInstance()
         val foodReference = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("food")
         val bioReference = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("bio")
-
+        val nameReference = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("bio")
+        val name = nameReference.get()
         // Go to main activity
         register.setOnClickListener {
             Log.d("ProfileActivity", "Food: $food1")
+            Log.d("ProfileActivity", "Name: $name")
             Log.d("ProfileActivity", "Bio: ${bio.text.toString()}")
             foodReference.setValue(food1)
             bioReference.setValue(bio.text.toString())
