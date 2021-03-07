@@ -15,7 +15,7 @@ class SelectedFoodActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Selected Food"
         Picasso.get().load(food?.foodImageUrl).into(foodImageViewSelectedFood)
-        descriptionTextViewSelectedFood.text = food?.food
+        descriptionTextViewSelectedFood.text = food?.name
 
         confirmButtonSelectedFood.setOnClickListener {
             val intent = Intent(it.context, NewMessageActivity::class.java)

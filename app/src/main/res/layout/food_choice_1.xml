@@ -9,36 +9,25 @@
         android:id="@+id/foodImageView1"
         android:layout_width="250dp"
         android:layout_height="100dp"
-        android:layout_marginTop="24dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_gallery"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/noButtonFoodChoice1"
+    <TextView
+        android:id="@+id/foodNameTextViewFoodSelection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="No"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/yesButtonFoodChoice1"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/foodImageView1"
+        app:layout_constraintStart_toStartOf="@+id/foodImageView1"
         app:layout_constraintTop_toBottomOf="@+id/foodImageView1" />
 
-    <Button
-        android:id="@+id/yesButtonFoodChoice1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Yes"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/noButtonFoodChoice1"
-        app:layout_constraintTop_toBottomOf="@+id/foodImageView1" />
 </androidx.constraintlayout.widget.ConstraintLayout>
