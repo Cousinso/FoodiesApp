@@ -55,8 +55,9 @@ class ChatLogActivity : AppCompatActivity() {
             performSendMessage()
         }
         adapter.setOnItemClickListener { item, view ->
-            val userImage = item as ChatToItem
-            val intent = Intent(this, LatestMessagesActivity::class.java)
+            val userItem = item as ChatToItem
+            val intent = Intent(view.context, ProfileTestActivity::class.java)
+            intent.putExtra("User", userItem.user)
             startActivity(intent)
         }
 
