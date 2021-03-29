@@ -25,6 +25,8 @@ import kotlinx.android.synthetic.main.chat_to_row.view.*
 
 class ChatLogActivity : AppCompatActivity() {
 
+    // James was here
+
     companion object {
         val TAG = "ChatLogActivity"
     }
