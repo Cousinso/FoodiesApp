@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
 
 class ChatLogActivity : AppCompatActivity() {
-
+    //James was here again
     // James was here
     //sam was here
 
