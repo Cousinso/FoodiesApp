@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Froup Application</string>
+    <string name="only_during_using">Only during using</string>
+    <string name="always">Always</string>
+    <string name="birthday">Birthday</string>
+    <string name="tell_us_a_little_about_yourself">Tell us a little about yourself</string>
+    <string name="basic_information">Basic Information</string>
+    <string name="allow_foodie_get_use_your_location_information">Allow Foodie get/use your location information?</string>
+    <string name="are_you_in">Are you in...</string>
+    <string name="female">Female</string>
+    <string name="location">Location</string>
+    <string name="next">Next</string>
+    <string name="male">Male</string>
+    <string name="other">Other</string>
+    <string name="college">College</string>
+    <string name="are_you">Are you...</string>
+    <string name="your_location">Your Location</string>
+    <string name="what_do_you_do_for_a_living_ndo_you_have_a_pet_ncovid_sucks_right">What do you do for a living?\nDo you have a pet?\nCovid sucks right?</string>
+    <string name="work">Work</string>
+    <string-array name="foodTypes">
+        <item>Select an Option...</item>
+        <item>Chinese</item>
+        <item>Halal</item>
+        <item>Italian</item>
+        <item>Indian</item>
+        <item>Irish</item>
+        <item>Japanese</item>
+        <item>Korean</item>
+        <item>Kosher</item>
+        <item>Mexican</item>
+        <item>Spanish</item>
+        <item>Vegetarian</item>
+    </string-array>
+</resources>

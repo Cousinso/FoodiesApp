@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beige"
+    tools:context=".RegisterActivity">
+
+    <CheckBox
+        android:id="@+id/checkBox12"
+        android:layout_width="104dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="268dp"
+        android:text="Breakfast"
+        app:layout_constraintStart_toEndOf="@+id/checkBox9"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <CheckBox
+        android:id="@+id/checkBox11"
+        android:layout_width="87dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="268dp"
+        android:text="Lunch"
+        app:layout_constraintStart_toEndOf="@+id/checkBox7"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <CheckBox
+        android:id="@+id/checkBox14"
+        android:layout_width="89dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="268dp"
+        android:text="Dinner"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="272dp"
+        android:text="Preference of the meal time"
+        android:textColor="#DDFF9800"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+    <CheckBox
+        android:id="@+id/checkBox15"
+        android:layout_width="142dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="268dp"
+        android:text="Tea/Coffee"
+        app:layout_constraintStart_toEndOf="@+id/checkBox6"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox9" />
+
+    <CheckBox
+        android:id="@+id/checkBox13"
+        android:layout_width="84dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="272dp"
+        android:text="Brunch"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox7" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="15dp"
+        android:background="#4B000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox8" />
+
+    <RadioGroup
+        android:id="@+id/register_radioGroup_collogeorwork"
+        android:layout_width="343dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/hint1_"
+        app:layout_constraintTop_toBottomOf="@+id/hint1_">
+
+        <RadioButton
+            android:id="@+id/radio_female"
+            android:layout_width="84dp"
+            android:layout_height="match_parent"
+            android:text="Vegan" />
+
+        <RadioButton
+            android:id="@+id/radio_male"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Vegetarian" />
+
+        <RadioButton
+            android:id="@+id/radio_other"
+            android:layout_width="176dp"
+            android:layout_height="match_parent"
+            android:text="Extreme meat eater" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/hint1_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="15dp"
+        android:text="Are you..."
+        android:textColor="#DDFF9800"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+    <CheckBox
+        android:id="@+id/checkBox8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="12dp"
+        android:text="Fish"
+        app:layout_constraintStart_toEndOf="@+id/checkBox6"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox9" />
+
+    <CheckBox
+        android:id="@+id/checkBox6"
+        android:layout_width="65dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:text="Pork"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox7" />
+
+    <CheckBox
+        android:id="@+id/checkBox7"
+        android:layout_width="66dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:text="Milk"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <CheckBox
+        android:id="@+id/checkBox10"
+        android:layout_width="83dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:text="Nuts"
+        app:layout_constraintStart_toEndOf="@+id/checkBox9"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <CheckBox
+        android:id="@+id/checkBox9"
+        android:layout_width="87dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="10dp"
+        android:text="Lactose "
+        app:layout_constraintStart_toEndOf="@+id/checkBox7"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Allergies /Intollerancies"
+        android:textColor="#DDFF9800"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/Food_Preference"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="Food Preference"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="11pt"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/registerButtonProfile"
+        android:layout_width="153dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="596dp"
+        android:background="@drawable/rounded_edittext"
+        android:text="Next"
+        app:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintEnd_toEndOf="@+id/Food_Preference"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/Food_Preference" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chinese food"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Irish food "
+        app:layout_constraintStart_toEndOf="@+id/checkBox"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Indian food"
+        app:layout_constraintStart_toEndOf="@+id/checkBox2"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <CheckBox
+        android:id="@+id/checkBox4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text=" Belgium food"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+    <CheckBox
+        android:id="@+id/checkBox5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:text="Japanese food"
+        app:layout_constraintStart_toEndOf="@+id/checkBox4"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="25dp"
+        android:background="#4B000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox5" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Food Types"
+        android:textColor="#DDFF9800"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/Food_Preference" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

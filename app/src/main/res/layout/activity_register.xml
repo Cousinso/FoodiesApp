@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_orange_light"
+    tools:context=".RegisterActivity">
+
+    <EditText
+        android:id="@+id/emailEditTextRegister"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="Email"
+        android:textColorHint="@android:color/holo_orange_dark"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/usernameEditTextRegister"
+        app:layout_constraintStart_toStartOf="@+id/usernameEditTextRegister"
+        app:layout_constraintTop_toBottomOf="@+id/usernameEditTextRegister" />
+
+    <EditText
+        android:id="@+id/passwordEditTextRegister"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="Password"
+        android:textColorHint="@android:color/holo_orange_dark"
+        android:inputType="textPassword"
+        android:paddingLeft="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/emailEditTextRegister"
+        app:layout_constraintStart_toStartOf="@+id/emailEditTextRegister"
+        app:layout_constraintTop_toBottomOf="@+id/emailEditTextRegister" />
+
+    <EditText
+        android:id="@+id/usernameEditTextRegister"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="Username"
+        android:textColorHint="@android:color/holo_orange_dark"
+        android:inputType="textPersonName"
+        android:paddingLeft="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photoButtonRegister" />
+
+    <Button
+        android:id="@+id/registerButtonProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:text="Register"
+        app:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintEnd_toEndOf="@+id/passwordEditTextRegister"
+        app:layout_constraintStart_toStartOf="@+id/passwordEditTextRegister"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextRegister" />
+
+    <TextView
+        android:id="@+id/loginTextViewRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Login instead?"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/registerButtonProfile"
+        app:layout_constraintStart_toStartOf="@+id/registerButtonProfile"
+        app:layout_constraintTop_toBottomOf="@+id/registerButtonProfile" />
+
+    <Button
+        android:id="@+id/photoButtonRegister"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/circle_button"
+        android:text="Select Photo"
+        app:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/photoImageViewRegister"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="@+id/photoButtonRegister"
+        app:layout_constraintEnd_toEndOf="@+id/photoButtonRegister"
+        app:layout_constraintStart_toStartOf="@+id/photoButtonRegister"
+        app:layout_constraintTop_toTopOf="@+id/photoButtonRegister" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

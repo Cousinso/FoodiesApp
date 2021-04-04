@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beige"
+    tools:context=".RegisterActivity">
+
+    <RadioGroup
+        android:id="@+id/register_radioGroup_location"
+        android:layout_width="308dp"
+        android:layout_height="97dp"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/Hint1_4">
+
+        <RadioButton
+            android:id="@+id/register_radio_location1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/only_during_using" />
+
+        <RadioButton
+            android:id="@+id/register_radio_location2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/always" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="230dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/tell_us_a_little_about_yourself"
+        android:textColor="#DDFF9800"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_collogeorwork" />
+
+    <TextView
+        android:id="@+id/Food_Preference"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="@string/basic_information"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="11pt"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/editTextBio"
+        android:layout_width="300dp"
+        android:layout_height="79dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="@string/what_do_you_do_for_a_living_ndo_you_have_a_pet_ncovid_sucks_right"
+        android:inputType="textMultiLine"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColorHint="#5B000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <Button
+        android:id="@+id/registerButtonProfile"
+        android:layout_width="153dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="552dp"
+        android:background="@drawable/rounded_edittext"
+        android:text="@string/next"
+        app:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintEnd_toEndOf="@+id/Food_Preference"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/Food_Preference" />
+
+    <EditText
+        android:id="@+id/Register_Birthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/birthday"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/Food_Preference" />
+
+
+
+    <TextView
+        android:id="@+id/Hint1_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/are_you"
+        android:textColor="#DDFF9800"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/Register_Birthday" />
+
+    <TextView
+        android:id="@+id/Hint1_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/location"
+        android:textColor="#DDFF9800"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBio" />
+
+    <EditText
+        android:id="@+id/editLocation"
+        android:layout_width="328dp"
+        android:layout_height="41dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="@string/your_location"
+        android:inputType="textMultiLine"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColorHint="#5B000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/Hint1_3" />
+
+
+
+    <TextView
+        android:id="@+id/Hint1_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/allow_foodie_get_use_your_location_information"
+        android:textColor="#DDFF9800"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/editLocation" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/are_you_in"
+        android:textColor="#DDFF9800"
+        app:layout_constraintStart_toStartOf="@+id/Hint1_4"
+        app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_location" />
+
+    <RadioGroup
+        android:id="@+id/register_radioGroup_collogeorwork"
+        android:layout_width="279dp"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/Hint1_2">
+
+        <RadioButton
+            android:id="@+id/radio_female"
+            android:layout_width="98dp"
+            android:layout_height="match_parent"
+            android:text="@string/female" />
+
+        <RadioButton
+            android:id="@+id/radio_male"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="@string/male" />
+
+        <RadioButton
+            android:id="@+id/radio_other"
+            android:layout_width="82dp"
+            android:layout_height="match_parent"
+            android:text="@string/other" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="334dp"
+        android:layout_height="53dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" >
+
+        <RadioButton
+            android:id="@+id/radioButton8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/college" />
+
+        <RadioButton
+            android:id="@+id/radioButton9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/work" />
+    </RadioGroup>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
