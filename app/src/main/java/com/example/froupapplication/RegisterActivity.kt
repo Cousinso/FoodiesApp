@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -73,7 +74,7 @@ class RegisterActivity : AppCompatActivity() {
             photoButton.alpha = 0f
         }
     }
-
+    // FanFan
     // Called when the register button is pressed
     private fun performRegister() {
         // Instantiating UI elements
@@ -153,6 +154,10 @@ class RegisterActivity : AppCompatActivity() {
                 // Blank for the time being
             }
     }
+
+    fun onRadioButtonClicked_Female(view: View) {}
+    fun onRadioButtonClicked_Male(view: View) {}
+    fun onRadioButtonClicked_Other(view: View) {}
 }
 
 @Parcelize
