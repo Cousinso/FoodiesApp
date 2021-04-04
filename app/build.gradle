@@ -56,7 +56,8 @@ dependencies {
     implementation "com.xwray:groupie:2.9.0"
     // https://github.com/square/picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
-
+    //https://github.com/yuyakaido/CardStackView
+    implementation "com.yuyakaido.android:card-stack-view:2.3.4"
 }
 
 apply plugin: 'com.android.application'
