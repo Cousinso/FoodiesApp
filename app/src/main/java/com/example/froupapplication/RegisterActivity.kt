@@ -33,7 +33,7 @@ class RegisterActivity : AppCompatActivity() {
             Log.d("RegisterActivity", "Register pressed!")
             performRegister()
         }
-
+        //this is comment
         login.setOnClickListener {
             Log.d("RegisterActivity", "Login pressed!")
 
