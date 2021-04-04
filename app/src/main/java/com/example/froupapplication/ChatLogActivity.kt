@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
 //Github test
 //hii
+//hey
 class ChatLogActivity : AppCompatActivity() {
 
     companion object {
