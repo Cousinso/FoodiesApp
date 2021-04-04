@@ -18,7 +18,11 @@ class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_profile)
 
+<<<<<<< HEAD
 //        var spinner1 = findViewById<Spinner>(R.id.foodSpinnerRegister1)
+=======
+        var spinner1 = findViewById<Spinner>(R.id.foodSpinnerRegister1)
+>>>>>>> 77612dec0196e62ff265add8f3ceb2073d9754dd
         val register = findViewById<TextView>(R.id.registerButtonProfile)
 
         val bio = findViewById<EditText>(R.id.editTextBio)

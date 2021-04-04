@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Froup Application</string>
+<<<<<<< HEAD
     <string name="only_during_using">Only during using</string>
     <string name="always">Always</string>
     <string name="birthday">Birthday</string>
@@ -17,6 +18,8 @@
     <string name="your_location">Your Location</string>
     <string name="what_do_you_do_for_a_living_ndo_you_have_a_pet_ncovid_sucks_right">What do you do for a living?\nDo you have a pet?\nCovid sucks right?</string>
     <string name="work">Work</string>
+=======
+>>>>>>> 77612dec0196e62ff265add8f3ceb2073d9754dd
     <string-array name="foodTypes">
         <item>Select an Option...</item>
         <item>Chinese</item>

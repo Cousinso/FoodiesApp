@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:background="@color/beige"
     tools:context=".RegisterActivity">
 
@@ -40,6 +41,13 @@
 
     <TextView
         android:id="@+id/Food_Preference"
+=======
+    android:background="@android:color/holo_orange_light"
+    tools:context=".RegisterActivity">
+
+    <TextView
+        android:id="@+id/textView"
+>>>>>>> 77612dec0196e62ff265add8f3ceb2073d9754dd
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="32dp"
@@ -47,6 +55,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+<<<<<<< HEAD
         android:text="@string/basic_information"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="11pt"
@@ -127,10 +136,71 @@
         android:layout_height="41dp"
         android:background="@drawable/rounded_edittext"
         android:hint="@string/your_location"
+=======
+        android:text="Pick your favourite food"
+        android:textSize="11pt"
+        android:textColor="@android:color/holo_orange_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/foodSpinnerRegister1"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <!--Spinner
+        android:id="@+id/foodSpinnerRegister2"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        app:layout_constraintEnd_toEndOf="@+id/foodSpinnerRegister1"
+        app:layout_constraintStart_toStartOf="@+id/foodSpinnerRegister1"
+        app:layout_constraintTop_toBottomOf="@+id/foodSpinnerRegister1" />
+
+    <Spinner
+        android:id="@+id/foodSpinnerRegister3"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        app:layout_constraintEnd_toEndOf="@+id/foodSpinnerRegister2"
+        app:layout_constraintStart_toStartOf="@+id/foodSpinnerRegister2"
+        app:layout_constraintTop_toBottomOf="@+id/foodSpinnerRegister2" /-->
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="32dp"
+        android:text="Tell us a little about yourself"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="11pt"
+        app:layout_constraintEnd_toEndOf="@+id/foodSpinnerRegister1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/foodSpinnerRegister1"
+        app:layout_constraintTop_toBottomOf="@+id/foodSpinnerRegister1" />
+
+    <EditText
+        android:id="@+id/editTextBio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="What do you do for a living?\nDo you have a pet?\nCovid sucks right?"
+>>>>>>> 77612dec0196e62ff265add8f3ceb2073d9754dd
         android:inputType="textMultiLine"
         android:paddingLeft="16dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
+<<<<<<< HEAD
         android:textColorHint="#5B000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -210,5 +280,24 @@
     </RadioGroup>
 
 
+=======
+        android:textColorHint="@android:color/holo_orange_dark"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/registerButtonProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:text="Complete Registration"
+        app:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBio" />
+>>>>>>> 77612dec0196e62ff265add8f3ceb2073d9754dd
 
 </androidx.constraintlayout.widget.ConstraintLayout>
