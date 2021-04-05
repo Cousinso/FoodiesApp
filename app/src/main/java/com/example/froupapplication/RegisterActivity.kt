@@ -26,13 +26,14 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         // Instantiating UI elements
-        val register = findViewById<Button>(R.id.registerButtonProfile)
+        val register = findViewById<Button>(R.id.ButtonNext)
         val login = findViewById<TextView>(R.id.loginTextViewRegister)
         val photo = findViewById<Button>(R.id.photoButtonRegister)
 
         register.setOnClickListener {
             Log.d("RegisterActivity", "Register pressed!")
             performRegister()
+
         }
         //this is comment
         login.setOnClickListener {
@@ -74,7 +75,7 @@ class RegisterActivity : AppCompatActivity() {
             photoButton.alpha = 0f
         }
     }
-    
+
     // Called when the register button is pressed
     private fun performRegister() {
         // Instantiating UI elements
@@ -102,6 +103,8 @@ class RegisterActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     photoUploadToFirebase()
                     Log.d("RegisterActivity", "Registration successful! UID: ${user!!.uid}")
+
+
                 }
                 else {
                     Log.w("RegisterActivity", "Registration failed", task.exception)

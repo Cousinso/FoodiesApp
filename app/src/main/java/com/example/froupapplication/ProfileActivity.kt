@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.*
 
 
@@ -23,7 +22,7 @@ class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 //        var spinner1 = findViewById<Spinner>(R.id.foodSpinnerRegister1)
 
-        val register = findViewById<TextView>(R.id.registerButtonProfile)
+        val register = findViewById<TextView>(R.id.ButtonNext)
 
         val bio = findViewById<EditText>(R.id.editTextBio)
 
@@ -55,7 +54,10 @@ class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 foodReference.setValue(food1)
                 bioReference.setValue(bio.text.toString())
 
-                val intent = Intent(this, FoodSelectionActivity::class.java)
+                // Go to food preferences activity
+                val intent = Intent(this, RegisterFoodPreferencesActivity ::class.java)
+                startActivity(intent)
+
                 // Clears intent list and back button goes to home screen
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)

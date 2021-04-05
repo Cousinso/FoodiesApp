@@ -36,7 +36,7 @@
         android:textColor="#DDFF9800"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
-        app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_collogeorwork" />
+        app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_Meat" />
 
     <TextView
         android:id="@+id/Food_Preference"
@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <Button
-        android:id="@+id/registerButtonProfile"
+        android:id="@+id/ButtonNext"
         android:layout_width="153dp"
         android:layout_height="43dp"
         android:layout_marginTop="552dp"
@@ -160,7 +160,7 @@
         app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_location" />
 
     <RadioGroup
-        android:id="@+id/register_radioGroup_collogeorwork"
+        android:id="@+id/register_radioGroup_Meat"
         android:layout_width="279dp"
         android:layout_height="45dp"
         android:orientation="horizontal"
@@ -168,21 +168,21 @@
         app:layout_constraintTop_toBottomOf="@+id/Hint1_2">
 
         <RadioButton
-            android:id="@+id/radio_female"
+            android:id="@+id/radio_vegan"
             android:layout_width="98dp"
             android:layout_height="match_parent"
             android:onClick="onRadioButtonClicked_Female"
             android:text="@string/female" />
 
         <RadioButton
-            android:id="@+id/radio_male"
+            android:id="@+id/radio_vegatarian"
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:onClick="onRadioButtonClicked_Male"
             android:text="@string/male" />
 
         <RadioButton
-            android:id="@+id/radio_other"
+            android:id="@+id/radio_meat"
             android:layout_width="82dp"
             android:layout_height="match_parent"
             android:onClick="onRadioButtonClicked_Other"

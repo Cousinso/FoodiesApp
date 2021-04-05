@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/photoButtonRegister" />
 
     <Button
-        android:id="@+id/registerButtonProfile"
+        android:id="@+id/ButtonNext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -76,9 +76,9 @@
         android:text="Login instead?"
         android:textColor="@android:color/holo_orange_dark"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/registerButtonProfile"
-        app:layout_constraintStart_toStartOf="@+id/registerButtonProfile"
-        app:layout_constraintTop_toBottomOf="@+id/registerButtonProfile" />
+        app:layout_constraintEnd_toEndOf="@+id/ButtonNext"
+        app:layout_constraintStart_toStartOf="@+id/ButtonNext"
+        app:layout_constraintTop_toBottomOf="@+id/ButtonNext" />
 
     <Button
         android:id="@+id/photoButtonRegister"
