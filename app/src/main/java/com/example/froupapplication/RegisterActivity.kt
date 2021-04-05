@@ -74,7 +74,7 @@ class RegisterActivity : AppCompatActivity() {
             photoButton.alpha = 0f
         }
     }
-    // FanFan
+    
     // Called when the register button is pressed
     private fun performRegister() {
         // Instantiating UI elements
