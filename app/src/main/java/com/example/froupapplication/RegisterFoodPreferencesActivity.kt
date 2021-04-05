@@ -28,7 +28,6 @@ class RegisterFoodPreferencesActivity : AppCompatActivity() {
             else {
                 foodPreferencesForDB = foodPreferencesForDB.replace("Chinese food, ", "")
             }
-            Toast.makeText(this, foodPreferencesForDB, LENGTH_SHORT).show() //uncomment later on
         }
         IrFood.setOnCheckedChangeListener{ view, isChecked ->
             if (isChecked) {
@@ -119,7 +118,6 @@ class RegisterFoodPreferencesActivity : AppCompatActivity() {
             if (checkedId == R.id.radio_meat){
                 meatPreferencesForDB = "meat lover"
             }
-            Toast.makeText(this, meatPreferencesForDB, LENGTH_SHORT).show() //uncomment later on
         }
 
         //Handling the mealpreferences checkboxes
@@ -176,7 +174,7 @@ class RegisterFoodPreferencesActivity : AppCompatActivity() {
             val ref = database.getReference("/users/${auth.uid}")
 
             val pref = Preferences(foodPreferencesForDB, allergiesForDB, meatPreferencesForDB, mealPreferencesForDB)
-            ref.child("otherPersonalInfo").setValue(pref)
+            ref.child("foodPreferences").setValue(pref)
                 .addOnSuccessListener {
                     Log.d("RegisterFoodAct", "foodPreferences saved for user ${auth.uid} to Firebase Database")
                 }
@@ -185,8 +183,7 @@ class RegisterFoodPreferencesActivity : AppCompatActivity() {
                 }
 
             val intent = Intent(this, FoodSelectionActivity::class.java)
-            // Clears intent list and back button goes to home screen
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK) // Clears intent list bc we leave registration
             startActivity(intent)
         }
 
@@ -196,6 +193,4 @@ class RegisterFoodPreferencesActivity : AppCompatActivity() {
 @Parcelize
 class Preferences(val foodPreferences: String, val allergies: String, val meatPreferences: String, val mealPreferences: String) :
     Parcelable {
-    // No-argument constructor
-    //constructor() : this("","","","","")
 }

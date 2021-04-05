@@ -2,75 +2,81 @@ package com.example.froupapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
-import android.view.View
-import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.synthetic.main.activity_register_profile.*
 
 
-class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
-    var food1 = ""
-
+class ProfileActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_profile)
 
-
-//        var spinner1 = findViewById<Spinner>(R.id.foodSpinnerRegister1)
-
-//        var spinner1 = findViewById<Spinner>(R.id.foodSpinnerRegister1)
-
-        val register = findViewById<TextView>(R.id.ButtonNext)
-
-        val bio = findViewById<EditText>(R.id.editTextBio)
-
-        // Create an ArrayAdapter using the string array
-        ArrayAdapter.createFromResource(
-                this,
-                R.array.foodTypes,
-                android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinners
-//            spinner1.adapter = adapter
+        //Handling the gender
+        var gender = ""
+        register_radioGroup_Gender.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId == R.id.radio_male){
+                gender = "man"
+            }
+            if (checkedId == R.id.radio_female){
+                gender = "female"
+            }
+            if (checkedId == R.id.radio_other){
+                gender = "other"
+            }
         }
 
-//        spinner1.onItemSelectedListener = this
-
-        val auth = FirebaseAuth.getInstance()
-        val foodReference = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("food")
-        val bioReference = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("bio")
-
-
-
-
-        // Go to main activity
-            register.setOnClickListener {
-                Log.d("ProfileActivity", "Food: $food1")
-                Log.d("ProfileActivity", "Bio: ${bio.text.toString()}")
-                foodReference.setValue(food1)
-                bioReference.setValue(bio.text.toString())
-
-                // Go to food preferences activity
-                val intent = Intent(this, RegisterFoodPreferencesActivity ::class.java)
-                startActivity(intent)
-
-                // Clears intent list and back button goes to home screen
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
+        //Handling the location info
+        var locationUse = ""
+        register_radioGroup_location.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId == R.id.register_radio_only){
+                locationUse = "Location can only be used when app is used"
             }
+            if (checkedId == R.id.register_radio_always){
+                locationUse = "Location can always be used"
+            }
+        }
 
+        //Handling the work info
+        var lifeActivity = ""
+        register_radioGroup_work.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId == R.id.radioWork){
+                lifeActivity = "College"
+            }
+            if (checkedId == R.id.radioCollege){
+                lifeActivity = "Work"
+            }
+        }
 
+        register_ButtonNext.setOnClickListener {
+            val auth = FirebaseAuth.getInstance()
+            val database = FirebaseDatabase.getInstance()
+            val ref = database.getReference("/users/${auth.uid}")
+
+            val birthday = Register_Birthday.text.toString()
+            val bio = editTextBio.text.toString()
+            val location = editLocation.text.toString()
+
+            val personalInfo = PersonalInfo(birthday, gender, bio, location, locationUse, lifeActivity)
+            ref.child("personalInfo").setValue(personalInfo)
+                .addOnSuccessListener {
+                    Log.d("ProfileAct", "Personal info saved for user ${auth.uid} to Firebase Database")
+                }
+                .addOnFailureListener {
+                    Log.d("ProfileAct", "Error : Personal info not saved for user ${auth.uid}  to Firebase Database")
+                }
+
+            val intent = Intent(this, RegisterFoodPreferencesActivity::class.java)
+            startActivity(intent)
+        }
     }
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-        //this.result = parent?.getItemAtPosition(pos).toString()
-        this.food1 = parent?.getItemAtPosition(pos).toString()
-    }
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        //result = "Please Select an Option"
-        food1 = "Please Select an Option"
-    }
+}
+
+@Parcelize
+class PersonalInfo(val bday: String, val gender: String, val bio: String, val location: String, val locationUse: String, val lifeActivity: String) :
+    Parcelable {
 }
