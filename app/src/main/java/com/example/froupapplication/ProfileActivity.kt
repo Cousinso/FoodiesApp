@@ -18,11 +18,11 @@ class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_profile)
 
-<<<<<<< HEAD
+
 //        var spinner1 = findViewById<Spinner>(R.id.foodSpinnerRegister1)
-=======
-        var spinner1 = findViewById<Spinner>(R.id.foodSpinnerRegister1)
->>>>>>> 77612dec0196e62ff265add8f3ceb2073d9754dd
+
+//        var spinner1 = findViewById<Spinner>(R.id.foodSpinnerRegister1)
+
         val register = findViewById<TextView>(R.id.registerButtonProfile)
 
         val bio = findViewById<EditText>(R.id.editTextBio)
@@ -36,10 +36,10 @@ class ProfileActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinners
-            spinner1.adapter = adapter
+//            spinner1.adapter = adapter
         }
 
-        spinner1.onItemSelectedListener = this
+//        spinner1.onItemSelectedListener = this
 
         val auth = FirebaseAuth.getInstance()
         val foodReference = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("food")
