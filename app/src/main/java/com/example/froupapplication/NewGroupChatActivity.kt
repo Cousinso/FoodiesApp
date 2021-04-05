@@ -4,7 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -13,21 +19,51 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
+import kotlinx.android.synthetic.main.activity_new_group_chat.*
 import kotlinx.android.synthetic.main.user_row_new_message.view.*
 
-class NewMessageActivity : AppCompatActivity() {
+
+val groupChatList = mutableListOf("")
+class NewGroupChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_new_message)
+        setContentView(R.layout.activity_new_group_chat)
 
-        supportActionBar?.title = "Select User"
-
+        supportActionBar?.title = "Add people"
         getUsersFromDatabase()
-    }
 
+        val createChat = findViewById<FloatingActionButton>(R.id.button_confirm_new_groupchat)
+
+        createChat.setOnClickListener{
+            Log.d("NewGroupChatActivity","Pressed button to confirm groupchat")
+            createGroupChat()
+            openGroupChat()
+        }
+
+    }
     companion object {
         val USER_KEY = "USER_KEY"
     }
+     private fun createGroupChat(){
+
+
+         val ref1 = FirebaseDatabase.getInstance().getReference("/users/${FirebaseAuth.getInstance().uid}/groupchats").push()
+         val gcId = ref1.key
+         ref1.setValue(gcId)
+         groupChatList.forEach{
+             if(it != ""){
+                 val ref = FirebaseDatabase.getInstance().getReference("/users/$it/groupchats").push()
+                 ref.setValue(gcId)
+             }
+
+
+
+         }
+
+
+     }
+
+    private fun openGroupChat(){}
 
     private fun getUsersFromDatabase() {
         val ref = FirebaseDatabase.getInstance().getReference("/users")
@@ -42,7 +78,7 @@ class NewMessageActivity : AppCompatActivity() {
                 snapshot.children.forEach {
                     Log.d("NewMessageActivity", it.toString())
                     val user = it.getValue(User::class.java)
-                    if (user != null) {
+                    if (user != null && user.uid != FirebaseAuth.getInstance().uid) {
                         adapter.add(UserItem(user))
                     }
                 }
@@ -52,10 +88,14 @@ class NewMessageActivity : AppCompatActivity() {
                     val userItem = item as UserItem
 
                     // Sends selected user data to ChatLogActivity
-                    val intent = Intent(view.context, ChatLogActivity::class.java)
-                    intent.putExtra(USER_KEY, userItem.user)
-                    startActivity(intent)
-                    finish()
+                    if(groupChatList.contains(userItem.user.uid)){
+                        groupChatList.remove(userItem.user.uid)
+                        Log.d("NewGroupChatActivity","Removed " + userItem.user.username + "from groupchat")
+                    }
+                    else{
+                        groupChatList.add(userItem.user.uid)
+                        Log.d("NewGroupChatActivity","Added " + userItem.user.username + "to groupchat")
+                    }
                 }
 
                 val recyclerView = findViewById<RecyclerView>(R.id.newMessageRecyclerView)
@@ -65,18 +105,4 @@ class NewMessageActivity : AppCompatActivity() {
     }
 }
 
-class UserItem(val user: User) : Item<GroupieViewHolder>() {
-    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        viewHolder.itemView.usernameTextViewNewMessage.text = user.username
-        if(user.profileImageUrl == ""){
-            Picasso.get().load("https://miro.medium.com/max/800/0*evjjYzmFhBV-djWJ.jpg").into(viewHolder.itemView.photoImageViewNewMessages)
-        }
-        else{
-            Picasso.get().load(user.profileImageUrl).into(viewHolder.itemView.photoImageViewNewMessages)
-        }
 
-    }
-    override fun getLayout() : Int {
-        return R.layout.user_row_new_message
-    }
-}
