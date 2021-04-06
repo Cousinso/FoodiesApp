@@ -7,7 +7,7 @@
     tools:context=".GroupChatSelectionActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/newMessageRecyclerView"
+        android:id="@+id/groupMessageRecyclerView"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

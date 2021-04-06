@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_new_group_chat.*
 import kotlinx.android.synthetic.main.user_row_new_message.view.*
 
 
-val groupChatList = mutableListOf("")
+val groupChatList = mutableListOf(FirebaseAuth.getInstance().uid)
 class NewGroupChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,18 +47,18 @@ class NewGroupChatActivity : AppCompatActivity() {
      private fun createGroupChat(){
 
 
-         val ref1 = FirebaseDatabase.getInstance().getReference("/users/${FirebaseAuth.getInstance().uid}/groupchats").push()
-         val gcId = ref1.key
-         ref1.setValue(gcId)
+         val ref1 = FirebaseDatabase.getInstance().getReference("/groupchats").push()
+         val gcId = ref1.key as String
+         ref1.setValue(GroupChat(gcId,"blah"))
          groupChatList.forEach{
              if(it != ""){
                  val ref = FirebaseDatabase.getInstance().getReference("/users/$it/groupchats").push()
                  ref.setValue(gcId)
              }
 
-
-
          }
+
+
 
 
      }
@@ -103,6 +103,10 @@ class NewGroupChatActivity : AppCompatActivity() {
             }
         })
     }
+}
+
+private class GroupChat(val id: String,val name: String){
+    constructor() : this("", "",)
 }
 
 
