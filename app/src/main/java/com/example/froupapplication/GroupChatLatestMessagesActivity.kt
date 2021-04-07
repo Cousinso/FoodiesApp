@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.*
-import kotlinx.android.synthetic.main.activity_group_chat_selection.*
+import kotlinx.android.synthetic.main.activity_group_chat_latest_messages.*
 import kotlinx.android.synthetic.main.activity_latest_messages.*
 import kotlinx.android.synthetic.main.latest_messages_row.view.*
 import kotlinx.android.synthetic.main.user_row_new_message.view.*
@@ -25,7 +25,7 @@ class GroupChatSelectionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_group_chat_selection)
+        setContentView(R.layout.activity_group_chat_latest_messages)
 
         supportActionBar?.title = ""
 

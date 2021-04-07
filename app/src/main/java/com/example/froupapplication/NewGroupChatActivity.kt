@@ -2,6 +2,8 @@ package com.example.froupapplication
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Color.green
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +14,10 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -25,6 +31,7 @@ import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.activity_group_chat_log.*
 import kotlinx.android.synthetic.main.activity_new_group_chat.*
 import kotlinx.android.synthetic.main.user_row_new_message.view.*
 import java.util.*
@@ -47,7 +54,6 @@ class NewGroupChatActivity : AppCompatActivity() {
         createChat.setOnClickListener{
             Log.d("NewGroupChatActivity","Pressed button to confirm groupchat")
             createGroupChat()
-            openGroupChat()
         }
         selectPhoto.setOnClickListener{
             val intent = Intent(Intent.ACTION_PICK)
@@ -69,6 +75,19 @@ class NewGroupChatActivity : AppCompatActivity() {
          val filename = UUID.randomUUID().toString()
          val storage = FirebaseStorage.getInstance()
          val ref = storage.getReference("/images/$filename")
+
+         if(selectedPhotoUri == null){
+             Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show()
+             return
+         }
+         if(name == ""){
+             Toast.makeText(this, "Please select a name", Toast.LENGTH_SHORT).show()
+             return
+         }
+         if(groupChatList.size == 1){
+             Toast.makeText(this, "Please add more users", Toast.LENGTH_SHORT).show()
+             return
+         }
          ref.putFile(selectedPhotoUri!!)
                  .addOnSuccessListener {
                      Log.d("RegisterActivity", "Image uploaded! Image path: ${it.metadata?.path}")
@@ -87,10 +106,11 @@ class NewGroupChatActivity : AppCompatActivity() {
 
          }
 
+        performCreationMessage(gcId)
+
          val intent = Intent(this, GroupChatLogActivity::class.java)
          intent.putExtra("GCID", gcId)
          startActivity(intent)
-
 
 
 
@@ -116,7 +136,6 @@ class NewGroupChatActivity : AppCompatActivity() {
         }
     }
 
-    private fun openGroupChat(){}
 
     private fun getUsersFromDatabase() {
         val ref = FirebaseDatabase.getInstance().getReference("/users")
@@ -142,21 +161,39 @@ class NewGroupChatActivity : AppCompatActivity() {
 
                     // Sends selected user data to ChatLogActivity
                     if(groupChatList.contains(userItem.user.uid)){
+                        view.setBackgroundColor(Color.WHITE)
                         groupChatList.remove(userItem.user.uid)
                         Log.d("NewGroupChatActivity","Removed " + userItem.user.username + "from groupchat")
                     }
                     else{
+                        view.setBackgroundColor(Color.GREEN)
                         groupChatList.add(userItem.user.uid)
                         Log.d("NewGroupChatActivity","Added " + userItem.user.username + "to groupchat")
                     }
                 }
-
                 val recyclerView = findViewById<RecyclerView>(R.id.newMessageRecyclerView)
                 recyclerView.adapter = adapter
             }
         })
     }
 
+    private fun performCreationMessage(gcid: String) {
+        val text = "Groupchat created"
+
+        val fromID = FirebaseAuth.getInstance().uid
+        val toID = gcid
+
+        val reference = FirebaseDatabase.getInstance().getReference("/group-messages/$toID").push()
+        if (fromID == null) return
+        if (toID == null) return
+
+        val chatMessage = ChatMessage(reference.key!!, fromID, toID, System.currentTimeMillis() / 1000, text)
+
+        reference.setValue(chatMessage)
+
+        val latestMessageReference = FirebaseDatabase.getInstance().getReference("/latest-messages/$toID/message")
+        latestMessageReference.setValue(chatMessage)
+    }
 }
 
 private class GroupChat(val id: String,val name: String, val photoUri: String){

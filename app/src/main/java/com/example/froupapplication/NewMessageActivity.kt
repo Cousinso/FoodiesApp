@@ -40,7 +40,7 @@ class NewMessageActivity : AppCompatActivity() {
                 val adapter = GroupieAdapter()
 
                 snapshot.children.forEach {
-                    Log.d("NewMessageActivity", it.toString())
+                    Log.d("NewGroupChatActivity", it.toString())
                     val user = it.getValue(User::class.java)
                     if (user != null) {
                         adapter.add(UserItem(user))
@@ -76,6 +76,8 @@ class UserItem(val user: User) : Item<GroupieViewHolder>() {
         }
 
     }
+
+
     override fun getLayout() : Int {
         return R.layout.user_row_new_message
     }
