@@ -31,7 +31,7 @@
         android:id="@+id/textView10"
         android:layout_width="230dp"
         android:layout_height="25dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="@string/tell_us_a_little_about_yourself"
         android:textColor="#DDFF9800"
         android:textSize="15sp"
@@ -40,11 +40,11 @@
 
     <TextView
         android:id="@+id/Food_Preference"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_width="347dp"
+        android:layout_height="39dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="@string/basic_information"
@@ -75,22 +75,24 @@
 
     <Button
         android:id="@+id/register_ButtonNext"
-        android:layout_width="153dp"
+        android:layout_width="113dp"
         android:layout_height="43dp"
-        android:layout_marginTop="552dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/rounded_edittext"
         android:text="@string/next"
         app:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/Food_Preference"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
-        app:layout_constraintTop_toBottomOf="@+id/Food_Preference" />
+        app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_work" />
 
     <EditText
         android:id="@+id/Register_Birthday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="@string/birthday"
         android:inputType="date"
@@ -98,12 +100,11 @@
         app:layout_constraintTop_toBottomOf="@+id/Food_Preference" />
 
 
-
     <TextView
         android:id="@+id/Hint1_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="@string/are_you"
         android:textColor="#DDFF9800"
         android:textSize="15sp"
@@ -114,7 +115,7 @@
         android:id="@+id/Hint1_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="@string/location"
         android:textColor="#DDFF9800"
         android:textSize="15sp"
@@ -138,12 +139,11 @@
         app:layout_constraintTop_toBottomOf="@+id/Hint1_3" />
 
 
-
     <TextView
         android:id="@+id/Hint1_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="@string/allow_foodie_get_use_your_location_information"
         android:textColor="#DDFF9800"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
@@ -153,7 +153,7 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="@string/are_you_in"
         android:textColor="#DDFF9800"
         app:layout_constraintStart_toStartOf="@+id/Hint1_4"
@@ -192,8 +192,8 @@
 
     <RadioGroup
         android:id="@+id/register_radioGroup_work"
-        android:layout_width="334dp"
-        android:layout_height="53dp"
+        android:layout_width="331dp"
+        android:layout_height="45dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/textView14">

@@ -26,13 +26,16 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         // Instantiating UI elements
-        val register = findViewById<Button>(R.id.ButtonNext)
+        val register = findViewById<Button>(R.id.ButtonFinish)
         val login = findViewById<TextView>(R.id.loginTextViewRegister)
         val photo = findViewById<Button>(R.id.photoButtonRegister)
 
         register.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
             Log.d("RegisterActivity", "Register pressed!")
             performRegister()
+            startActivity(intent)
+
 
         }
         //this is comment
@@ -158,9 +161,9 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 
-    fun onRadioButtonClicked_Female(view: View) {}
-    fun onRadioButtonClicked_Male(view: View) {}
-    fun onRadioButtonClicked_Other(view: View) {}
+//    fun onRadioButtonClicked_Female(view: View) {}
+//    fun onRadioButtonClicked_Male(view: View) {}
+//    fun onRadioButtonClicked_Other(view: View) {}
 }
 
 @Parcelize

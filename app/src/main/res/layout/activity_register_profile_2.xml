@@ -13,61 +13,58 @@
         android:layout_height="45dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="268dp"
         android:text="Breakfast"
         app:layout_constraintStart_toEndOf="@+id/lactose"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <CheckBox
         android:id="@+id/lunch"
         android:layout_width="87dp"
         android:layout_height="46dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:text="Lunch"
         app:layout_constraintStart_toEndOf="@+id/milk"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <CheckBox
         android:id="@+id/dinner"
         android:layout_width="89dp"
         android:layout_height="45dp"
-        android:layout_marginTop="268dp"
         android:text="Dinner"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintStart_toStartOf="@+id/hint1_"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="272dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:text="Preference of the meal time"
         android:textColor="#DDFF9800"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_Meat" />
 
     <CheckBox
         android:id="@+id/teaCoffee"
         android:layout_width="142dp"
-        android:layout_height="49dp"
+        android:layout_height="45dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="268dp"
         android:text="Tea/Coffee"
         app:layout_constraintStart_toEndOf="@+id/pork"
-        app:layout_constraintTop_toBottomOf="@+id/lactose" />
+        app:layout_constraintTop_toBottomOf="@+id/lunch" />
 
     <CheckBox
         android:id="@+id/brunch"
         android:layout_width="84dp"
         android:layout_height="45dp"
-        android:layout_marginTop="272dp"
         android:text="Brunch"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/milk" />
+        app:layout_constraintStart_toStartOf="@+id/hint1_"
+        app:layout_constraintTop_toBottomOf="@+id/lunch" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -103,7 +100,7 @@
 
         <RadioButton
             android:id="@+id/radio_meat"
-            android:layout_width="176dp"
+            android:layout_width="178dp"
             android:layout_height="match_parent"
             android:text="Meat lover" />
 
@@ -128,7 +125,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="12dp"
         android:text="Fish"
         app:layout_constraintStart_toEndOf="@+id/pork"
         app:layout_constraintTop_toBottomOf="@+id/lactose" />
@@ -137,7 +133,6 @@
         android:id="@+id/pork"
         android:layout_width="65dp"
         android:layout_height="48dp"
-        android:layout_marginTop="15dp"
         android:text="Pork"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/milk" />
@@ -177,7 +172,7 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:text="Allergies /Intollerancies"
         android:textColor="#DDFF9800"
         android:textSize="15sp"
@@ -186,11 +181,11 @@
 
     <TextView
         android:id="@+id/Food_Preference"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_width="346dp"
+        android:layout_height="36dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="Food Preference"
@@ -204,42 +199,43 @@
 
 
     <Button
-        android:id="@+id/ButtonNext"
-        android:layout_width="153dp"
+        android:id="@+id/ButtonFinish"
+        android:layout_width="113dp"
         android:layout_height="43dp"
-        android:layout_marginTop="596dp"
+        android:layout_marginTop="508dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/rounded_edittext"
-        android:text="Next"
+        android:text="Finish"
         app:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/Food_Preference"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
-        app:layout_constraintTop_toBottomOf="@+id/Food_Preference" />
+        app:layout_constraintTop_toBottomOf="@+id/Food_Preference"
+        app:layout_constraintVertical_bias="0.865" />
 
     <CheckBox
         android:id="@+id/ChFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="117dp"
+        android:layout_height="36dp"
         android:text="Chinese food"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <CheckBox
         android:id="@+id/IrFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_width="95dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:text="Irish food "
         app:layout_constraintStart_toEndOf="@+id/ChFood"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <CheckBox
         android:id="@+id/InFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="109dp"
+        android:layout_height="33dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:text="Indian food"
@@ -248,20 +244,18 @@
 
     <CheckBox
         android:id="@+id/BelgFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_width="120dp"
+        android:layout_height="36dp"
         android:text=" Belgium food"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
         app:layout_constraintTop_toBottomOf="@+id/ChFood" />
 
     <CheckBox
         android:id="@+id/JapFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="158dp"
+        android:layout_height="36dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
         android:text="Japanese food"
         app:layout_constraintStart_toEndOf="@+id/BelgFood"
         app:layout_constraintTop_toBottomOf="@+id/IrFood" />
@@ -270,10 +264,10 @@
         android:id="@+id/imageView5"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="12dp"
         android:background="#4B000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/JapFood" />
 
@@ -281,7 +275,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:text="Food Types"
         android:textColor="#DDFF9800"
         android:textSize="15sp"

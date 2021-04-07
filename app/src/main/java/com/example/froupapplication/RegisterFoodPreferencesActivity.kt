@@ -4,13 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_register_profile_2.*
 
@@ -164,7 +160,7 @@ class RegisterFoodPreferencesActivity : AppCompatActivity() {
         }
 
 
-        ButtonNext.setOnClickListener {
+        ButtonFinish.setOnClickListener {
             //lateinit var database: DatabaseReference
             //database = Firebase.database.reference
             //val user = Firebase.auth.currentUser
