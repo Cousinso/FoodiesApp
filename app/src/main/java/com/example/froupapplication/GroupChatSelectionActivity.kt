@@ -21,6 +21,7 @@ class GroupChatSelectionActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Group Chat Selection"
 
+        selectedUsersList.clear()
         getUsersFromDatabase()
 
         createGroupButtonGroupChatSelection.setOnClickListener {
@@ -56,9 +57,15 @@ class GroupChatSelectionActivity : AppCompatActivity() {
                 adapter.setOnItemClickListener { item, view ->
                     val userItem = item as UserItem
 
-                    Log.d("GroupChatSelection", "Selected:" + userItem.user.username)
-                    selectedUsersList.add(userItem.user.uid)
-                    view.setBackgroundColor(Color.YELLOW)
+                    Log.d("GroupChatSelection", "Selected: " + userItem.user.username)
+                    if (userItem.user.uid in selectedUsersList) {
+                        Log.d("GroupChatSelection", "Already in list")
+                    }
+                    else {
+                        Log.d("GroupChatSelection", "Added!")
+                        selectedUsersList.add(userItem.user.uid)
+                        view.setBackgroundColor(Color.YELLOW)
+                    }
 
                 }
 
