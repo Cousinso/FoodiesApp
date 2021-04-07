@@ -9,23 +9,68 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/newMessageRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/photoButtonNewGroupChat"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_confirm_new_groupchat"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+    <EditText
+        android:id="@+id/newGroupChatNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="Group Chat name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/newGroupChatConfirm"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/newGroupChatConfirm"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:text="Confirm"
+        android:textStyle="bold"
+        app:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/photoButtonNewGroupChat"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/circle_button"
+        android:text="Select Photo"
+        app:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintBottom_toTopOf="@+id/newGroupChatNameEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/photoimageViewNewGroupchat"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/newGroupChatNameEditText"
+        app:layout_constraintEnd_toEndOf="@+id/photoButtonNewGroupChat"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/photoButtonRegister"
+        app:layout_constraintTop_toTopOf="@+id/photoButtonRegister"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
