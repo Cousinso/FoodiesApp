@@ -85,7 +85,7 @@ class GroupChatSelectionActivity : AppCompatActivity() {
 
 
     private fun listenForLatestMessages(id: String){
-        val ref = FirebaseDatabase.getInstance().getReference("/latest-messages/$id")
+        val ref = FirebaseDatabase.getInstance().getReference("/latest-group-messages/$id")
         Log.d("GroupChatLogActivity", "Starting listener on $id")
         ref.addChildEventListener(object: ChildEventListener{
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {

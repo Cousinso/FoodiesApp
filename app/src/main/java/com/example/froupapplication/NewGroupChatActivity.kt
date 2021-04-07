@@ -191,7 +191,7 @@ class NewGroupChatActivity : AppCompatActivity() {
 
         reference.setValue(chatMessage)
 
-        val latestMessageReference = FirebaseDatabase.getInstance().getReference("/latest-messages/$toID/message")
+        val latestMessageReference = FirebaseDatabase.getInstance().getReference("/latest-group-messages/$toID/message")
         latestMessageReference.setValue(chatMessage)
     }
 }

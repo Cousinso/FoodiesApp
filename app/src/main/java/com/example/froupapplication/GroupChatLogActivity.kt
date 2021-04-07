@@ -117,7 +117,7 @@ class GroupChatLogActivity : AppCompatActivity() {
                 groupchatLogRecyclerViewChatLog.scrollToPosition(adapter.itemCount - 1)
             }
 
-        val latestMessageReference = FirebaseDatabase.getInstance().getReference("/latest-messages/$toID/message")
+        val latestMessageReference = FirebaseDatabase.getInstance().getReference("/latest-group-messages/$toID/message")
         latestMessageReference.setValue(chatMessage)
     }
 
