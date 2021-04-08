@@ -147,6 +147,7 @@ class GroupChatItem(gcname: String,Id: String, text: String, image: String) : It
     val message = text
     val name = gcname
     val uri = image
+
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         viewHolder.itemView.username_textview_latest_message.text = name
         viewHolder.itemView.latest_message_textview.text = message
@@ -156,6 +157,8 @@ class GroupChatItem(gcname: String,Id: String, text: String, image: String) : It
         else{
             Picasso.get().load("https://miro.medium.com/max/800/0*evjjYzmFhBV-djWJ.jpg").into(viewHolder.itemView.imageView_latest_message)
         }
+
+
     }
     override fun getLayout() : Int {
         return R.layout.latest_messages_row

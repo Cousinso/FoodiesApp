@@ -1,5 +1,6 @@
 package com.example.froupapplication
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -55,12 +56,12 @@ class ChatLogActivity : AppCompatActivity() {
             Log.d(TAG, "Attempt to send message...")
             performSendMessage()
         }
-        adapter.setOnItemClickListener { item, view ->
-//            val userItem = item as ChatToItem
-            val intent = Intent(view.context, ProfileTestActivity::class.java)
-            intent.putExtra("User", toUser)
-            startActivity(intent)
-        }
+        //adapter.setOnItemClickListener { item, view ->
+//      //      val userItem = item as ChatToItem
+        //    val intent = Intent(view.context, ProfileTestActivity::class.java)
+        //    intent.putExtra("User", toUser)
+        //    startActivity(intent)
+        //}
 
     }
 
@@ -79,7 +80,7 @@ class ChatLogActivity : AppCompatActivity() {
                         val currentUser = LatestMessagesActivity.currentUser
                         adapter.add(ChatFromItem(chatMessage.text, currentUser))
                     } else {
-                        adapter.add(ChatToItem(chatMessage.text, toUser))
+                        adapter.add(ChatToItem(chatMessage.text, toUser,this@ChatLogActivity))
                     }
                 }
 
@@ -168,7 +169,7 @@ class ChatLogActivity : AppCompatActivity() {
 
     }
 
-    class ChatToItem(val text: String, val user: User?) : Item<GroupieViewHolder>() {
+    class ChatToItem(val text: String, val user: User?, val context: Context) : Item<GroupieViewHolder>() {
         override fun bind(viewHolder: GroupieViewHolder, position: Int) {
             viewHolder.itemView.textViewChatToRow.text = text
 
@@ -181,7 +182,18 @@ class ChatLogActivity : AppCompatActivity() {
             else{
                 Picasso.get().load("https://miro.medium.com/max/800/0*evjjYzmFhBV-djWJ.jpg").into(target)
             }
-        }
+            viewHolder.itemView.photoImageViewChatToRow.setOnClickListener{
+
+
+                    val myContext = context
+                    val intent = Intent(myContext, ProfileTestActivity::class.java)
+                    intent.putExtra("User", user)
+                    myContext.startActivity(intent)
+
+
+                }
+            }
+
 
         override fun getLayout(): Int {
             return R.layout.chat_to_row
