@@ -13,7 +13,10 @@ class ProfileTestActivity : AppCompatActivity() {
         setContentView(R.layout.activity_profile_test)
 
         val user = intent.getParcelableExtra<User>("User")
-        Picasso.get().load(user?.profileImageUrl).into(pictureImageViewProfile)
+        if (user?.profileImageUrl != "") {
+            Picasso.get().load(user?.profileImageUrl).into(pictureImageViewProfile)
+        }
+
         usernameTextViewProfile.text = user?.username
 
         Log.d("ProfileTest", "Username: ${user?.username}")

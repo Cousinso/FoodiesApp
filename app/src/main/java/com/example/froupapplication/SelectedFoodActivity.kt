@@ -14,7 +14,10 @@ class SelectedFoodActivity : AppCompatActivity() {
         val food = intent.getParcelableExtra<Food>(FoodSelectionActivity.FOOD_KEY)
 
         supportActionBar?.title = "Selected Food"
-        Picasso.get().load(food?.foodImageUrl).into(foodImageViewSelectedFood)
+        if (food?.foodImageUrl != "") {
+            Picasso.get().load(food?.foodImageUrl).into(foodImageViewSelectedFood)
+        }
+
         descriptionTextViewSelectedFood.text = food?.name
 
         confirmButtonSelectedFood.setOnClickListener {

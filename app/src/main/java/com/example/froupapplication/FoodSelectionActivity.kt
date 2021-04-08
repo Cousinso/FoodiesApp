@@ -132,8 +132,10 @@ class FoodItem(val food: Food): Item<GroupieViewHolder>() {
         return R.layout.food_choice_1
     }
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        Picasso.get().load(food.foodImageUrl).into(viewHolder.itemView.foodImageView1)
-        viewHolder.itemView.foodNameTextViewFoodSelection.text = food.name
+        if (food.foodImageUrl != "") {
+            Picasso.get().load(food.foodImageUrl).into(viewHolder.itemView.foodImageView1)
+            viewHolder.itemView.foodNameTextViewFoodSelection.text = food.name
+        }
 //        viewHolder.itemView.yesButtonFoodChoice1.setOnClickListener {
 //            Log.d("FoodSelectionActivity", it.toString())
 //            val intent = Intent(it.context, SelectedFoodActivity::class.java)

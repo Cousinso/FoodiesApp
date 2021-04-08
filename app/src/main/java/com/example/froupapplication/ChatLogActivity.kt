@@ -152,7 +152,9 @@ class ChatLogActivity : AppCompatActivity() {
             // Load user image into chat log
             val uri = user?.profileImageUrl
             val target = viewHolder.itemView.photoImageViewChatFromRow
-            Picasso.get().load(uri).into(target)
+            if (uri != "") {
+                Picasso.get().load(uri).into(target)
+            }
         }
 
         override fun getLayout(): Int {
@@ -168,7 +170,10 @@ class ChatLogActivity : AppCompatActivity() {
             // Load user image into chat log
             val uri = user?.profileImageUrl
             val target = viewHolder.itemView.photoImageViewChatToRow
-            Picasso.get().load(uri).into(target)
+            if (uri != "") {
+                Picasso.get().load(uri).into(target)
+            }
+
         }
 
         override fun getLayout(): Int {
