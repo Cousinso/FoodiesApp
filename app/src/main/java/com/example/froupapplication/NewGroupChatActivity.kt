@@ -37,15 +37,17 @@ import kotlinx.android.synthetic.main.user_row_new_message.view.*
 import java.util.*
 
 
-val groupChatList = mutableListOf(FirebaseAuth.getInstance().uid)
-class NewGroupChatActivity : AppCompatActivity() {
 
+class NewGroupChatActivity : AppCompatActivity() {
+    val groupChatList = mutableListOf(FirebaseAuth.getInstance().uid)
     var selectedPhotoUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_group_chat)
 
         supportActionBar?.title = "Add people"
+
+        groupChatList.clear()
         getUsersFromDatabase()
 
         val createChat = findViewById<Button>(R.id.newGroupChatConfirm)

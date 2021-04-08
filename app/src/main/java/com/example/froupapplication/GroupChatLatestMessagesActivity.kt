@@ -27,7 +27,7 @@ class GroupChatSelectionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_chat_latest_messages)
 
-        supportActionBar?.title = ""
+        supportActionBar?.title = "Group Chats"
 
         groupMessageRecyclerView.adapter = adapter
         groupMessageRecyclerView.addItemDecoration(
@@ -44,7 +44,7 @@ class GroupChatSelectionActivity : AppCompatActivity() {
             intent.putExtra("GCID", row.toId)
             startActivity(intent)
         }
-        supportActionBar?.title = "Group Chats"
+
         getGcsFromDatabase()
     }
 
