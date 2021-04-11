@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -173,6 +174,7 @@ class RegisterFoodPreferencesActivity : AppCompatActivity() {
             ref.child("foodPreferences").setValue(pref)
                 .addOnSuccessListener {
                     Log.d("RegisterFoodAct", "foodPreferences saved for user ${auth.uid} to Firebase Database")
+                    Toast.makeText(this, "Registration done", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
                     Log.d("RegisterFoodAct", "Error : foodPreferences not saved for user ${auth.uid}  to Firebase Database")

@@ -171,21 +171,18 @@
             android:id="@+id/radio_female"
             android:layout_width="98dp"
             android:layout_height="match_parent"
-            android:onClick="onRadioButtonClicked_Female"
             android:text="@string/female" />
 
         <RadioButton
             android:id="@+id/radio_male"
             android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:onClick="onRadioButtonClicked_Male"
             android:text="@string/male" />
 
         <RadioButton
             android:id="@+id/radio_other"
             android:layout_width="82dp"
             android:layout_height="match_parent"
-            android:onClick="onRadioButtonClicked_Other"
             android:text="@string/other" />
 
     </RadioGroup>

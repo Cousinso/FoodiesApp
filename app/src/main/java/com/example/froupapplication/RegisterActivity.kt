@@ -31,12 +31,8 @@ class RegisterActivity : AppCompatActivity() {
         val photo = findViewById<Button>(R.id.photoButtonRegister)
 
         register.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
             Log.d("RegisterActivity", "Register pressed!")
             performRegister()
-            startActivity(intent)
-
-
         }
         //this is comment
         login.setOnClickListener {
@@ -95,6 +91,11 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
+        if (selectedPhotoUri == null) {
+            Toast.makeText(this, "Please choose a picture", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         Log.d("RegisterActivity", "Email: ${email.text.toString()}")
         Log.d("RegisterActivity", "Password: ${password.text.toString()}")
 
@@ -118,7 +119,6 @@ class RegisterActivity : AppCompatActivity() {
 
     // Called when function for register button is pressed to upload photo to Firebase Storage
     private fun photoUploadToFirebase() {
-        if (selectedPhotoUri == null) return
 
         val filename = UUID.randomUUID().toString()
         val storage = FirebaseStorage.getInstance()
@@ -132,10 +132,13 @@ class RegisterActivity : AppCompatActivity() {
                     Log.d("RegisterActivity", "File location: ${it.result}")
 
                     saveUserToDatabase(it.result.toString())
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
                 }
             }
             .addOnFailureListener {
                 // Blank for the time being
+                Toast.makeText(this, "Error with upload picture", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -146,15 +149,12 @@ class RegisterActivity : AppCompatActivity() {
         val ref = database.getReference("/users/${auth.uid}")
         val username = findViewById<EditText>(R.id.usernameEditTextRegister)
 
-        val user = User(auth.uid ?: "", username.text.toString(), profileImageUrl, "", "")
+        val user = User(auth.uid ?: "", username.text.toString(), profileImageUrl)
 
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "User saved to Firebase Database")
 
-                // Go to profile activity
-                val intent = Intent(this, ProfileActivity::class.java)
-                startActivity(intent)
             }
             .addOnFailureListener {
                 // Blank for the time being
@@ -167,7 +167,7 @@ class RegisterActivity : AppCompatActivity() {
 }
 
 @Parcelize
-class User(val uid: String, val username: String, val profileImageUrl: String, val food: String, val Bio: String) : Parcelable {
+class User(val uid: String, val username: String, val profileImageUrl: String) : Parcelable {
     // No-argument constructor
-    constructor() : this("","","","","")
+    constructor() : this("","","")
 }
