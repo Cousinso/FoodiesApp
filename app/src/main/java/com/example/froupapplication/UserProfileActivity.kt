@@ -1,5 +1,6 @@
 package com.example.froupapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -82,6 +83,8 @@ class UserProfileActivity : AppCompatActivity(){
                 Log.d("error", "Could not fetch current user food preferences")
             }
         })
+
+        
     }
 
 
