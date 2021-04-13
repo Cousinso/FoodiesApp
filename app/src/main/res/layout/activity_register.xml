@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_light"
+    android:background="@color/beige"
     tools:context=".RegisterActivity">
 
     <EditText
@@ -15,9 +15,9 @@
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Email"
-        android:textColorHint="@android:color/holo_orange_dark"
         android:inputType="textEmailAddress"
         android:paddingLeft="16dp"
+        android:textColorHint="@android:color/holo_orange_light"
         app:layout_constraintEnd_toEndOf="@+id/usernameEditTextRegister"
         app:layout_constraintStart_toStartOf="@+id/usernameEditTextRegister"
         app:layout_constraintTop_toBottomOf="@+id/usernameEditTextRegister" />
@@ -30,12 +30,29 @@
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Password"
-        android:textColorHint="@android:color/holo_orange_dark"
         android:inputType="textPassword"
         android:paddingLeft="16dp"
+        android:textColorHint="@android:color/holo_orange_light"
         app:layout_constraintEnd_toEndOf="@+id/emailEditTextRegister"
         app:layout_constraintStart_toStartOf="@+id/emailEditTextRegister"
         app:layout_constraintTop_toBottomOf="@+id/emailEditTextRegister" />
+
+
+    <EditText
+        android:id="@+id/passwordConfirm"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="Password Confirmation"
+        android:inputType="textPassword"
+        android:paddingLeft="16dp"
+        android:textColorHint="@android:color/holo_orange_light"
+        app:layout_constraintEnd_toEndOf="@+id/emailEditTextRegister"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/emailEditTextRegister"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextRegister" />
 
     <EditText
         android:id="@+id/usernameEditTextRegister"
@@ -43,30 +60,31 @@
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Username"
-        android:textColorHint="@android:color/holo_orange_dark"
         android:inputType="textPersonName"
         android:paddingLeft="16dp"
+        android:textColorHint="@color/orange_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/photoButtonRegister" />
 
     <Button
         android:id="@+id/ButtonFinish"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="157dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/rounded_edittext"
         android:text="Register"
         app:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toEndOf="@+id/passwordEditTextRegister"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/passwordEditTextRegister"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordConfirm" />
 
     <TextView
         android:id="@+id/loginTextViewRegister"
@@ -77,6 +95,7 @@
         android:textColor="@android:color/holo_orange_dark"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/ButtonFinish"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/ButtonFinish"
         app:layout_constraintTop_toBottomOf="@+id/ButtonFinish" />
 
@@ -102,7 +121,9 @@
         android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="@+id/photoButtonRegister"
         app:layout_constraintEnd_toEndOf="@+id/photoButtonRegister"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/photoButtonRegister"
-        app:layout_constraintTop_toTopOf="@+id/photoButtonRegister" />
+        app:layout_constraintTop_toTopOf="@+id/photoButtonRegister"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

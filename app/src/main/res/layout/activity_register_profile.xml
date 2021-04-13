@@ -18,7 +18,7 @@
             android:id="@+id/register_radio_only"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/only_during_using" />
+            android:text="Only when using" />
 
         <RadioButton
             android:id="@+id/register_radio_always"
@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:ems="10"
-        android:hint="@string/birthday"
+        android:hint="Birthday: DD/MM/YYYY"
         android:inputType="date"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
         app:layout_constraintTop_toBottomOf="@+id/Food_Preference" />
@@ -154,7 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="@string/are_you_in"
+        android:text="Are you a student or working"
         android:textColor="#DDFF9800"
         app:layout_constraintStart_toStartOf="@+id/Hint1_4"
         app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_location" />
