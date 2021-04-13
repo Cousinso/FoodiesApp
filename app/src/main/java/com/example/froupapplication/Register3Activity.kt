@@ -11,7 +11,7 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_register_profile_2.*
 
-class RegisterFoodPreferencesActivity : AppCompatActivity() {
+class Register3Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_profile_2)

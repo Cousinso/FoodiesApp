@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -20,7 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
-class RegisterActivity : AppCompatActivity() {
+class Register1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -137,7 +136,7 @@ class RegisterActivity : AppCompatActivity() {
                     Log.d("register1", "File location: ${it.result}")
 
                     saveUserToDatabase(it.result.toString())
-                    val intent = Intent(this, ProfileActivity::class.java)
+                    val intent = Intent(this, Register2Activity::class.java)
 
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK) // Clears intent list bc don't want to be able to go back with back button
                     startActivity(intent)
