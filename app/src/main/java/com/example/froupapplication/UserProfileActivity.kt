@@ -40,10 +40,10 @@ class UserProfileActivity : AppCompatActivity(){
                 val username = currentUser?.username
                 val uri = currentUser?.profileImageUrl
                 val imageView: ImageView = findViewById(R.id.selfImage)
-                //Picasso.get().load(uri).into(imageView)
+                Picasso.get().load(uri).resize(200, 0).centerInside().into(imageView) //might be 150 instead of 200 idk yet
                 //val personalInfo = currentUser?.personalInfo
                 //Log.d("userprofile", "Current user personal info: ${currentUser?.personalInfo}")
-                selfTextBio.text = username
+                selfTextBio.text = "picturedone"
             }
             override fun onCancelled(error: DatabaseError) {
                 Log.d("error", "Could not fetch current user data")
