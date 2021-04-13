@@ -139,6 +139,8 @@ class RegisterActivity : AppCompatActivity() {
 
                     saveUserToDatabase(it.result.toString())
                     val intent = Intent(this, ProfileActivity::class.java)
+
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK) // Clears intent list bc don't want to be able to go back with back button
                     startActivity(intent)
                 }
             }
@@ -167,9 +169,6 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 
-//    fun onRadioButtonClicked_Female(view: View) {}
-//    fun onRadioButtonClicked_Male(view: View) {}
-//    fun onRadioButtonClicked_Other(view: View) {}
 }
 
 @Parcelize

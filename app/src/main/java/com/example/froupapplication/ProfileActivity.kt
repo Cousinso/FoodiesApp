@@ -71,6 +71,7 @@ class ProfileActivity: AppCompatActivity() {
                 }
 
             val intent = Intent(this, RegisterFoodPreferencesActivity::class.java)
+            //no cleanig of the intents here as we give the user the possibility to go back here if the mistyped something
             startActivity(intent)
         }
     }
