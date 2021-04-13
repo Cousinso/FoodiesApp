@@ -39,8 +39,7 @@ class RegisterActivity : AppCompatActivity() {
             Log.d("register1", "Login pressed!")
 
             // Go to login activity
-            //val intent = Intent(this, LoginActivity::class.java)
-            val intent = Intent(this, UserProfileActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
