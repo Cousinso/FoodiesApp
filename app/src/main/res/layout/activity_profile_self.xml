@@ -22,7 +22,7 @@
             android:textColor="#D0DC4D20"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextBio" />
+            app:layout_constraintTop_toBottomOf="@+id/selfTextBio" />
 
         <RadioGroup
             android:id="@+id/register_radioGroup_Gender"
@@ -72,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/editLocation" />
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/selfImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -93,10 +93,10 @@
             android:textColor="#D0DC4D20"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+            app:layout_constraintTop_toBottomOf="@+id/selfImage" />
 
-        <EditText
-            android:id="@+id/editTextBio"
+        <TextView
+            android:id="@+id/selfTextBio"
             android:layout_width="366dp"
             android:layout_height="95dp"
             android:layout_marginStart="8dp"

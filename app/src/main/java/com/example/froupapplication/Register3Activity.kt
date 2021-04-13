@@ -173,11 +173,11 @@ class RegisterFoodPreferencesActivity : AppCompatActivity() {
             val pref = Preferences(foodPreferencesForDB, allergiesForDB, meatPreferencesForDB, mealPreferencesForDB)
             ref.child("foodPreferences").setValue(pref)
                 .addOnSuccessListener {
-                    Log.d("RegisterFoodAct", "foodPreferences saved for user ${auth.uid} to Firebase Database")
+                    Log.d("register3", "foodPreferences saved for user ${auth.uid} to Firebase Database")
                     Toast.makeText(this, "Registration done", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
-                    Log.d("RegisterFoodAct", "Error : foodPreferences not saved for user ${auth.uid}  to Firebase Database")
+                    Log.d("register3", "Error : foodPreferences not saved for user ${auth.uid}  to Firebase Database")
                 }
 
             //val intent = Intent(this, FoodSelectionActivity::class.java)

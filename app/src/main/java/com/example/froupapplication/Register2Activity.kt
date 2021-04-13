@@ -64,10 +64,10 @@ class ProfileActivity: AppCompatActivity() {
             val personalInfo = PersonalInfo(birthday, gender, bio, location, locationUse, lifeActivity)
             ref.child("personalInfo").setValue(personalInfo)
                 .addOnSuccessListener {
-                    Log.d("ProfileAct", "Personal info saved for user ${auth.uid} to Firebase Database")
+                    Log.d("register2", "Personal info saved for user ${auth.uid} to Firebase Database")
                 }
                 .addOnFailureListener {
-                    Log.d("ProfileAct", "Error : Personal info not saved for user ${auth.uid}  to Firebase Database")
+                    Log.d("register2", "Error : Personal info not saved for user ${auth.uid}  to Firebase Database")
                 }
 
             val intent = Intent(this, RegisterFoodPreferencesActivity::class.java)
