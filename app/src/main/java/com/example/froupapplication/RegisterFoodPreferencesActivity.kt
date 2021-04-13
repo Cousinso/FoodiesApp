@@ -180,7 +180,8 @@ class RegisterFoodPreferencesActivity : AppCompatActivity() {
                     Log.d("RegisterFoodAct", "Error : foodPreferences not saved for user ${auth.uid}  to Firebase Database")
                 }
 
-            val intent = Intent(this, FoodSelectionActivity::class.java)
+            //val intent = Intent(this, FoodSelectionActivity::class.java)
+            val intent = Intent(this, UserProfileActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK) // Clears intent list bc don't want to be able to go back with back button
             startActivity(intent)
         }
