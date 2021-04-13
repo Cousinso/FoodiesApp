@@ -7,17 +7,13 @@ import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_profile_self.*
-import kotlinx.android.synthetic.main.activity_test_profile.*
-import kotlinx.android.synthetic.main.chat_from_row.view.*
 
 class UserProfileActivity : AppCompatActivity(){
     var currentUser: User? = null
@@ -84,7 +80,10 @@ class UserProfileActivity : AppCompatActivity(){
             }
         })
 
-        
+        selfEditButton.setOnClickListener {
+            val intent = Intent(this, Register2Activity::class.java)
+            startActivity(intent)
+        }
     }
 
 

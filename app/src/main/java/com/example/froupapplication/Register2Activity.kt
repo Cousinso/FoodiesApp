@@ -11,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_register_profile.*
 
 
-class ProfileActivity: AppCompatActivity() {
+class Register2Activity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_profile)
@@ -70,8 +70,7 @@ class ProfileActivity: AppCompatActivity() {
                     Log.d("register2", "Error : Personal info not saved for user ${auth.uid}  to Firebase Database")
                 }
 
-            val intent = Intent(this, RegisterFoodPreferencesActivity::class.java)
-            //no cleanig of the intents here as we give the user the possibility to go back here if the mistyped something
+            val intent = Intent(this, Register3Activity::class.java)
             startActivity(intent)
         }
     }
