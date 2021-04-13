@@ -80,6 +80,7 @@ class RegisterActivity : AppCompatActivity() {
         // Instantiating UI elements
         val email = findViewById<EditText>(R.id.emailEditTextRegister)
         val password = findViewById<EditText>(R.id.passwordEditTextRegister)
+        val passwordCheck = findViewById<EditText>(R.id.passwordConfirm)
 
         if (email.text.toString().isEmpty() ) {
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show()
@@ -88,6 +89,11 @@ class RegisterActivity : AppCompatActivity() {
 
         if (password.text.toString().isEmpty()) {
             Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (password.text.toString() != passwordCheck.text.toString()) {
+            Toast.makeText(this, "The two passwords are not equal, please try again", Toast.LENGTH_SHORT).show()
             return
         }
 
