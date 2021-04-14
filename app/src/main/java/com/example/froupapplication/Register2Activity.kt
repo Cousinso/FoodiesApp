@@ -71,19 +71,6 @@ class Register2Activity: AppCompatActivity() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         register_ButtonNext.setOnClickListener {
             val auth = FirebaseAuth.getInstance()
             val database = FirebaseDatabase.getInstance()
