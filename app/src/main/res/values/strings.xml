@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Froup Application</string>
+    <string name="app_name">Foodie</string>
     <string name="only_during_using">Only during using</string>
     <string name="always">Always</string>
     <string name="birthday">Birthday</string>
