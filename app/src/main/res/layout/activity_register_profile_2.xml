@@ -172,12 +172,12 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="150dp"
         android:text="Allergies /Intollerancies"
         android:textColor="#DDFF9800"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/Food_Preference" />
 
     <TextView
         android:id="@+id/Food_Preference"
@@ -213,6 +213,23 @@
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
         app:layout_constraintTop_toBottomOf="@+id/Food_Preference"
         app:layout_constraintVertical_bias="0.865" />
+
+<!--    <ListView-->
+<!--        android:id="@+id/list_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@+id/searchView"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginRight="16dp">-->
+
+<!--        <SearchView-->
+<!--            android:id="@+id/searchView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:iconifiedByDefault="false"-->
+<!--            android:queryHint="Search Here..." />-->
+<!--    </ListView>-->
 
     <CheckBox
         android:id="@+id/ChFood"

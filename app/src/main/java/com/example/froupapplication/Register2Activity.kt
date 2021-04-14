@@ -4,6 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -12,9 +16,20 @@ import kotlinx.android.synthetic.main.activity_register_profile.*
 
 
 class Register2Activity: AppCompatActivity() {
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_profile)
+
+
+
+
+
+
+
+
 
         //Handling the gender
         var gender = ""
@@ -52,6 +67,23 @@ class Register2Activity: AppCompatActivity() {
             }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         register_ButtonNext.setOnClickListener {
             val auth = FirebaseAuth.getInstance()
             val database = FirebaseDatabase.getInstance()
@@ -79,4 +111,8 @@ class Register2Activity: AppCompatActivity() {
 @Parcelize
 class PersonalInfo(val bday: String, val gender: String, val bio: String, val location: String, val locationUse: String, val lifeActivity: String) :
     Parcelable {
+}
+
+private fun SearchView.setOnQueryTextListener(onQueryTextListener: SearchView.OnQueryTextListener, function: () -> Unit) {
+
 }
