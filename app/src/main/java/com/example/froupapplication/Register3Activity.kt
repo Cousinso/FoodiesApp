@@ -181,7 +181,7 @@ class Register3Activity : AppCompatActivity() {
                 }
 
 
-            val intent = Intent(this, FoodSelectionActivity::class.java)
+            val intent = Intent(this, Register4Activity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK) // Clears intent list bc don't want to be able to go back with back button
             startActivity(intent)
         }
