@@ -38,10 +38,11 @@ class SwipeActivity : AppCompatActivity() {
             setContentView(R.layout.activity_swipe)
 
             val auth = FirebaseAuth.getInstance()
-            val curUser = auth.currentUser
+            val curUser = LatestMessagesActivity.currentUser
             val ref = FirebaseDatabase.getInstance().getReference("/users")
             val foodPref = intent.getParcelableExtra<Food>(FoodSelectionActivity.FOOD_KEY)
-
+            Log.d("SwipeActivity", "foodPref =  $foodPref")
+            Log.d("SwipeActivity", "User food =  ${curUser?.food}")
 
             ref.addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -60,11 +61,18 @@ class SwipeActivity : AppCompatActivity() {
 
             })
 
-            for (dbu in users!!){
-                if(dbu.food == foodPref?.name)
-                    correctUsers!!.add(dbu)
-                    Log.d("SwipeActivity", "Correcr user: ${dbu.username}, ${dbu.food}")
+            users?.forEach {
+                if(it.food == curUser?.food){
+                    correctUsers?.add(it)
+                    Log.d("SwipeActivity", "Correcr user: ${it.username}, ${it.food}")
+                }
             }
+
+//            for (dbu in users!!) {
+//                if (dbu.food == curUser?.food)
+//                    correctUsers!!.add(dbu)
+//                Log.d("SwipeActivity", "Correcr user: ${dbu.username}, ${dbu.food}")
+//            }
 
 
             al = ArrayList()
