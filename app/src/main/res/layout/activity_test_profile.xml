@@ -86,10 +86,10 @@
         android:textColorHint="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/Textview_Topic_Bio" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/Textview_Topic_Bio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
