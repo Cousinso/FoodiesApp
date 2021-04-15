@@ -1,5 +1,6 @@
 package com.example.froupapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,16 +18,55 @@ import android.view.LayoutInflater;
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.NonNull
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.lorentzos.flingswipe.SwipeFlingAdapterView
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.xwray.groupie.GroupieAdapter
 
 class SwipeActivity : AppCompatActivity() {
 
         private var al: ArrayList<String>? = null
+        var users: ArrayList<User>? = null
+        var correctUsers: ArrayList<User>? = null
         private var arrayAdapter: ArrayAdapter<String>? = null
         private var i = 0
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_swipe)
+
+            val auth = FirebaseAuth.getInstance()
+            val curUser = auth.currentUser
+            val ref = FirebaseDatabase.getInstance().getReference("/users")
+            val foodPref = intent.getParcelableExtra<Food>(FoodSelectionActivity.FOOD_KEY)
+
+
+            ref.addValueEventListener(object: ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (dbu in snapshot.children){
+                        val nextUser = dbu.getValue(User::class.java)
+                        if (nextUser != null){
+                            users?.add(nextUser)
+                            //Log.d("SwipeActivity", "User ${nextUser.username} added to list")
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
+
+            for (dbu in users!!){
+                if(dbu.food == foodPref?.name)
+                    correctUsers!!.add(dbu)
+                    Log.d("SwipeActivity", "Correcr user: ${dbu.username}, ${dbu.food}")
+            }
+
+
             al = ArrayList()
             al!!.add("php")
             al!!.add("c")
@@ -50,9 +90,6 @@ class SwipeActivity : AppCompatActivity() {
                 }
 
                 override fun onLeftCardExit(dataObject: Any) {
-                    //Do something on the left!
-                    //You also have access to the original object.
-                    //If you want to use it just cast it (String) dataObject
                     Toast.makeText(this@SwipeActivity, "Left!!", Toast.LENGTH_SHORT).show()
                 }
 
@@ -61,7 +98,6 @@ class SwipeActivity : AppCompatActivity() {
                 }
 
                 override fun onAdapterAboutToEmpty(itemsInAdapter: Int) {
-                    // Ask for more data here
                     al!!.add("XML $i")
                     arrayAdapter!!.notifyDataSetChanged()
                     Log.d("LIST", "notified")
@@ -71,9 +107,9 @@ class SwipeActivity : AppCompatActivity() {
                 override fun onScroll(scrollProgressPercent: Float) {}
             })
 
-
-            // Optionally add an OnItemClickListener
-            flingContainer.setOnItemClickListener { itemPosition, dataObject -> Toast.makeText(this@SwipeActivity, "Right !!", Toast.LENGTH_SHORT).show() }
+            flingContainer.setOnItemClickListener { itemPosition, dataObject ->
+                Toast.makeText(this@SwipeActivity, "Right !!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

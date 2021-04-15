@@ -92,6 +92,7 @@ class FoodSelectionActivity : AppCompatActivity() {
                 adapter.setOnItemClickListener { item, view ->
                     val foodItem = item as FoodItem
                     val intent = Intent(view.context, SelectedFoodActivity::class.java)
+                    currentUser?.food = foodItem.toString()
                     intent.putExtra(FOOD_KEY, foodItem.food)
                     startActivity(intent)
                 }

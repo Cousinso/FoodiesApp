@@ -21,6 +21,7 @@ class SelectedFoodActivity : AppCompatActivity() {
             //val intent = Intent(it.context, NewMessageActivity::class.java)
 //            val intent = Intent(it.context, SwipeActivity::class.java)
             val intent = Intent(it.context, GroupVsPairActivity::class.java)
+            intent.putExtra("food", FoodSelectionActivity.FOOD_KEY)
             startActivity(intent)
             finish()
         }
