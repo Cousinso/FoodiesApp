@@ -18,7 +18,9 @@ class SelectedFoodActivity : AppCompatActivity() {
         descriptionTextViewSelectedFood.text = food?.name
 
         confirmButtonSelectedFood.setOnClickListener {
-            val intent = Intent(it.context, NewMessageActivity::class.java)
+            //val intent = Intent(it.context, NewMessageActivity::class.java)
+//            val intent = Intent(it.context, SwipeActivity::class.java)
+            val intent = Intent(it.context, GroupVsPairActivity::class.java)
             startActivity(intent)
             finish()
         }

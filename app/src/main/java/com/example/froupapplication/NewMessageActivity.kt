@@ -74,7 +74,6 @@ class UserItem(val user: User) : Item<GroupieViewHolder>() {
         else{
             Picasso.get().load(user.profileImageUrl).into(viewHolder.itemView.photoImageViewNewMessages)
         }
-
     }
     
     override fun getLayout() : Int {
