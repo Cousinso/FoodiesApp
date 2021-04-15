@@ -11,14 +11,14 @@ import kotlinx.android.synthetic.main.activity_waiting_for_group.*
 
 class WaitingForGroupActivity : AppCompatActivity() {
     companion object {
-        val currentFood: Food? = null
+        var currentFood: Food? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_waiting_for_group)
 
-        val currentFood = intent.getParcelableExtra<Food>(SelectedFoodActivity.FOOD_KEY)
+        currentFood = intent.getParcelableExtra<Food>(SelectedFoodActivity.FOOD_KEY)
 
         supportActionBar?.title = currentFood?.name
 
@@ -31,11 +31,13 @@ class WaitingForGroupActivity : AppCompatActivity() {
 
     private fun waitForGroup () {
         val fid = currentFood?.fid
-        val ref = FirebaseDatabase.getInstance().getReference("/foods/$fid")
+        Log.d("WaitingForGroupActivity", fid.toString())
+        val ref = FirebaseDatabase.getInstance().getReference("/foods/$fid/users")
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("WaitingForGroupActivity", "Number of users in food group: ${snapshot.childrenCount}")
+                Log.d("WaitingForGroupActivity", snapshot.ref.toString())
+                Log.d("WaitingForGroupActivity", "${snapshot.childrenCount}")
             }
 
             override fun onCancelled(error: DatabaseError) {
