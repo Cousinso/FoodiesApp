@@ -20,7 +20,8 @@ class Register4Activity: AppCompatActivity() {
         val searchView = findViewById<SearchView>(R.id.searchView)
         val listView = findViewById<ListView>(R.id.list_view)
 
-        val listName = arrayOf("Indian Food", "Asian", "Chinese Food", "Pizza")
+        val listName = arrayOf("Indian", "SouthAsian", "Chinese", "Pizza", "Italian", "International", "Thai", "Irish", "Asian Fusion",
+        "Alcohol", "American", "BBQ", "Burgers", "Gluten Free", "Convenience", "Curry", "Danish", "Dessert", "Greek", "Halal", "Healthy choices", "Kebab")
 
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listName)
         listView.adapter = arrayAdapter

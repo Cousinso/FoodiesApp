@@ -205,7 +205,7 @@
         android:layout_marginTop="508dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/rounded_edittext"
-        android:text="Finish"
+        android:text="Next"
         app:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/Food_Preference"
