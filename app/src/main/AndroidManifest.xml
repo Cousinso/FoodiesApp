@@ -20,6 +20,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".ChatLogActivity">
             <meta-data
@@ -41,6 +42,7 @@
         <activity android:name=".Register2Activity" />
         <activity android:name=".UserProfileActivity" />
         <activity android:name=".Register3Activity" />
+        <activity android:name=".Register4Activity"/>
     </application>
 
 </manifest>
