@@ -43,6 +43,7 @@
         <activity android:name=".UserProfileActivity" />
         <activity android:name=".Register3Activity" />
         <activity android:name=".Register4Activity"/>
+        <activity android:name=".Register5Activity"/>
     </application>
 
 </manifest>
