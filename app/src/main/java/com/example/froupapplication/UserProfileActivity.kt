@@ -80,6 +80,11 @@ class UserProfileActivity : AppCompatActivity(){
             }
         })
 
+        selfHomeButton.setOnClickListener {
+            val intent = Intent(this, FoodSelectionActivity::class.java)
+            startActivity(intent)
+        }
+
         selfEditButton.setOnClickListener {
             val intent = Intent(this, Register2Activity::class.java)
             startActivity(intent)
