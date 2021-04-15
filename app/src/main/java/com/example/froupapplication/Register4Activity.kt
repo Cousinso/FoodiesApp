@@ -1,10 +1,8 @@
 package com.example.froupapplication
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.SearchView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_register_profile.*
@@ -42,6 +40,26 @@ class Register4Activity: AppCompatActivity() {
                 return false
             }
 
+
         })
+        val Next: Button = findViewById(R.id.NextButtonF)
+        Next.setOnClickListener {
+            val intent = Intent(this, Register5Activity::class.java)
+            startActivity(intent)
+        }
+
+        val Back: Button = findViewById(R.id.Back)
+        Back.setOnClickListener {
+            val intent = Intent(this, Register3Activity::class.java)
+            startActivity(intent)
+        }
     }
-}
+    }
+
+
+
+
+
+
+
+
