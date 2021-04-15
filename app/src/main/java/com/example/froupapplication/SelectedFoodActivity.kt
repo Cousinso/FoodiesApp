@@ -7,6 +7,11 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_selected_food.*
 
 class SelectedFoodActivity : AppCompatActivity() {
+    companion object {
+        val TAG = "FoodSelection"
+        val FOOD_KEY = "FOOD_KEY"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_selected_food)
@@ -20,7 +25,8 @@ class SelectedFoodActivity : AppCompatActivity() {
         descriptionTextViewSelectedFood.text = food?.name
 
         confirmButtonSelectedFood.setOnClickListener {
-            val intent = Intent(it.context, NewMessageActivity::class.java)
+            val intent = Intent(it.context, WaitingForGroupActivity::class.java)
+            intent.putExtra(FOOD_KEY, food)
             startActivity(intent)
             finish()
         }

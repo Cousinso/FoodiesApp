@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/burger_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FroupApplication">
+        <activity android:name=".WaitingForGroupActivity"></activity>
         <activity android:name=".GroupChatLogActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
