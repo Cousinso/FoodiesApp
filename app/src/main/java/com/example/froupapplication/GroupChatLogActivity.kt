@@ -2,6 +2,10 @@ package com.example.froupapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.content.Context
+import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
+import kotlinx.android.synthetic.main.latest_messages_row.view.*
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -25,6 +29,8 @@ class GroupChatLogActivity : AppCompatActivity() {
     val adapter = GroupAdapter<GroupieViewHolder>()
 
     var toId: String? = null
+
+    val thisContext = this
 
     var gcName = ""
 
@@ -60,7 +66,7 @@ class GroupChatLogActivity : AppCompatActivity() {
                     if (chatMessage.fromID == myId) {
                         adapter.add(ChatFromItem(chatMessage.text, myId))
                     } else {
-                        adapter.add(ChatToItem(chatMessage.text, chatMessage.fromID))
+                        adapter.add(ChatToItem(chatMessage.text, chatMessage.fromID, thisContext))
                     }
                     Log.d("GroupChatLogActivity","got message ${chatMessage.text} from ${chatMessage.fromID}")
                 }
@@ -150,7 +156,7 @@ class GroupChatLogActivity : AppCompatActivity() {
 
     }
 
-    class ChatToItem(val text: String, val uid: String) : Item<GroupieViewHolder>() {
+    class ChatToItem(val text: String, val uid: String, val context: Context) : Item<GroupieViewHolder>() {
         override fun bind(viewHolder: GroupieViewHolder, position: Int) {
             viewHolder.itemView.textViewChatToRow.text = text
 
@@ -167,6 +173,24 @@ class GroupChatLogActivity : AppCompatActivity() {
                 }
                 else{
                     Picasso.get().load("https://miro.medium.com/max/800/0*evjjYzmFhBV-djWJ.jpg").into(target)
+                }
+                viewHolder.itemView.photoImageViewChatToRow.setOnClickListener{
+                    var toUser: User? = null
+                    FirebaseDatabase.getInstance().getReference("/users/$uid").get().addOnSuccessListener {
+                        Log.d("GroupChatLogActivity","Got ${it.value}")
+                        var uri = ""
+                        if(it.value != null){
+                            val map = it.value as HashMap<*,*>
+                            Log.d("GroupChatLogActivity","Clicker profile, got map $map")
+                            val toUser = User(map.get("uid").toString(),map.get("username").toString(),map.get("profileImageUrl").toString(),map.get("food").toString(),map.get("Bio").toString())
+
+                            val myContext = context
+                            val intent = Intent(myContext, ProfileTestActivity::class.java)
+                            intent.putExtra("User", toUser)
+                            myContext.startActivity(intent)
+                        }
+
+                    }
                 }
             }
 

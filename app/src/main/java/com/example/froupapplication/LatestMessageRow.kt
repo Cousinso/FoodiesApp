@@ -28,8 +28,11 @@ class LatestMessageRow(val chatMessage: ChatMessage): Item<GroupieViewHolder>(){
                 otherPersonUser = snapshot.getValue(User::class.java)
                 viewHolder.itemView.username_textview_latest_message.text = otherPersonUser?.username
                 val targetImage = viewHolder.itemView.imageView_latest_message
-                if (otherPersonUser?.profileImageUrl != "") {
+                if(otherPersonUser?.profileImageUrl != ""){
                     Picasso.get().load(otherPersonUser?.profileImageUrl).into(targetImage)
+                }
+                else{
+                    Picasso.get().load("https://miro.medium.com/max/800/0*evjjYzmFhBV-djWJ.jpg").into(targetImage)
                 }
             }
 
