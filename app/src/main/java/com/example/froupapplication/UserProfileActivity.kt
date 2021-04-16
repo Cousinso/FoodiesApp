@@ -29,6 +29,8 @@ class UserProfileActivity : AppCompatActivity(){
         val refUser = database.getReference("/users/${auth.uid}")
         val refPersonalInfo = database.getReference("/users/${auth.uid}/personalInfo")
         val refFoodPreferences = database.getReference("/users/${auth.uid}/foodPreferences")
+        val refFoodTypes = database.getReference("/users/${auth.uid}/foodTypes")
+        val refAllergies = database.getReference("/users/${auth.uid}/allergies")
 
         refUser.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -40,7 +42,7 @@ class UserProfileActivity : AppCompatActivity(){
                 Picasso.get().load(uri).resize(200, 0).centerInside().into(imageView) //might be 150 instead of 200 idk yet
                 //val personalInfo = currentUser?.personalInfo
                 //Log.d("userprofile", "Current user personal info: ${currentUser?.personalInfo}")
-                selfTextBio.text = "picturedone"
+                selfUserName.text = username
             }
             override fun onCancelled(error: DatabaseError) {
                 Log.d("error", "Could not fetch current user data")
@@ -50,13 +52,17 @@ class UserProfileActivity : AppCompatActivity(){
 
         refPersonalInfo.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                personalInfo = snapshot.getValue(ProfileInfo::class.java)
+                val personalInfo = snapshot.getValue(ProfileInfo::class.java)
+                val adress = personalInfo?.adress
                 val bday = personalInfo?.bday
+                selfBirthday.text = bday
                 val bio = personalInfo?.bio
+                selfTextBio.text = bio
+                val city = personalInfo?.city
+                val country = personalInfo?.country
                 val gender = personalInfo?.gender
-                val lifeActivity = personalInfo?.lifeActivity
-                val location = personalInfo?.location
-                val locationUse = personalInfo?.locationUse
+                textView_LifeActivity2.text = gender
+                val zip = personalInfo?.zip
                 Log.d("userprofile", "Current user bday: $bday")
 
             }
@@ -67,12 +73,34 @@ class UserProfileActivity : AppCompatActivity(){
 
         refFoodPreferences.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                foodPreferences = snapshot.getValue(FoodPreferences::class.java)
-                val allergies = foodPreferences?.allergies
-                val foodPref = foodPreferences?.foodPref
-                val mealPref = foodPreferences?.mealPref
-                val meetPref = foodPreferences?.meetPref
-                Log.d("userprofile", "Current user allergies: $allergies")
+                val foodPreferences = snapshot.getValue(FoodPreferences::class.java)
+                val lifeActivity = foodPreferences?.lifeActivity
+                val mealPref = foodPreferences?.mealPreferences
+                val meetPref = foodPreferences?.meetPreferences
+                Log.d("userprofile", "Current user lifeActivity: $lifeActivity")
+
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("error", "Could not fetch current user food preferences")
+            }
+        })
+
+        refFoodTypes.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val foodTypes = snapshot.getValue(FoodTypes::class.java)
+                val foodTypesItems = foodTypes?.items
+                Log.d("userprofile", "Current user foodTypesItems: $foodTypesItems")
+
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("error", "Could not fetch current user food preferences")
+            }
+        })
+        refAllergies.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val allergies = snapshot.getValue(Allergies::class.java)
+                val allergiesItems = allergies?.items
+                Log.d("userprofile", "Current user allergiesItems: $allergiesItems")
 
             }
             override fun onCancelled(error: DatabaseError) {
@@ -95,13 +123,16 @@ class UserProfileActivity : AppCompatActivity(){
 }
 
 @Parcelize
-class ProfileInfo(val bday: String, val bio: String, val gender: String, val lifeActivity : String , val location : String, val locationUse : String) : Parcelable {
+class ProfileInfo(val adress: String, val bday: String, val bio: String, val city : String , val country : String, val gender : String, val zip : String) : Parcelable {
     // No-argument constructor
-    constructor() : this("","","", "", "","")
+    constructor() : this("","","", "", "","","")
 }
 
 @Parcelize
-class FoodPreferences(val allergies: String, val foodPref: String, val mealPref: String, val meetPref : String) : Parcelable {
+class FoodPreferences(val lifeActivity: String, val mealPreferences: String, val meetPreferences: String) : Parcelable {
     // No-argument constructor
-    constructor() : this("","","", "")
+    constructor() : this("","","")
 }
+
+
+
