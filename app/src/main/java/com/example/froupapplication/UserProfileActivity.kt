@@ -79,11 +79,12 @@ class UserProfileActivity : AppCompatActivity(){
             override fun onDataChange(snapshot: DataSnapshot) {
                 val foodPreferences = snapshot.getValue(FoodPreferences::class.java)
                 val lifeActivity = foodPreferences?.lifeActivity
+                Log.d("userprofile", "lifeActivity is ${lifeActivity}")
                 textView_LifeActivity.text = lifeActivity
                 val mealPref = foodPreferences?.mealPreferences
                 textview_MealPreferences.text = mealPref
                 val meetPref = foodPreferences?.meetPreferences
-
+                textview_MealPreferences2.text = meetPref
                 Log.d("userprofile", "Current user lifeActivity: $lifeActivity")
 
             }
@@ -141,6 +142,7 @@ class ProfileInfo(val adress: String, val bday: String, val bio: String, val cit
 class FoodPreferences(val lifeActivity: String, val mealPreferences: String, val meetPreferences: String) : Parcelable {
     // No-argument constructor
     constructor() : this("","","")
+
 }
 
 

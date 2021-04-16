@@ -83,4 +83,5 @@ class Register5Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
 @Parcelize
 class Allergies(val items: String) :
         Parcelable {
+    constructor() : this("")
 }

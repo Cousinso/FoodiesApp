@@ -90,6 +90,7 @@ class Register4Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
 @Parcelize
 class FoodTypes(val items: String) :
         Parcelable {
+    constructor() : this("")
 }
 
 
