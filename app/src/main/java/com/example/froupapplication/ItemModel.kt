@@ -1,9 +1,10 @@
 package com.example.froupapplication
 
+import android.widget.ImageView
 import com.squareup.picasso.RequestCreator
 
 class ItemModel {
-    var image = 0
+    var image: String? = null
         private set
     var nama: String? = null
         private set
@@ -13,7 +14,7 @@ class ItemModel {
         private set
 
     constructor() {}
-    constructor(image: Int, nama: String, usia: String?, kota: String?) {
+    constructor(image: String, nama: String, usia: String?, kota: String?) {
         this.image = image
         this.nama = nama
         this.usia = usia

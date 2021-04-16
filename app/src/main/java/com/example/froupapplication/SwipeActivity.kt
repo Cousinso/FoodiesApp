@@ -6,12 +6,14 @@ import android.util.Log
 import android.widget.TextView;
 import android.view.View;
 import android.view.animation.LinearInterpolator
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.yuyakaido.android.cardstackview.*
 import java.util.ArrayList
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.chat_from_row.view.*
 
 class SwipeActivity : AppCompatActivity() {
 
@@ -90,13 +92,24 @@ class SwipeActivity : AppCompatActivity() {
                     Log.d("NewMessageActivity", it.toString())
                     val user = it.getValue(User::class.java)
                     if (user != null) {
-                        items.add(ItemModel( R.drawable.sample1, user.username, user.Bio, user.food))
+
+                        // Load user image into chat log
+                        var uri = ""
+                        FirebaseDatabase.getInstance().getReference("/users/${user.uid}").child("profileImageUrl").get().addOnSuccessListener {
+                            Log.d("GroupChatLogActivity","Got ${it.value}")
+                            if(it.value != null){
+                                uri = it.value as String
+                            }
+                            val target = findViewById<ImageView>(com.example.froupapplication.R.id.swipeActivityImageView)
+
+                            items.add(ItemModel( uri, user.username, user.Bio, user.food))
+                        }
                     }
                 }
             }
         })
 
-        items.add(ItemModel(R.drawable.sample1, "username", "user.Bio", "here"))
+        items.add(ItemModel("https://firebasestorage.googleapis.com/v0/b/test-538b3.appspot.com/o/images%2F63e058f7-4de2-473a-aa65-607597ceecef?alt=media&token=2c163b8c-7493-4106-bfbe-8e4cc221d9f9", "username", "user.Bio", "here"))
         return items
     }
 
