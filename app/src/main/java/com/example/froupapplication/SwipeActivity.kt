@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.TextView;
 import android.view.View;
 import android.view.animation.LinearInterpolator
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -36,9 +37,10 @@ class SwipeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.example.froupapplication.R.layout.activity_swipe)
         val cardStackView = findViewById<CardStackView>(com.example.froupapplication.R.id.card_stack_view)
+        //getCurrentSwipes()
         manager = CardStackLayoutManager(this, object : CardStackListener {
             override fun onCardDragging(direction: Direction, ratio: Float) {
-                Log.d(TAG, "onCardDragging: d=" + direction.name + " ratio=" + ratio)
+                //Log.d(TAG, "onCardDragging: d=" + direction.name + " ratio=" + ratio)
 
             }
             var profileUid = ""
@@ -47,16 +49,9 @@ class SwipeActivity : AppCompatActivity() {
             override fun onCardSwiped(direction: Direction) {
                 Log.d(TAG, "onCardSwiped: p=" + manager!!.topPosition + " d=" + direction)
                 if (direction == Direction.Right) {
-                    //checkOtherUserSwipe(profileUid)
-
+                    checkOtherUserSwipe(profileUid)
+                    addToSwipeRight(profileUid)
                     Toast.makeText(this@SwipeActivity, "Direction Right", Toast.LENGTH_SHORT).show()
-                    //val profileUid = adapter?.ViewHolder(cardStackView)?.uid?.text
-                    val userRef =  FirebaseDatabase.getInstance().getReference("/users/${curUser!!.uid}/right-swiped").push()
-                    userRef.setValue(profileUid)
-                        .addOnSuccessListener {
-                            Log.d("SwipeActivity", "Saved right swipe: $profileUid")
-                            //chatLogRecyclerViewChatLog.scrollToPosition(adapter.itemCount - 1)
-                        }
                 }
                 if (direction == Direction.Top) {
                     Toast.makeText(this@SwipeActivity, "Direction Top", Toast.LENGTH_SHORT).show()
@@ -107,9 +102,60 @@ class SwipeActivity : AppCompatActivity() {
         cardStackView.itemAnimator = DefaultItemAnimator()
     }
 
-    private fun checkOtherUserSwipe(uid: String){
-        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid/right-swiped")
+    private fun checkOtherUserSwipe(uid: String) {
+        var bool = false
+
+        FirebaseDatabase.getInstance().getReference("/users/$uid/right-swiped").get()
+
+                .addOnSuccessListener {
+                    Log.d("SwipeActivity","Got ${it.value} as other user right swipes")
+                    it.children.forEach() {
+                        val ituid = it.value.toString()
+                        Log.d(TAG, "curuid value: ${curUser!!.uid}, ituid value: $ituid")
+                        if (ituid == curUser!!.uid) {
+                            Log.d(TAG, "Equal")
+                            createMessage(uid)
+                            bool = true
+                        }
+                    }
+
+
+                    return@addOnSuccessListener
+                }
+
+
     }
+
+    private fun addToSwipeRight(uid: String){
+        val userRef =  FirebaseDatabase.getInstance().getReference("/users/${curUser!!.uid}/right-swiped").push()
+        userRef.setValue(uid)
+            .addOnSuccessListener {
+                Log.d("SwipeActivity", "Saved right swipe: $uid")
+                //chatLogRecyclerViewChatLog.scrollToPosition(adapter.itemCount - 1)
+            }
+    }
+
+    private fun createMessage(uid: String){
+        Log.d(TAG,"Both swiped right, starting chat with uid: $uid")
+        val text = "You both swiped right, start chatting!"
+
+        val fromID = FirebaseAuth.getInstance().uid
+        val toID = uid
+
+        val reference = FirebaseDatabase.getInstance().getReference("/latest-messages/$fromID/$toID")
+        val toReference = FirebaseDatabase.getInstance().getReference("/latest-messages/$toID/$fromID")
+
+        if (fromID == null) return
+        if (toID == null) return
+
+        val chatMessage = ChatMessage(reference.key!!, fromID, toID, System.currentTimeMillis() / 1000, text)
+
+        reference.setValue(chatMessage)
+        toReference.setValue(chatMessage)
+        Log.d("SwipeActivity","Two users swiped right, started new message")
+    }
+
+
 
     private fun addList(): List<ItemModel> {
         val items: MutableList<ItemModel> = ArrayList()
