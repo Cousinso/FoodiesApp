@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.NonNull
+import com.example.froupapplication.FoodSelectionActivity.Companion.FOOD_KEY
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -29,28 +30,36 @@ import com.xwray.groupie.GroupieAdapter
 class SwipeActivity : AppCompatActivity() {
 
         private var al: ArrayList<String>? = null
-        var users: ArrayList<User>? = null
+        var users: ArrayList<User>? = ArrayList()
         var correctUsers: ArrayList<User>? = null
         private var arrayAdapter: ArrayAdapter<String>? = null
         private var i = 0
+        companion object {
+        val SWIPE_KEY = "SwipeActivity"
+    }
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_swipe)
-
             val auth = FirebaseAuth.getInstance()
             val curUser = LatestMessagesActivity.currentUser
+            //val fid = intent.getParcelableExtra<Food>(SelectedFoodActivity.FOOD_KEY).fid
             val ref = FirebaseDatabase.getInstance().getReference("/users")
-            val foodPref = intent.getParcelableExtra<Food>(FoodSelectionActivity.FOOD_KEY)
-            Log.d("SwipeActivity", "foodPref =  $foodPref")
-            Log.d("SwipeActivity", "User food =  ${curUser?.food}")
+           // val foodRef = FirebaseDatabase.getInstance().getReference("/foods/$fid")
+            //Log.d("SwipeActivity", "foodPref =  $foodPref")
+            //Log.d("SwipeActivity", "User food =  ${curUser?.food}")
+
+            Log.d(SWIPE_KEY, "curUser food: ${curUser?.food}")
 
             ref.addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    var i = 0
                     for (dbu in snapshot.children){
                         val nextUser = dbu.getValue(User::class.java)
                         if (nextUser != null){
                             users?.add(nextUser)
-                            //Log.d("SwipeActivity", "User ${nextUser.username} added to list")
+                            Log.d("SwipeActivity", "User ${nextUser.username}, ${nextUser.food} added to list")
+                            Log.d(SWIPE_KEY, "users[$i] user: ${users?.get(i)?.username}")
+                            i++
                         }
                     }
                 }
@@ -61,18 +70,21 @@ class SwipeActivity : AppCompatActivity() {
 
             })
 
-            users?.forEach {
-                if(it.food == curUser?.food){
-                    correctUsers?.add(it)
-                    Log.d("SwipeActivity", "Correcr user: ${it.username}, ${it.food}")
-                }
-            }
-
-//            for (dbu in users!!) {
-//                if (dbu.food == curUser?.food)
-//                    correctUsers!!.add(dbu)
-//                Log.d("SwipeActivity", "Correcr user: ${dbu.username}, ${dbu.food}")
+//            if(!users.isNullOrEmpty()) {
+//                for (i in 0 until users!!.size) {
+//                    val nextUser = users!!.get(i)
+//                    Log.d("SwipeActivity", "Iterating over list $i")
+//                    if (nextUser.food == curUser!!.food) {
+//                        correctUsers?.add(nextUser)
+//                    }
+//                }
 //            }
+
+            for (dbu in users!!) {
+                if (dbu.food == curUser?.food)
+                    correctUsers?.add(dbu)
+                Log.d("SwipeActivity", "Correct user: ${dbu.username}, ${dbu.food}")
+            }
 
 
             al = ArrayList()
@@ -120,38 +132,3 @@ class SwipeActivity : AppCompatActivity() {
             }
         }
     }
-
-//        //val adapter = GroupAdapter<GroupieViewHolder>()
-//        val cardStackView = findViewById<CardStackView>(R.id.card_stack_view)
-//        cardStackView.layoutManager = CardStackLayoutManager(this)
-//        //cardStackView.adapter = CardStackAdapter()
-
-
-    //}
-//}
-/*
-public class CardStackAdapter(items: List<UserItem>) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>(){
-    private var items: List<UserItem>
-
-
-    @NonNull
-
-    fun onCreateViewHolder(@NonNull parent: ViewGroup, viewType: Int): ViewHolder{
-        val inflater: LayoutInflater = LayoutInflater.from(parent.getContext())
-        val view: View = inflater.inflate(R.layout.item_card, parent, false)
-        return ViewHolder(view)
-    }
-
-    fun onBindViewHolder(@NonNull holder: ViewHolder, position: Int) {
-        holder.setData(items[position])
-    }
-
-    fun getItemCount(): Int {
-        return items.field
-    }
-    public inner class ViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var image:
-    }
-
-}
-*/
