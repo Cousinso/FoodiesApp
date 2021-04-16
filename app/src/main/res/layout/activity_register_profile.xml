@@ -72,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Food_Preference"
         app:layout_constraintHorizontal_bias="0.982"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
-        app:layout_constraintTop_toBottomOf="@+id/editLocation4" />
+        app:layout_constraintTop_toBottomOf="@+id/register_zip" />
 
     <EditText
         android:id="@+id/Register_Birthday"
@@ -110,7 +110,7 @@
 
 
     <EditText
-        android:id="@+id/editLocation"
+        android:id="@+id/register_adress"
         android:layout_width="256dp"
         android:layout_height="38dp"
         android:layout_marginTop="8dp"
@@ -127,7 +127,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Hint1_3" />
 
     <EditText
-        android:id="@+id/editLocation2"
+        android:id="@+id/register_city"
         android:layout_width="256dp"
         android:layout_height="38dp"
         android:layout_marginTop="9dp"
@@ -141,10 +141,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
-        app:layout_constraintTop_toBottomOf="@+id/editLocation3" />
+        app:layout_constraintTop_toBottomOf="@+id/register_country" />
 
     <EditText
-        android:id="@+id/editLocation3"
+        android:id="@+id/register_country"
         android:layout_width="256dp"
         android:layout_height="38dp"
         android:layout_marginTop="9dp"
@@ -158,10 +158,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
-        app:layout_constraintTop_toBottomOf="@+id/editLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/register_adress" />
 
     <EditText
-        android:id="@+id/editLocation4"
+        android:id="@+id/register_zip"
         android:layout_width="256dp"
         android:layout_height="38dp"
         android:layout_marginTop="9dp"
@@ -175,7 +175,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
-        app:layout_constraintTop_toBottomOf="@+id/editLocation2" />
+        app:layout_constraintTop_toBottomOf="@+id/register_city" />
 
     <RadioGroup
         android:id="@+id/register_radioGroup_Gender"
@@ -214,7 +214,7 @@
         android:layout_marginStart="-10dp"
         android:layout_marginLeft="-10dp"
         android:background="@drawable/ic_getlocation_foreground"
-        app:layout_constraintStart_toEndOf="@+id/editLocation"
+        app:layout_constraintStart_toEndOf="@+id/register_adress"
         app:layout_constraintTop_toBottomOf="@+id/Hint1_3" />
 
 

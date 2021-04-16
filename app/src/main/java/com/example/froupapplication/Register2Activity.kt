@@ -25,13 +25,6 @@ class Register2Activity: AppCompatActivity() {
         setContentView(R.layout.activity_register_profile)
 
 
-
-
-
-
-
-
-
         //Handling the gender
         var gender = ""
         register_radioGroup_Gender.setOnCheckedChangeListener { group, checkedId ->
@@ -46,31 +39,6 @@ class Register2Activity: AppCompatActivity() {
             }
         }
 
-        //Handling the location info
-//        var locationUse = ""
-//        register_radioGroup_location.setOnCheckedChangeListener { group, checkedId ->
-//            if (checkedId == R.id.register_radio_only){
-//                locationUse = "Location can only be used when app is used"
-//            }
-//            if (checkedId == R.id.register_radio_always){
-//                locationUse = "Location can always be used"
-//            }
-//        }
-
-        //Handling the work info
-//        var lifeActivity = ""
-//        register_radioGroup_work.setOnCheckedChangeListener { group, checkedId ->
-//            if (checkedId == R.id.radioWork){
-//                lifeActivity = "College"
-//            }
-//            if (checkedId == R.id.radioCollege){
-//                lifeActivity = "Work"
-//            }
-//        }
-
-
-
-
 
         register_ButtonNext.setOnClickListener {
             val auth = FirebaseAuth.getInstance()
@@ -79,9 +47,12 @@ class Register2Activity: AppCompatActivity() {
 
             val birthday = Register_Birthday.text.toString()
             val bio = editTextBio.text.toString()
-            val location = editLocation.text.toString()
+            val adress = register_adress.text.toString()
+            var country = register_country.text.toString()
+            var city = register_city.text.toString()
+            var zip = register_zip.text.toString()
 
-            val personalInfo = PersonalInfo(birthday, gender, bio, location)
+            val personalInfo = PersonalInfo(birthday, gender, bio, adress, country,city, zip)
             ref.child("personalInfo").setValue(personalInfo)
                 .addOnSuccessListener {
                     Log.d("register2", "Personal info saved for user ${auth.uid} to Firebase Database")
@@ -97,7 +68,7 @@ class Register2Activity: AppCompatActivity() {
 }
 
 @Parcelize
-class PersonalInfo(val bday: String, val gender: String, val bio: String, val location: String) :
+class PersonalInfo(val bday: String, val gender: String, val bio: String, val adress: String, val country: String, val city: String, val zip: String) :
     Parcelable {
 }
 
