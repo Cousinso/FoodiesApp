@@ -11,6 +11,21 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/textView_topic_MeatPreferences"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="92dp"
+            android:text="Meat Preferences"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#FF9800"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textView_topic_MealPreferences"
+            app:layout_constraintStart_toStartOf="@+id/textView_topic_MealPreferences"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Allergies" />
+
+        <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,6 +117,26 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textView_Topic_Location"
             app:layout_constraintTop_toBottomOf="@+id/textView_topic_MealPreferences" />
+
+        <TextView
+            android:id="@+id/textview_MealPreferences2"
+            android:layout_width="366dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/rounded_profiletextview"
+            android:inputType="textMultiLine"
+            android:paddingLeft="16dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColorHint="#5B000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/textView_Topic_Location"
+            app:layout_constraintTop_toBottomOf="@+id/textView_topic_MeatPreferences" />
 
         <TextView
             android:id="@+id/textView_Topic_Location"
@@ -374,7 +409,7 @@
             android:layout_height="43dp"
             android:layout_marginStart="190dp"
             android:layout_marginLeft="190dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="160dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="20dp"
