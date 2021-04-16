@@ -39,7 +39,7 @@ class SelectedFoodActivity : AppCompatActivity() {
         Log.d("SelectedFoodActivity", "Current User: $username")
 
         confirmButtonSelectedFood.setOnClickListener {
-            val ref = FirebaseDatabase.getInstance().getReference("/foods/${food?.fid}/users").push()
+            val ref = FirebaseDatabase.getInstance().getReference("/foods/${food?.fid}/group-users").push()
 
             val user = UserGroupItem(uid!!, username!!)
             ref.setValue(user)

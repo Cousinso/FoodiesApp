@@ -38,7 +38,7 @@ class WaitingForGroupActivity : AppCompatActivity() {
 
     private fun waitForGroup () {
         val fid = currentFood?.fid
-        val ref = FirebaseDatabase.getInstance().getReference("/foods/$fid/users")
+        val ref = FirebaseDatabase.getInstance().getReference("/foods/$fid/group-users")
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -62,7 +62,7 @@ class WaitingForGroupActivity : AppCompatActivity() {
 
     private fun createGroupChat(){
         val fid = currentFood?.fid
-        val ref = FirebaseDatabase.getInstance().getReference("/foods/$fid/users")
+        val ref = FirebaseDatabase.getInstance().getReference("/foods/$fid/group-users")
         val ref1 = FirebaseDatabase.getInstance().getReference("/groupchats").push()
         val gcId = ref1.key as String
 
