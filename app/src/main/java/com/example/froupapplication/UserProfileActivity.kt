@@ -75,7 +75,9 @@ class UserProfileActivity : AppCompatActivity(){
             override fun onDataChange(snapshot: DataSnapshot) {
                 val foodPreferences = snapshot.getValue(FoodPreferences::class.java)
                 val lifeActivity = foodPreferences?.lifeActivity
+                textView_LifeActivity.text = lifeActivity
                 val mealPref = foodPreferences?.mealPreferences
+                textview_MealPreferences.text = mealPref
                 val meetPref = foodPreferences?.meetPreferences
                 Log.d("userprofile", "Current user lifeActivity: $lifeActivity")
 
@@ -89,6 +91,7 @@ class UserProfileActivity : AppCompatActivity(){
             override fun onDataChange(snapshot: DataSnapshot) {
                 val foodTypes = snapshot.getValue(FoodTypes::class.java)
                 val foodTypesItems = foodTypes?.items
+                textView_LifeActivity3.text = foodTypesItems
                 Log.d("userprofile", "Current user foodTypesItems: $foodTypesItems")
 
             }
@@ -100,6 +103,7 @@ class UserProfileActivity : AppCompatActivity(){
             override fun onDataChange(snapshot: DataSnapshot) {
                 val allergies = snapshot.getValue(Allergies::class.java)
                 val allergiesItems = allergies?.items
+                textView_Allergies.text = allergiesItems
                 Log.d("userprofile", "Current user allergiesItems: $allergiesItems")
 
             }
