@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 class Register5Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register_profile_4)
+        setContentView(R.layout.activity_register5)
 
 //        register_ButtonNext.setOnClickListener{
 //            val intent = Intent(this, Register5Activity::class.java)

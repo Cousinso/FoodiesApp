@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_register_profile_2.*
 class Register3Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register_profile_2)
+        setContentView(R.layout.activity_register3)
 
         //Handling the foodPreferences checkboxes
 //        var foodPreferencesForDB = ""

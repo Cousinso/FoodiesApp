@@ -22,7 +22,7 @@ import java.util.*
 class Register1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_register1)
 
         // Instantiating UI elements
         val register = findViewById<Button>(R.id.ButtonFinish)

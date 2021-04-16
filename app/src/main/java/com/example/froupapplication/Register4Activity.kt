@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_register_profile.*
 class Register4Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register_profile_3)
+        setContentView(R.layout.activity_register4)
 
 //        register_ButtonNext.setOnClickListener{
 //            val intent = Intent(this, Register5Activity::class.java)
