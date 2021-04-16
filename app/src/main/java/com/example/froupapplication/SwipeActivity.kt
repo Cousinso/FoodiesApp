@@ -26,6 +26,7 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.xwray.groupie.GroupieAdapter
+import kotlinx.android.synthetic.main.activity_chat_log.*
 
 class SwipeActivity : AppCompatActivity() {
 
@@ -42,12 +43,9 @@ class SwipeActivity : AppCompatActivity() {
             setContentView(R.layout.activity_swipe)
             val auth = FirebaseAuth.getInstance()
             val curUser = LatestMessagesActivity.currentUser
-            //val fid = intent.getParcelableExtra<Food>(SelectedFoodActivity.FOOD_KEY).fid
             val ref = FirebaseDatabase.getInstance().getReference("/users")
-           // val foodRef = FirebaseDatabase.getInstance().getReference("/foods/$fid")
-            //Log.d("SwipeActivity", "foodPref =  $foodPref")
-            //Log.d("SwipeActivity", "User food =  ${curUser?.food}")
 
+            Log.d(SWIPE_KEY, "curUser: ${curUser?.username}")
             Log.d(SWIPE_KEY, "curUser food: ${curUser?.food}")
 
             ref.addValueEventListener(object: ValueEventListener{
@@ -70,23 +68,6 @@ class SwipeActivity : AppCompatActivity() {
 
             })
 
-//            if(!users.isNullOrEmpty()) {
-//                for (i in 0 until users!!.size) {
-//                    val nextUser = users!!.get(i)
-//                    Log.d("SwipeActivity", "Iterating over list $i")
-//                    Log.d(SWIPE_KEY, "nextUser:  ${nextUser.username}, ${nextUser.food}")
-//                    if (nextUser.food == curUser!!.food) {
-//                        correctUsers?.add(nextUser)
-//                    }
-//                }
-//            }
-
-//            for (dbu in users!!) {
-//                Log.d(SWIPE_KEY, "${dbu.food}, ${curUser?.food}")
-//                if (dbu.food == curUser?.food)
-//                    correctUsers?.add(dbu)
-//                Log.d("SwipeActivity", "Correct user: ${dbu.username}, ${dbu.food}")
-//            }
 
 
             al = ArrayList()
@@ -103,6 +84,9 @@ class SwipeActivity : AppCompatActivity() {
             arrayAdapter = ArrayAdapter(this, R.layout.item, R.id.helloText, al!!)
             val flingContainer = findViewById<View>(R.id.frame) as SwipeFlingAdapterView
             flingContainer.adapter = arrayAdapter
+            var profileUid = al!![0]
+
+            Log.d(SWIPE_KEY, "al[0]: ${al!![0]}")
             flingContainer.setFlingListener(object : SwipeFlingAdapterView.onFlingListener {
                 override fun removeFirstObjectInAdapter() {
                     // this is the simplest way to delete an object from the Adapter (/AdapterView)
@@ -117,6 +101,15 @@ class SwipeActivity : AppCompatActivity() {
 
                 override fun onRightCardExit(dataObject: Any) {
                     Toast.makeText(this@SwipeActivity, "Right !!", Toast.LENGTH_SHORT).show()
+
+                    val userRef = FirebaseDatabase.getInstance().getReference("/users/${curUser!!.uid}/right-swiped/${profileUid}").push()
+
+                    userRef.setValue(profileUid)
+                        .addOnSuccessListener {
+                            Log.d(SWIPE_KEY, "Saved right swipe: $profileUid")
+                            //chatLogRecyclerViewChatLog.scrollToPosition(adapter.itemCount - 1)
+                        }
+                    profileUid = al!![0]
                 }
 
                 override fun onAdapterAboutToEmpty(itemsInAdapter: Int) {
