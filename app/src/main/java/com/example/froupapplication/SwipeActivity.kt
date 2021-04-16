@@ -15,6 +15,7 @@ import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import androidx.annotation.NonNull
+import androidx.core.view.get
 import com.example.froupapplication.FoodSelectionActivity.Companion.FOOD_KEY
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -29,6 +30,8 @@ class SwipeActivity : AppCompatActivity() {
 
     private var manager: CardStackLayoutManager? = null
     private var adapter: CardStackAdapter? = null
+    val curUser = LatestMessagesActivity.currentUser
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.froupapplication.R.layout.activity_swipe)
@@ -42,6 +45,13 @@ class SwipeActivity : AppCompatActivity() {
                 Log.d(TAG, "onCardSwiped: p=" + manager!!.topPosition + " d=" + direction)
                 if (direction == Direction.Right) {
                     Toast.makeText(this@SwipeActivity, "Direction Right", Toast.LENGTH_SHORT).show()
+                    val profileUid = adapter?.ViewHolder(cardStackView)?.uid
+                    val userRef =  FirebaseDatabase.getInstance().getReference("/users/${curUser!!.uid}/right-swiped/${profileUid}").push()
+                    userRef.setValue(profileUid)
+                        .addOnSuccessListener {
+                            Log.d("SwipeActivity", "Saved right swipe: $profileUid")
+                            //chatLogRecyclerViewChatLog.scrollToPosition(adapter.itemCount - 1)
+                        }
                 }
                 if (direction == Direction.Top) {
                     Toast.makeText(this@SwipeActivity, "Direction Top", Toast.LENGTH_SHORT).show()
@@ -101,7 +111,7 @@ class SwipeActivity : AppCompatActivity() {
                 snapshot.children.forEach {
                     Log.d("NewMessageActivity", it.toString())
                     val user = it.getValue(User::class.java)
-                    if (user != null) {
+                    if (user != null && user.food == curUser?.food) {
 
                         // Load user image into chat log
                         var uri = ""
