@@ -48,6 +48,8 @@ class WaitingForGroupActivity : AppCompatActivity() {
                 if (snapshot.childrenCount >= 4) {
                     Log.d("WaitingForGroupActivity", "Creating group...")
                     createGroupChat()
+                    // Need to clear food database node
+                    // Need to go to group chat after 4 users found
                 }
             }
 
@@ -62,9 +64,13 @@ class WaitingForGroupActivity : AppCompatActivity() {
     private fun createGroupChat(){
         val fid = currentFood?.fid
         val ref = FirebaseDatabase.getInstance().getReference("/foods/$fid/users")
-
         val ref1 = FirebaseDatabase.getInstance().getReference("/groupchats").push()
         val gcId = ref1.key as String
+
+        if (currentFood?.foodImageUrl != "") {
+            val groupChat = GroupChatClass(gcId, currentFood?.name.toString(), currentFood?.foodImageUrl.toString())
+            ref1.setValue(groupChat)
+        }
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -81,22 +87,20 @@ class WaitingForGroupActivity : AppCompatActivity() {
             }
         })
 
-//        performCreationMessage(gcId)
-//
-//        val intent = Intent(this, GroupChatLogActivity::class.java)
-//        intent.putExtra("GCID", gcId)
-//        startActivity(intent)
+        performCreationMessage(gcId)
+
+        val intent = Intent(this, GroupChatLogActivity::class.java)
+        intent.putExtra("GCID", gcId)
+        startActivity(intent)
     }
 
     private fun performCreationMessage(gcid: String) {
         val text = "Groupchat created"
 
-        val fromID = FirebaseAuth.getInstance().uid
+        val fromID = gcid
         val toID = gcid
 
         val reference = FirebaseDatabase.getInstance().getReference("/group-messages/$toID").push()
-        if (fromID == null) return
-        if (toID == null) return
 
         val chatMessage = ChatMessage(reference.key!!, fromID, toID, System.currentTimeMillis() / 1000, text)
 
@@ -111,6 +115,6 @@ private class userUidName(val uid: String, val name: String) {
     constructor() : this("", "")
 }
 
-private class GroupIdName(val id: String,val name: String){
-    constructor() : this("", "")
+private class GroupChatClass(val id: String,val name: String, val photoUri: String){
+    constructor() : this("", "","")
 }
