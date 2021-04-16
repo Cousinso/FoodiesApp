@@ -10,98 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.synthetic.main.activity_register_profile_2.*
+import kotlinx.android.synthetic.main.activity_register3.*
 
 class Register3Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register3)
-
-        //Handling the foodPreferences checkboxes
-//        var foodPreferencesForDB = ""
-//        ChFood.setOnCheckedChangeListener{ view, isChecked ->
-//            if (isChecked) {
-//                foodPreferencesForDB += "Chinese food, "
-//            }
-//            else {
-//                foodPreferencesForDB = foodPreferencesForDB.replace("Chinese food, ", "")
-//            }
-//        }
-//        IrFood.setOnCheckedChangeListener{ view, isChecked ->
-//            if (isChecked) {
-//                foodPreferencesForDB += "Irish food, "
-//            }
-//            else {
-//                foodPreferencesForDB = foodPreferencesForDB.replace("Irish food, ", "")
-//            }
-//        }
-//        BelgFood.setOnCheckedChangeListener{ view, isChecked ->
-//            if (isChecked) {
-//                foodPreferencesForDB += "Belgian food, "
-//            }
-//            else {
-//                foodPreferencesForDB = foodPreferencesForDB.replace("Belgian food, ", "")
-//            }
-//        }
-//        JapFood.setOnCheckedChangeListener{ view, isChecked ->
-//            if (isChecked) {
-//                foodPreferencesForDB += "Japanese food, "
-//            }
-//            else {
-//                foodPreferencesForDB = foodPreferencesForDB.replace("Japanese food, ", "")
-//            }
-//        }
-//        InFood.setOnCheckedChangeListener{ view, isChecked ->
-//            if (isChecked) {
-//                foodPreferencesForDB += "Indian food, "
-//            }
-//            else {
-//                foodPreferencesForDB = foodPreferencesForDB.replace("Indian food, ", "")
-//            }
-//        }
-//
-//        Handling the Allergies checkboxes
-//        var allergiesForDB = ""
-//        milk.setOnCheckedChangeListener{ view, isChecked ->
-//            if (isChecked) {
-//                allergiesForDB += "milk, "
-//            }
-//            else {
-//                allergiesForDB = allergiesForDB.replace("milk, ", "")
-//            }
-//        }
-//        lactose.setOnCheckedChangeListener{ view, isChecked ->
-//            if (isChecked) {
-//                allergiesForDB += "lactose, "
-//            }
-//            else {
-//                allergiesForDB = allergiesForDB.replace("lactose, ", "")
-//            }
-//        }
-//        fish.setOnCheckedChangeListener{ view, isChecked ->
-//            if (isChecked) {
-//                allergiesForDB += "fish, "
-//            }
-//            else {
-//                allergiesForDB = allergiesForDB.replace("fish, ", "")
-//            }
-//        }
-//        nuts.setOnCheckedChangeListener{ view, isChecked ->
-//            if (isChecked) {
-//                allergiesForDB += "nuts, "
-//            }
-//            else {
-//                allergiesForDB = allergiesForDB.replace("nuts, ", "")
-//            }
-//        }
-//        pork.setOnCheckedChangeListener{ view, isChecked ->
-//            if (isChecked) {
-//                allergiesForDB += "pork, "
-//            }
-//            else {
-//                allergiesForDB = allergiesForDB.replace("pork, ", "")
-//            }
-//        }
 
         //Handling the meat preferences
         var meatPreferencesForDB = ""
@@ -179,9 +93,6 @@ class Register3Activity : AppCompatActivity() {
             startActivity(intent)
         }
         ButtonFinish.setOnClickListener {
-            //lateinit var database: DatabaseReference
-            //database = Firebase.database.reference
-            //val user = Firebase.auth.currentUser
 
             val auth = FirebaseAuth.getInstance()
             val database = FirebaseDatabase.getInstance()
