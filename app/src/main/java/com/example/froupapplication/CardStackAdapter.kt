@@ -30,7 +30,7 @@ class CardStackAdapter(var items: List<ItemModel>) : RecyclerView.Adapter<CardSt
         var nama: TextView
         var usia: TextView
         var kota: TextView
-        var uid: String = ""
+        var uid: TextView
         fun setData(data: ItemModel) {
             Picasso.get()
                     .load(data.image)
@@ -40,13 +40,14 @@ class CardStackAdapter(var items: List<ItemModel>) : RecyclerView.Adapter<CardSt
             nama.text = data.nama.toString()
             usia.text = data.usia
             kota.text = data.kota
-            uid = data.uid.toString()
+            uid.text = data.uid
         }
 
         init {
             nama = itemView.findViewById(R.id.item_name)
             usia = itemView.findViewById(R.id.item_age)
             kota = itemView.findViewById(R.id.item_city)
+            uid = itemView.findViewById(R.id.item_uid)
         }
     }
 

@@ -45,7 +45,7 @@ class SwipeActivity : AppCompatActivity() {
                 Log.d(TAG, "onCardSwiped: p=" + manager!!.topPosition + " d=" + direction)
                 if (direction == Direction.Right) {
                     Toast.makeText(this@SwipeActivity, "Direction Right", Toast.LENGTH_SHORT).show()
-                    val profileUid = adapter?.ViewHolder(cardStackView)?.uid
+                    val profileUid = adapter?.ViewHolder(cardStackView)?.uid?.text
                     val userRef =  FirebaseDatabase.getInstance().getReference("/users/${curUser!!.uid}/right-swiped/${profileUid}").push()
                     userRef.setValue(profileUid)
                         .addOnSuccessListener {
@@ -120,8 +120,6 @@ class SwipeActivity : AppCompatActivity() {
                             if(it.value != null){
                                 uri = it.value as String
                             }
-                            val target = findViewById<ImageView>(com.example.froupapplication.R.id.swipeActivityImageView)
-
                             items.add(ItemModel( uri, user.username, user.Bio, user.food,user.uid))
                         }
                     }
