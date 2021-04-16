@@ -54,7 +54,7 @@ class Register4Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
             val database = FirebaseDatabase.getInstance()
             val ref = database.getReference("/users/${auth.uid}")
 
-            val foodtypes = foodTypes(selectedFood)
+            val foodtypes = FoodTypes(selectedFood)
             ref.child("foodTypes").setValue(foodtypes)
                     .addOnSuccessListener {
                         Log.d("register4", "foodtypes saved for user ${auth.uid} to Firebase Database")
@@ -88,7 +88,7 @@ class Register4Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
 
 
 @Parcelize
-class foodTypes(val items: String) :
+class FoodTypes(val items: String) :
         Parcelable {
 }
 
