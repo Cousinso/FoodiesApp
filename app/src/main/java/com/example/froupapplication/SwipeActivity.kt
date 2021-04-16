@@ -55,7 +55,7 @@ class SwipeActivity : AppCompatActivity() {
                     var i = 0
                     for (dbu in snapshot.children){
                         val nextUser = dbu.getValue(User::class.java)
-                        if (nextUser != null){
+                        if (nextUser != null && nextUser.food == curUser?.food){
                             users?.add(nextUser)
                             Log.d("SwipeActivity", "User ${nextUser.username}, ${nextUser.food} added to list")
                             Log.d(SWIPE_KEY, "users[$i] user: ${users?.get(i)?.username}")
@@ -74,17 +74,19 @@ class SwipeActivity : AppCompatActivity() {
 //                for (i in 0 until users!!.size) {
 //                    val nextUser = users!!.get(i)
 //                    Log.d("SwipeActivity", "Iterating over list $i")
+//                    Log.d(SWIPE_KEY, "nextUser:  ${nextUser.username}, ${nextUser.food}")
 //                    if (nextUser.food == curUser!!.food) {
 //                        correctUsers?.add(nextUser)
 //                    }
 //                }
 //            }
 
-            for (dbu in users!!) {
-                if (dbu.food == curUser?.food)
-                    correctUsers?.add(dbu)
-                Log.d("SwipeActivity", "Correct user: ${dbu.username}, ${dbu.food}")
-            }
+//            for (dbu in users!!) {
+//                Log.d(SWIPE_KEY, "${dbu.food}, ${curUser?.food}")
+//                if (dbu.food == curUser?.food)
+//                    correctUsers?.add(dbu)
+//                Log.d("SwipeActivity", "Correct user: ${dbu.username}, ${dbu.food}")
+//            }
 
 
             al = ArrayList()
