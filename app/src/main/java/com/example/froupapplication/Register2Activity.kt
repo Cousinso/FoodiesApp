@@ -1,6 +1,7 @@
 package com.example.froupapplication
 
 import android.content.Intent
+import android.location.Location
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -46,15 +47,15 @@ class Register2Activity: AppCompatActivity() {
         }
 
         //Handling the location info
-        var locationUse = ""
-        register_radioGroup_location.setOnCheckedChangeListener { group, checkedId ->
-            if (checkedId == R.id.register_radio_only){
-                locationUse = "Location can only be used when app is used"
-            }
-            if (checkedId == R.id.register_radio_always){
-                locationUse = "Location can always be used"
-            }
-        }
+//        var locationUse = ""
+//        register_radioGroup_location.setOnCheckedChangeListener { group, checkedId ->
+//            if (checkedId == R.id.register_radio_only){
+//                locationUse = "Location can only be used when app is used"
+//            }
+//            if (checkedId == R.id.register_radio_always){
+//                locationUse = "Location can always be used"
+//            }
+//        }
 
         //Handling the work info
         var lifeActivity = ""
@@ -80,7 +81,7 @@ class Register2Activity: AppCompatActivity() {
             val bio = editTextBio.text.toString()
             val location = editLocation.text.toString()
 
-            val personalInfo = PersonalInfo(birthday, gender, bio, location, locationUse, lifeActivity)
+            val personalInfo = PersonalInfo(birthday, gender, bio, location, lifeActivity)
             ref.child("personalInfo").setValue(personalInfo)
                 .addOnSuccessListener {
                     Log.d("register2", "Personal info saved for user ${auth.uid} to Firebase Database")
@@ -96,7 +97,7 @@ class Register2Activity: AppCompatActivity() {
 }
 
 @Parcelize
-class PersonalInfo(val bday: String, val gender: String, val bio: String, val location: String, val locationUse: String, val lifeActivity: String) :
+class PersonalInfo(val bday: String, val gender: String, val bio: String, val location: String, val lifeActivity: String) :
     Parcelable {
 }
 

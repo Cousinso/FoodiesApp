@@ -10,27 +10,8 @@
     <include
         android:id="@+id/progressBar"
         layout="@layout/activity_progressbar_1"
-        />
-
-    <RadioGroup
-        android:id="@+id/register_radioGroup_location"
-        android:layout_width="308dp"
-        android:layout_height="97dp"
-        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
-        app:layout_constraintTop_toBottomOf="@+id/Hint1_4">
-
-        <RadioButton
-            android:id="@+id/register_radio_only"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Only when using" />
-
-        <RadioButton
-            android:id="@+id/register_radio_always"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/always" />
-    </RadioGroup>
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-78dp" />
 
     <TextView
         android:id="@+id/textView10"
@@ -93,22 +74,6 @@
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
         app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_work" />
 
-    <Button
-        android:id="@+id/register_ButtonNext2"
-        android:layout_width="113dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/rounded_edittext"
-        android:text="back"
-        app:backgroundTint="@android:color/holo_orange_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/register_ButtonNext"
-        app:layout_constraintHorizontal_bias="0.217"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_work"
-        app:layout_constraintVertical_bias="0.0" />
-
     <EditText
         android:id="@+id/Register_Birthday"
         android:layout_width="wrap_content"
@@ -150,7 +115,7 @@
         android:layout_height="38dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/rounded_edittext"
-        android:hint="@string/your_location"
+        android:hint="Address:"
         android:inputType="textMultiLine"
         android:paddingLeft="16dp"
         android:paddingTop="5dp"
@@ -161,25 +126,65 @@
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
         app:layout_constraintTop_toBottomOf="@+id/Hint1_3" />
 
-    <TextView
-        android:id="@+id/Hint1_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/allow_foodie_get_use_your_location_information"
-        android:textColor="#DDFF9800"
+    <EditText
+        android:id="@+id/editLocation2"
+        android:layout_width="256dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="City:"
+        android:inputType="textMultiLine"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColorHint="#5B000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/editLocation3" />
+
+    <EditText
+        android:id="@+id/editLocation3"
+        android:layout_width="256dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="County:"
+        android:inputType="textMultiLine"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColorHint="#5B000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
         app:layout_constraintTop_toBottomOf="@+id/editLocation" />
+
+    <EditText
+        android:id="@+id/editLocation4"
+        android:layout_width="256dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="ZIP Code:"
+        android:inputType="textMultiLine"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColorHint="#5B000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Food_Preference"
+        app:layout_constraintTop_toBottomOf="@+id/editLocation2" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:text="Are you a student or working"
         android:textColor="#DDFF9800"
-        app:layout_constraintStart_toStartOf="@+id/Hint1_4"
-        app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_location" />
+        app:layout_constraintStart_toStartOf="@+id/Hint1_3"
+        app:layout_constraintTop_toBottomOf="@+id/editLocation4" />
 
     <RadioGroup
         android:id="@+id/register_radioGroup_Gender"
