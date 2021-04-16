@@ -77,13 +77,15 @@ class UserProfileActivity : AppCompatActivity(){
 
         refFoodPreferences.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("userprofile", "snapshot is ${snapshot}")
                 val foodPreferences = snapshot.getValue(FoodPreferences::class.java)
-                val lifeActivity = foodPreferences?.lifeActivity
+                Log.d("userprofile", "foodPreferences is ${foodPreferences}")
+                val lifeActivity = foodPreferences?.lifeActitivity
                 Log.d("userprofile", "lifeActivity is ${lifeActivity}")
                 textView_LifeActivity.text = lifeActivity
                 val mealPref = foodPreferences?.mealPreferences
                 textview_MealPreferences.text = mealPref
-                val meetPref = foodPreferences?.meetPreferences
+                val meetPref = foodPreferences?.meatPreferences
                 textview_MealPreferences2.text = meetPref
                 Log.d("userprofile", "Current user lifeActivity: $lifeActivity")
 
@@ -139,7 +141,7 @@ class ProfileInfo(val adress: String, val bday: String, val bio: String, val cit
 }
 
 @Parcelize
-class FoodPreferences(val lifeActivity: String, val mealPreferences: String, val meetPreferences: String) : Parcelable {
+class FoodPreferences(val lifeActitivity: String, val mealPreferences: String, val meatPreferences: String) : Parcelable {
     // No-argument constructor
     constructor() : this("","","")
 
