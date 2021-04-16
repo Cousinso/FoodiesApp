@@ -7,9 +7,13 @@
     android:background="@color/beige"
     android:orientation="vertical"
     tools:context=".Register4Activity">
+
     <include
         android:id="@+id/progressBar"
-        layout="@layout/activity_progressbar_1" />
+        layout="@layout/activity_progressbar_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SearchView
         android:id="@+id/searchView"

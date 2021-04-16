@@ -7,9 +7,22 @@
     android:background="@color/beige"
     android:orientation="vertical"
     tools:context=".Register4Activity">
+
     <include
-        android:id="@+id/progressBar"
-        layout="@layout/activity_progressbar_1" />
+        android:id="@+id/progressBar1"
+        layout="@layout/activity_progressbar_1"
+        android:layout_width="302dp"
+        android:layout_height="604dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/progressBar2"
+        layout="@layout/activity_progressbar_2"
+        android:layout_width="110dp"
+        android:layout_height="603dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SearchView
         android:id="@+id/searchView"
