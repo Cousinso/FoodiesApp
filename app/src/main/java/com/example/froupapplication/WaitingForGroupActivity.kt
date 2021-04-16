@@ -31,13 +31,19 @@ class WaitingForGroupActivity : AppCompatActivity() {
 
     private fun waitForGroup () {
         val fid = currentFood?.fid
-        Log.d("WaitingForGroupActivity", fid.toString())
         val ref = FirebaseDatabase.getInstance().getReference("/foods/$fid/users")
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Log.d("WaitingForGroupActivity", snapshot.ref.toString())
-                Log.d("WaitingForGroupActivity", "${snapshot.childrenCount}")
+                Log.d("WaitingForGroupActivity", "Number of users in food group: ${snapshot.childrenCount}")
+
+                if (snapshot.childrenCount >= 4) {
+                    Log.d("WaitingForGroupActivity", "Creating group...")
+                    for (snapshotChildren in snapshot.children) {
+                        Log.d("WaitingForGroupActivity", snapshotChildren.value.toString())
+                    }
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
