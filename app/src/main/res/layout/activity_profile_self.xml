@@ -14,16 +14,13 @@
             android:id="@+id/textView_topic_MeatPreferences"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="10dp"
             android:text="Meat Preferences"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FF9800"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/textView_topic_MealPreferences"
             app:layout_constraintStart_toStartOf="@+id/textView_topic_MealPreferences"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Allergies" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_MealPreferences" />
 
         <TextView
             android:id="@+id/textView5"
@@ -40,7 +37,7 @@
 
         <TextView
             android:id="@+id/textView_LifeActivity2"
-            android:layout_width="366dp"
+            android:layout_width="356dp"
             android:layout_height="41dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -60,11 +57,11 @@
 
         <TextView
             android:id="@+id/textView_LifeActivity3"
-            android:layout_width="366dp"
+            android:layout_width="356dp"
             android:layout_height="41dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/rounded_profiletextview"
@@ -80,7 +77,7 @@
 
         <TextView
             android:id="@+id/textView_Allergies"
-            android:layout_width="366dp"
+            android:layout_width="356dp"
             android:layout_height="41dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -100,7 +97,7 @@
 
         <TextView
             android:id="@+id/textview_MealPreferences"
-            android:layout_width="366dp"
+            android:layout_width="356dp"
             android:layout_height="41dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -120,7 +117,7 @@
 
         <TextView
             android:id="@+id/textview_MealPreferences2"
-            android:layout_width="366dp"
+            android:layout_width="356dp"
             android:layout_height="41dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -134,7 +131,7 @@
             android:paddingBottom="5dp"
             android:textColorHint="#5B000000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textView_Topic_Location"
             app:layout_constraintTop_toBottomOf="@+id/textView_topic_MeatPreferences" />
 
@@ -152,31 +149,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/selfTextBio" />
 
-        <TextView
-            android:id="@+id/textView_Topic_LocationUse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="220dp"
-            android:text="Location Use"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#FF9800"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textView_Topic_Location"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Location" />
-
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginLeft="19dp"
             android:layout_marginTop="10dp"
             android:text="Gender"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FF9800"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView_Topic_LifeActivity"
             app:layout_constraintTop_toBottomOf="@+id/textView_LifeActivity" />
 
         <ImageView
@@ -205,11 +188,9 @@
 
         <TextView
             android:id="@+id/selfTextBio"
-            android:layout_width="366dp"
+            android:layout_width="356dp"
             android:layout_height="95dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/rounded_profiletextview"
@@ -220,12 +201,13 @@
             android:paddingBottom="5dp"
             android:textColorHint="#FFC107"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/Textview_Topic_Bio"
             app:layout_constraintTop_toBottomOf="@+id/Textview_Topic_Bio" />
 
         <TextView
             android:id="@+id/textView_Location"
-            android:layout_width="366dp"
+            android:layout_width="356dp"
             android:layout_height="41dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -245,7 +227,7 @@
 
         <TextView
             android:id="@+id/textView_Location2"
-            android:layout_width="366dp"
+            android:layout_width="356dp"
             android:layout_height="41dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -265,7 +247,7 @@
 
         <TextView
             android:id="@+id/textView_Location3"
-            android:layout_width="366dp"
+            android:layout_width="356dp"
             android:layout_height="41dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -285,31 +267,9 @@
 
         <TextView
             android:id="@+id/textView_Location4"
-            android:layout_width="366dp"
+            android:layout_width="356dp"
             android:layout_height="41dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/rounded_profiletextview"
-            android:inputType="textMultiLine"
-            android:paddingLeft="16dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textColorHint="#5B000000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.666"
-            app:layout_constraintStart_toStartOf="@+id/textView_Topic_Location"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-        <TextView
-            android:id="@+id/textView_LocationUse"
-            android:layout_width="366dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/rounded_profiletextview"
@@ -320,12 +280,12 @@
             android:textColorHint="#5B000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView_Topic_Location"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Topic_LocationUse" />
+            app:layout_constraintStart_toStartOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <TextView
             android:id="@+id/selfBirthday"
-            android:layout_width="366dp"
+            android:layout_width="356dp"
             android:layout_height="41dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -345,7 +305,7 @@
 
         <TextView
             android:id="@+id/textView_LifeActivity"
-            android:layout_width="366dp"
+            android:layout_width="356dp"
             android:layout_height="41dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -367,40 +327,35 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginLeft="19dp"
+            android:layout_marginTop="8dp"
             android:text="Food Preference"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FF9800"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/textView_LifeActivity2" />
 
         <TextView
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:text="Allergies/Intollerances"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FF9800"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
             app:layout_constraintTop_toBottomOf="@+id/textView_LifeActivity3" />
 
         <TextView
             android:id="@+id/textView_topic_MealPreferences"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
             android:layout_marginTop="10dp"
             android:text="Meal Preferences"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FF9800"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView18"
             app:layout_constraintTop_toBottomOf="@+id/textView_Allergies" />
 
         <Button
@@ -440,13 +395,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginTop="10dp"
             android:text="@string/birthday"
             android:textColor="#FF9800"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textView_Topic_Location"
-            app:layout_constraintTop_toBottomOf="@+id/textView_LocationUse" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_Location4" />
 
         <TextView
             android:id="@+id/textView_Topic_LifeActivity"
