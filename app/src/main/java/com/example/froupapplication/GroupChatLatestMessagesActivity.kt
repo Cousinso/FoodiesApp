@@ -31,8 +31,8 @@ class GroupChatSelectionActivity : AppCompatActivity() {
 
         groupMessageRecyclerView.adapter = adapter
         groupMessageRecyclerView.addItemDecoration(
-            DividerItemDecoration(this,
-            DividerItemDecoration.VERTICAL)
+                DividerItemDecoration(this,
+                        DividerItemDecoration.VERTICAL)
         )
 
         adapter.setOnItemClickListener { item, view ->
@@ -65,21 +65,36 @@ class GroupChatSelectionActivity : AppCompatActivity() {
     }
 
     private fun getGcsFromDatabase() {
-        val ref = FirebaseDatabase.getInstance().getReference("/users/${FirebaseAuth.getInstance().uid}/groupchats")
-        ref.addListenerForSingleValueEvent(object: ValueEventListener {
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid/groupchats")
+
+        ref.addChildEventListener(object: ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                val gcid = snapshot.getValue(String::class.java)
+                if (gcid != null) {
+                    listenForLatestMessages(gcid)
+                }
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                val gcid = snapshot.getValue(String::class.java)
+                if (gcid != null) {
+                    listenForLatestMessages(gcid)
+                }
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+
+            }
+
             override fun onCancelled(error: DatabaseError) {
 
             }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.forEach {
-                     Log.d("GroupChatLogActivity", it.toString())
-                     val gcid = it.getValue(String::class.java)
-                     if(gcid != null){
-                         listenForLatestMessages(gcid)
-                     }
-                 }
-            }
         })
     }
 
@@ -95,7 +110,7 @@ class GroupChatSelectionActivity : AppCompatActivity() {
                 refreshRecyclerViewMessages()
             }
             override fun onCancelled(error: DatabaseError) {
-                refreshRecyclerViewMessages()
+
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -106,11 +121,11 @@ class GroupChatSelectionActivity : AppCompatActivity() {
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                refreshRecyclerViewMessages()
+
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
-                refreshRecyclerViewMessages()
+
             }
         })
     }
