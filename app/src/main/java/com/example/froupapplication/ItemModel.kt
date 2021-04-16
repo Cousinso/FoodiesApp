@@ -12,12 +12,15 @@ class ItemModel {
         private set
     var kota: String? = null
         private set
+    var uid: String? = null
+        private set
 
     constructor() {}
-    constructor(image: String, nama: String, usia: String?, kota: String?) {
+    constructor(image: String, nama: String, usia: String?, kota: String?,uid: String?) {
         this.image = image
         this.nama = nama
         this.usia = usia
         this.kota = kota
+        this.uid = uid
     }
 }

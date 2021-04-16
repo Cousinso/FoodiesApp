@@ -102,14 +102,14 @@ class SwipeActivity : AppCompatActivity() {
                             }
                             val target = findViewById<ImageView>(com.example.froupapplication.R.id.swipeActivityImageView)
 
-                            items.add(ItemModel( uri, user.username, user.Bio, user.food))
+                            items.add(ItemModel( uri, user.username, user.Bio, user.food,user.uid))
                         }
                     }
                 }
             }
         })
 
-        items.add(ItemModel("https://firebasestorage.googleapis.com/v0/b/test-538b3.appspot.com/o/images%2F63e058f7-4de2-473a-aa65-607597ceecef?alt=media&token=2c163b8c-7493-4106-bfbe-8e4cc221d9f9", "username", "user.Bio", "here"))
+        items.add(ItemModel("https://firebasestorage.googleapis.com/v0/b/test-538b3.appspot.com/o/images%2F63e058f7-4de2-473a-aa65-607597ceecef?alt=media&token=2c163b8c-7493-4106-bfbe-8e4cc221d9f9", "username", "user.Bio", "here","null"))
         return items
     }
 

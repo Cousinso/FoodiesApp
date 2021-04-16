@@ -39,6 +39,7 @@ class CardStackAdapter(var items: List<ItemModel>) : RecyclerView.Adapter<CardSt
             nama.text = data.nama.toString()
             usia.text = data.usia
             kota.text = data.kota
+            val uid = data.uid
         }
 
         init {
