@@ -1,13 +1,20 @@
 package com.example.froupapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_selected_food.*
 import kotlinx.android.synthetic.main.activity_waiting_for_group.*
+import java.util.*
 
 class WaitingForGroupActivity : AppCompatActivity() {
     companion object {
@@ -40,9 +47,7 @@ class WaitingForGroupActivity : AppCompatActivity() {
 
                 if (snapshot.childrenCount >= 4) {
                     Log.d("WaitingForGroupActivity", "Creating group...")
-                    for (snapshotChildren in snapshot.children) {
-                        Log.d("WaitingForGroupActivity", snapshotChildren.value.toString())
-                    }
+                    createGroupChat()
                 }
             }
 
@@ -52,4 +57,60 @@ class WaitingForGroupActivity : AppCompatActivity() {
 
         })
     }
+
+
+    private fun createGroupChat(){
+        val fid = currentFood?.fid
+        val ref = FirebaseDatabase.getInstance().getReference("/foods/$fid/users")
+
+        val ref1 = FirebaseDatabase.getInstance().getReference("/groupchats").push()
+        val gcId = ref1.key as String
+
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (snapshotChildren in snapshot.children) {
+                    val user = snapshotChildren.getValue(userUidName::class.java)
+                    Log.d("WaitingForGroupActivity", user?.uid.toString())
+                    val ref2 = FirebaseDatabase.getInstance().getReference("/users/${user?.uid}/groupchats").push()
+                    ref2.setValue(gcId)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
+//        performCreationMessage(gcId)
+//
+//        val intent = Intent(this, GroupChatLogActivity::class.java)
+//        intent.putExtra("GCID", gcId)
+//        startActivity(intent)
+    }
+
+    private fun performCreationMessage(gcid: String) {
+        val text = "Groupchat created"
+
+        val fromID = FirebaseAuth.getInstance().uid
+        val toID = gcid
+
+        val reference = FirebaseDatabase.getInstance().getReference("/group-messages/$toID").push()
+        if (fromID == null) return
+        if (toID == null) return
+
+        val chatMessage = ChatMessage(reference.key!!, fromID, toID, System.currentTimeMillis() / 1000, text)
+
+        reference.setValue(chatMessage)
+
+        val latestMessageReference = FirebaseDatabase.getInstance().getReference("/latest-group-messages/$toID/message")
+        latestMessageReference.setValue(chatMessage)
+    }
+}
+
+private class userUidName(val uid: String, val name: String) {
+    constructor() : this("", "")
+}
+
+private class GroupIdName(val id: String,val name: String){
+    constructor() : this("", "")
 }
