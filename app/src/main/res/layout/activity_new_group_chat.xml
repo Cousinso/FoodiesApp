@@ -50,11 +50,10 @@
 
     <Button
         android:id="@+id/photoButtonNewGroupChat"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="4dp"
-        android:background="@drawable/circle_button"
-        android:text="Select Photo"
+        android:background="@android:drawable/ic_menu_gallery"
         android:textSize="10sp"
         app:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,8 +61,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/photoimageViewNewGroupchat"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginBottom="4dp"

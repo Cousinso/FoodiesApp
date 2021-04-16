@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/menu_new_group_chat"
+    <item
+        android:id="@+id/menu_new_group_chat"
+        android:icon="@drawable/ic_newgroupchat_foreground"
         android:title="New Group Chat"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 
 </menu>
