@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.activity_latest_messages.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
+import kotlinx.android.synthetic.main.user_row_new_message.view.*
 
 class ChatLogActivity : AppCompatActivity() {
 
@@ -152,7 +153,13 @@ class ChatLogActivity : AppCompatActivity() {
             // Load user image into chat log
             val uri = user?.profileImageUrl
             val target = viewHolder.itemView.photoImageViewChatFromRow
-            Picasso.get().load(uri).into(target)
+            if(uri != ""){
+                Picasso.get().load(uri).into(target)
+            }
+            else{
+                Picasso.get().load("https://miro.medium.com/max/800/0*evjjYzmFhBV-djWJ.jpg").into(target)
+            }
+
         }
 
         override fun getLayout(): Int {
@@ -168,7 +175,12 @@ class ChatLogActivity : AppCompatActivity() {
             // Load user image into chat log
             val uri = user?.profileImageUrl
             val target = viewHolder.itemView.photoImageViewChatToRow
-            Picasso.get().load(uri).into(target)
+            if(uri != ""){
+                Picasso.get().load(uri).into(target)
+            }
+            else{
+                Picasso.get().load("https://miro.medium.com/max/800/0*evjjYzmFhBV-djWJ.jpg").into(target)
+            }
         }
 
         override fun getLayout(): Int {
