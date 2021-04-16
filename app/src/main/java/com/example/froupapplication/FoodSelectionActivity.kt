@@ -4,13 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
-import android.telephony.mbms.MbmsErrors
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,10 +19,7 @@ import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_food_selection.*
-import kotlinx.android.synthetic.main.activity_latest_messages.*
-import kotlinx.android.synthetic.main.food_choice_1.*
 import kotlinx.android.synthetic.main.food_choice_1.view.*
-import kotlinx.android.synthetic.main.user_row_new_message.view.*
 
 class FoodSelectionActivity : AppCompatActivity() {
     companion object {
@@ -37,6 +31,7 @@ class FoodSelectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food_selection)
+
 
         getCurrentUser()
         verifyLogin()
@@ -68,7 +63,7 @@ class FoodSelectionActivity : AppCompatActivity() {
         val uid = auth.uid
 
         if (uid == null) {
-            val intent = Intent(this, RegisterActivity::class.java)
+            val intent = Intent(this, Register1Activity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
@@ -113,7 +108,12 @@ class FoodSelectionActivity : AppCompatActivity() {
             }
             R.id.food_sign_out -> {
                 FirebaseAuth.getInstance().signOut()
-                val intent = Intent(this, RegisterActivity::class.java)
+                val intent = Intent(this, Register1Activity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+            R.id.food_my_profile -> {
+                val intent = Intent(this, UserProfileActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }

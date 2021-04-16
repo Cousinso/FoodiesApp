@@ -36,6 +36,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".ChatLogActivity">
             <meta-data
@@ -52,9 +53,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".FoodSelectionActivity" />
         </activity>
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".Register1Activity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".Register2Activity" />
+        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".Register3Activity" />
+        <activity android:name=".Register4Activity"/>
+        <activity android:name=".Register5Activity"/>
     </application>
 
 </manifest>

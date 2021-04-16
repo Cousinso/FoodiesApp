@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beige"
+    tools:context=".Register1Activity">
+
+    <include
+        android:id="@+id/progressBar1"
+        layout="@layout/activity_progressbar_1"
+        android:layout_width="216dp"
+        android:layout_height="603dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/progressBar2"
+        layout="@layout/activity_progressbar_2"
+        android:layout_width="196dp"
+        android:layout_height="601dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Are you a student or working"
+        android:textColor="#DDFF9800"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/brunch" />
+
+    <TextView
+        android:id="@+id/TextView_Preference"
+        android:layout_width="347dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="Preference"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="11pt"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+    <CheckBox
+        android:id="@+id/breakfast"
+        android:layout_width="104dp"
+        android:layout_height="45dp"
+        android:text="Breakfast"
+        app:layout_constraintStart_toEndOf="@+id/lunch"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <CheckBox
+        android:id="@+id/lunch"
+        android:layout_width="87dp"
+        android:layout_height="46dp"
+        android:text="Lunch"
+        app:layout_constraintStart_toEndOf="@+id/dinner"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <CheckBox
+        android:id="@+id/dinner"
+        android:layout_width="89dp"
+        android:layout_height="45dp"
+        android:text="Dinner"
+        app:layout_constraintStart_toStartOf="@+id/hint1_"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Preference of the meal time"
+        android:textColor="#DDFF9800"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/hint1_"
+        app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_Meat" />
+
+    <CheckBox
+        android:id="@+id/teaCoffee"
+        android:layout_width="142dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:text="Tea/Coffee"
+        app:layout_constraintStart_toEndOf="@+id/brunch"
+        app:layout_constraintTop_toBottomOf="@+id/lunch" />
+
+    <CheckBox
+        android:id="@+id/brunch"
+        android:layout_width="84dp"
+        android:layout_height="45dp"
+        android:text="Brunch"
+        app:layout_constraintStart_toStartOf="@+id/hint1_"
+        app:layout_constraintTop_toBottomOf="@+id/lunch" />
+
+    <RadioGroup
+        android:id="@+id/register_radioGroup_Meat"
+        android:layout_width="343dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/hint1_"
+        app:layout_constraintTop_toBottomOf="@+id/hint1_">
+
+        <RadioButton
+            android:id="@+id/radio_vegan"
+            android:layout_width="84dp"
+            android:layout_height="match_parent"
+            android:text="Vegan" />
+
+        <RadioButton
+            android:id="@+id/radio_vegatarian"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Vegetarian" />
+
+        <RadioButton
+            android:id="@+id/radio_meat"
+            android:layout_width="178dp"
+            android:layout_height="match_parent"
+            android:text="Meat lover" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/hint1_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="100dp"
+        android:text="Are you..."
+        android:textColor="#DDFF9800"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/ButtonFinish"
+        android:layout_width="113dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/rounded_edittext"
+        android:text="Next"
+        app:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/Back"
+        android:layout_width="113dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/rounded_edittext"
+        android:text="Back"
+        app:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ButtonFinish"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="InvalidId" />
+
+    <RadioGroup
+        android:id="@+id/register_radioGroup_work"
+        android:layout_width="331dp"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/dinner"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <RadioButton
+            android:id="@+id/radioCollege"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/college" />
+
+        <RadioButton
+            android:id="@+id/radioWork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/work" />
+    </RadioGroup>
+
+    <!--    <ListView-->
+<!--        android:id="@+id/list_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@+id/searchView"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginRight="16dp">-->
+
+<!--        <SearchView-->
+<!--            android:id="@+id/searchView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:iconifiedByDefault="false"-->
+<!--            android:queryHint="Search Here..." />-->
+<!--    </ListView>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

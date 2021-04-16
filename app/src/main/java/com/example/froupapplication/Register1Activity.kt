@@ -19,23 +19,23 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
-class RegisterActivity : AppCompatActivity() {
+class Register1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_register1)
 
         // Instantiating UI elements
-        val register = findViewById<Button>(R.id.registerButtonProfile)
+        val register = findViewById<Button>(R.id.ButtonFinish)
         val login = findViewById<TextView>(R.id.loginTextViewRegister)
         val photo = findViewById<Button>(R.id.photoButtonRegister)
 
         register.setOnClickListener {
-            Log.d("RegisterActivity", "Register pressed!")
+            Log.d("register1", "Register pressed!")
             performRegister()
         }
-
+        //this is comment
         login.setOnClickListener {
-            Log.d("RegisterActivity", "Login pressed!")
+            Log.d("register1", "Login pressed!")
 
             // Go to login activity
             val intent = Intent(this, LoginActivity::class.java)
@@ -43,7 +43,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         photo.setOnClickListener {
-            Log.d("RegisterActivity", "Select photo pressed!")
+            Log.d("register1", "Select photo pressed!")
 
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
@@ -59,7 +59,7 @@ class RegisterActivity : AppCompatActivity() {
 
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             // Check selected image
-            Log.d("RegisterActivity", "Photo was selected")
+            Log.d("register1", "Photo was selected")
 
             // Gives location of image data
             selectedPhotoUri = data.data
@@ -79,6 +79,7 @@ class RegisterActivity : AppCompatActivity() {
         // Instantiating UI elements
         val email = findViewById<EditText>(R.id.emailEditTextRegister)
         val password = findViewById<EditText>(R.id.passwordEditTextRegister)
+        val passwordCheck = findViewById<EditText>(R.id.passwordConfirm)
 
         if (email.text.toString().isEmpty() ) {
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show()
@@ -90,8 +91,18 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        Log.d("RegisterActivity", "Email: ${email.text.toString()}")
-        Log.d("RegisterActivity", "Password: ${password.text.toString()}")
+        if (password.text.toString() != passwordCheck.text.toString()) {
+            Toast.makeText(this, "The two passwords are not equal, please try again", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (selectedPhotoUri == null) {
+            Toast.makeText(this, "Please choose a picture", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        Log.d("register1", "Email: ${email.text.toString()}")
+        Log.d("register1", "Password: ${password.text.toString()}")
 
         // Firebase Authentication
         val auth = FirebaseAuth.getInstance()
@@ -100,10 +111,11 @@ class RegisterActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     photoUploadToFirebase()
-                    Log.d("RegisterActivity", "Registration successful! UID: ${user!!.uid}")
+                    Log.d("register1", "Registration successful! UID: ${user!!.uid}")
+
                 }
                 else {
-                    Log.w("RegisterActivity", "Registration failed", task.exception)
+                    Log.w("register1", "Registration failed", task.exception)
                     Toast.makeText(this, "Registration failed! ${task.exception!!.message}", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -111,7 +123,6 @@ class RegisterActivity : AppCompatActivity() {
 
     // Called when function for register button is pressed to upload photo to Firebase Storage
     private fun photoUploadToFirebase() {
-        if (selectedPhotoUri == null) return
 
         val filename = UUID.randomUUID().toString()
         val storage = FirebaseStorage.getInstance()
@@ -119,16 +130,21 @@ class RegisterActivity : AppCompatActivity() {
 
         ref.putFile(selectedPhotoUri!!)
             .addOnSuccessListener {
-                Log.d("RegisterActivity", "Image uploaded! Image path: ${it.metadata?.path}")
+                Log.d("register1", "Image uploaded! Image path: ${it.metadata?.path}")
 
                 ref.downloadUrl.addOnCompleteListener {
-                    Log.d("RegisterActivity", "File location: ${it.result}")
+                    Log.d("register1", "File location: ${it.result}")
 
                     saveUserToDatabase(it.result.toString())
+                    val intent = Intent(this, Register2Activity::class.java)
+
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK) // Clears intent list bc don't want to be able to go back with back button
+                    startActivity(intent)
                 }
             }
             .addOnFailureListener {
                 // Blank for the time being
+                Toast.makeText(this, "Error with upload picture", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -139,24 +155,22 @@ class RegisterActivity : AppCompatActivity() {
         val ref = database.getReference("/users/${auth.uid}")
         val username = findViewById<EditText>(R.id.usernameEditTextRegister)
 
-        val user = User(auth.uid ?: "", username.text.toString(), profileImageUrl, "", "")
+        val user = User(auth.uid ?: "", username.text.toString(), profileImageUrl)
 
         ref.setValue(user)
             .addOnSuccessListener {
-                Log.d("RegisterActivity", "User saved to Firebase Database")
+                Log.d("register1", "User saved to Firebase Database")
 
-                // Go to profile activity
-                val intent = Intent(this, ProfileActivity::class.java)
-                startActivity(intent)
             }
             .addOnFailureListener {
                 // Blank for the time being
             }
     }
+
 }
 
 @Parcelize
-class User(val uid: String, val username: String, val profileImageUrl: String, val food: String, val Bio: String) : Parcelable {
+class User(val uid: String, val username: String, val profileImageUrl: String) : Parcelable {
     // No-argument constructor
-    constructor() : this("","","","","")
+    constructor() : this("","","")
 }
