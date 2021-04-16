@@ -39,14 +39,19 @@ class SwipeActivity : AppCompatActivity() {
         manager = CardStackLayoutManager(this, object : CardStackListener {
             override fun onCardDragging(direction: Direction, ratio: Float) {
                 Log.d(TAG, "onCardDragging: d=" + direction.name + " ratio=" + ratio)
+
             }
+            var profileUid = ""
+
 
             override fun onCardSwiped(direction: Direction) {
                 Log.d(TAG, "onCardSwiped: p=" + manager!!.topPosition + " d=" + direction)
                 if (direction == Direction.Right) {
+                    //checkOtherUserSwipe(profileUid)
+
                     Toast.makeText(this@SwipeActivity, "Direction Right", Toast.LENGTH_SHORT).show()
-                    val profileUid = adapter?.ViewHolder(cardStackView)?.uid?.text
-                    val userRef =  FirebaseDatabase.getInstance().getReference("/users/${curUser!!.uid}/right-swiped/${profileUid}").push()
+                    //val profileUid = adapter?.ViewHolder(cardStackView)?.uid?.text
+                    val userRef =  FirebaseDatabase.getInstance().getReference("/users/${curUser!!.uid}/right-swiped").push()
                     userRef.setValue(profileUid)
                         .addOnSuccessListener {
                             Log.d("SwipeActivity", "Saved right swipe: $profileUid")
@@ -64,22 +69,26 @@ class SwipeActivity : AppCompatActivity() {
                 }
             }
 
+
+
             override fun onCardRewound() {
-                Log.d(TAG, "onCardRewound: " + manager!!.topPosition)
+                //Log.d(TAG, "onCardRewound: " + manager!!.topPosition)
             }
 
             override fun onCardCanceled() {
-                Log.d(TAG, "onCardRewound: " + manager!!.topPosition)
+                //Log.d(TAG, "onCardRewound: " + manager!!.topPosition)
             }
 
             override fun onCardAppeared(view: View, position: Int) {
                 val tv = view.findViewById<TextView>(com.example.froupapplication.R.id.item_name)
-                Log.d(TAG, "onCardAppeared: " + position + ", nama: " + tv.text)
+                val tv2 = view.findViewById<TextView>(com.example.froupapplication.R.id.item_uid)
+                Log.d(TAG, "onCardAppeared: " + position + ", nama: " + tv.text + ", id: " + tv2.text)
             }
 
             override fun onCardDisappeared(view: View, position: Int) {
-                val tv = view.findViewById<TextView>(com.example.froupapplication.R.id.item_name)
-                Log.d(TAG, "onCardAppeared: " + position + ", nama: " + tv.text)
+                profileUid = view.findViewById<TextView>(com.example.froupapplication.R.id.item_uid).text.toString()
+                //val tv = view.findViewById<TextView>(com.example.froupapplication.R.id.item_name)
+                //Log.d(TAG, "onCardAppeared: " + position + ", nama: " + tv.text)
             }
         })
         manager!!.setStackFrom(StackFrom.None)
@@ -96,6 +105,10 @@ class SwipeActivity : AppCompatActivity() {
         cardStackView.layoutManager = manager
         cardStackView.adapter = adapter
         cardStackView.itemAnimator = DefaultItemAnimator()
+    }
+
+    private fun checkOtherUserSwipe(uid: String){
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid/right-swiped")
     }
 
     private fun addList(): List<ItemModel> {
