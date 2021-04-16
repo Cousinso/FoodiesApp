@@ -162,15 +162,18 @@
             app:layout_constraintStart_toStartOf="@+id/textView_Topic_LifeActivity"
             app:layout_constraintTop_toBottomOf="@+id/textView_LifeActivity" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/selfImage"
             android:layout_width="150dp"
-            android:layout_height="fill_parent"
+            android:layout_height="150dp"
             android:layout_marginTop="15dp"
+            android:scaleType="centerCrop"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:shapeAppearanceOverlay="@style/Circular"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/Textview_Topic_Bio"
