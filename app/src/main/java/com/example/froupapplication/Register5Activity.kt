@@ -49,7 +49,7 @@ class Register5Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
             val auth = FirebaseAuth.getInstance()
             val database = FirebaseDatabase.getInstance()
             val ref = database.getReference("/users/${auth.uid}")
-            allergies.dropLast(1)
+            allergies.dropLast(2)
             val allergiesFB = Allergies(allergies)
             ref.child("allergies").setValue(allergiesFB)
                     .addOnSuccessListener {
