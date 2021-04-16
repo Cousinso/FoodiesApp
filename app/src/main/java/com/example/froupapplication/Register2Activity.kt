@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.synthetic.main.activity_register_profile.*
+import kotlinx.android.synthetic.main.activity_register2.*
 
 
 class Register2Activity: AppCompatActivity() {
