@@ -140,7 +140,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/buttonFinish"
+        android:id="@+id/Back"
         android:layout_width="113dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
@@ -152,7 +152,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ButtonFinish"
         app:layout_constraintHorizontal_bias="0.091"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="InvalidId" />
 
     <!--    <ListView-->
 <!--        android:id="@+id/list_view"-->

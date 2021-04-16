@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -161,6 +162,11 @@ class Register3Activity : AppCompatActivity() {
         }
 
 
+        val Back: Button = findViewById(R.id.Back)
+        Back.setOnClickListener {
+            val intent = Intent(this, Register2Activity::class.java)
+            startActivity(intent)
+        }
         ButtonFinish.setOnClickListener {
             //lateinit var database: DatabaseReference
             //database = Firebase.database.reference
