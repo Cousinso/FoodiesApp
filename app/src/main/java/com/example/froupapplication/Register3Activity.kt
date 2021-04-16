@@ -162,6 +162,17 @@ class Register3Activity : AppCompatActivity() {
         }
 
 
+        var lifeActivity = ""
+        register_radioGroup_work.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId == R.id.radioWork){
+                lifeActivity = "College"
+            }
+            if (checkedId == R.id.radioCollege){
+                lifeActivity = "Work"
+            }
+        }
+
+
         val Back: Button = findViewById(R.id.Back)
         Back.setOnClickListener {
             val intent = Intent(this, Register2Activity::class.java)
@@ -176,11 +187,11 @@ class Register3Activity : AppCompatActivity() {
             val database = FirebaseDatabase.getInstance()
             val ref = database.getReference("/users/${auth.uid}")
 
-            val pref = Preferences(meatPreferencesForDB, mealPreferencesForDB)
+            val pref = Preferences(meatPreferencesForDB, mealPreferencesForDB,lifeActivity)
             ref.child("foodPreferences").setValue(pref)
                 .addOnSuccessListener {
                     Log.d("register3", "foodPreferences saved for user ${auth.uid} to Firebase Database")
-                    Toast.makeText(this, "Registration done", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Registration done", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
                     Log.d("register3", "Error : foodPreferences not saved for user ${auth.uid}  to Firebase Database")
@@ -196,6 +207,6 @@ class Register3Activity : AppCompatActivity() {
 }
 
 @Parcelize
-class Preferences(val meatPreferences: String, val mealPreferences: String) :
+class Preferences(val meatPreferences: String, val mealPreferences: String, val lifeActitivity: String) :
     Parcelable {
 }

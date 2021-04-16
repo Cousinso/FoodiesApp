@@ -58,15 +58,15 @@ class Register2Activity: AppCompatActivity() {
 //        }
 
         //Handling the work info
-        var lifeActivity = ""
-        register_radioGroup_work.setOnCheckedChangeListener { group, checkedId ->
-            if (checkedId == R.id.radioWork){
-                lifeActivity = "College"
-            }
-            if (checkedId == R.id.radioCollege){
-                lifeActivity = "Work"
-            }
-        }
+//        var lifeActivity = ""
+//        register_radioGroup_work.setOnCheckedChangeListener { group, checkedId ->
+//            if (checkedId == R.id.radioWork){
+//                lifeActivity = "College"
+//            }
+//            if (checkedId == R.id.radioCollege){
+//                lifeActivity = "Work"
+//            }
+//        }
 
 
 
@@ -81,7 +81,7 @@ class Register2Activity: AppCompatActivity() {
             val bio = editTextBio.text.toString()
             val location = editLocation.text.toString()
 
-            val personalInfo = PersonalInfo(birthday, gender, bio, location, lifeActivity)
+            val personalInfo = PersonalInfo(birthday, gender, bio, location)
             ref.child("personalInfo").setValue(personalInfo)
                 .addOnSuccessListener {
                     Log.d("register2", "Personal info saved for user ${auth.uid} to Firebase Database")
@@ -97,7 +97,7 @@ class Register2Activity: AppCompatActivity() {
 }
 
 @Parcelize
-class PersonalInfo(val bday: String, val gender: String, val bio: String, val location: String, val lifeActivity: String) :
+class PersonalInfo(val bday: String, val gender: String, val bio: String, val location: String) :
     Parcelable {
 }
 

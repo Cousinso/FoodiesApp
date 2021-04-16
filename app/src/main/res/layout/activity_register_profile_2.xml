@@ -11,6 +11,16 @@
         layout="@layout/activity_progressbar_1" />
 
     <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Are you a student or working"
+        android:textColor="#DDFF9800"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/brunch" />
+
+    <TextView
         android:id="@+id/TextView_Preference"
         android:layout_width="347dp"
         android:layout_height="39dp"
@@ -154,6 +164,29 @@
         app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="InvalidId" />
+
+    <RadioGroup
+        android:id="@+id/register_radioGroup_work"
+        android:layout_width="331dp"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/dinner"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <RadioButton
+            android:id="@+id/radioCollege"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/college" />
+
+        <RadioButton
+            android:id="@+id/radioWork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/work" />
+    </RadioGroup>
 
     <!--    <ListView-->
 <!--        android:id="@+id/list_view"-->

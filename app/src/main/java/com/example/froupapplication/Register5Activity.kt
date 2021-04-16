@@ -46,6 +46,7 @@ class Register5Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
         Next2.setOnClickListener {
             val intent = Intent(this, FoodSelectionActivity::class.java)
             startActivity(intent)
+            Toast.makeText(this, "Registration done", Toast.LENGTH_SHORT).show()
         }
 
         val Back2: Button = findViewById(R.id.Back)
