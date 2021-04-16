@@ -98,7 +98,7 @@ class Register3Activity : AppCompatActivity() {
             val database = FirebaseDatabase.getInstance()
             val ref = database.getReference("/users/${auth.uid}")
             //Log.d("userprofile", "lifeactivity is ${lifeActivity}  to Firebase Database")
-            mealPreferencesForDB.dropLast(2)
+            mealPreferencesForDB = mealPreferencesForDB.dropLast(2)
             val pref = Preferences(meatPreferencesForDB, mealPreferencesForDB,lifeActivity)
             ref.child("foodPreferences").setValue(pref)
                 .addOnSuccessListener {
