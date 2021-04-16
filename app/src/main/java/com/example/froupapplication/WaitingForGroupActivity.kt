@@ -48,7 +48,6 @@ class WaitingForGroupActivity : AppCompatActivity() {
                 if (snapshot.childrenCount >= 4) {
                     Log.d("WaitingForGroupActivity", "Creating group...")
                     createGroupChat()
-                    // Need to clear food database node
                     // Need to go to group chat after 4 users found
                 }
             }
@@ -76,9 +75,10 @@ class WaitingForGroupActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snapshotChildren in snapshot.children) {
                     val user = snapshotChildren.getValue(userUidName::class.java)
-                    Log.d("WaitingForGroupActivity", user?.uid.toString())
-                    val ref2 = FirebaseDatabase.getInstance().getReference("/users/${user?.uid}/groupchats").push()
+                    Log.d("WaitingForGroupActivity", "Adding ${user?.uid.toString()}")
+                    val ref2 = FirebaseDatabase . getInstance ().getReference("/users/${user?.uid}/groupchats").push()
                     ref2.setValue(gcId)
+                    ref.child(snapshotChildren.key.toString()).removeValue()
                 }
             }
 
@@ -95,7 +95,7 @@ class WaitingForGroupActivity : AppCompatActivity() {
     }
 
     private fun performCreationMessage(gcid: String) {
-        val text = "Groupchat created"
+        val text = "Group chat created"
 
         val fromID = gcid
         val toID = gcid
