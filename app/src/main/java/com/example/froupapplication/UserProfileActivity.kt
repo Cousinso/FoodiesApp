@@ -54,15 +54,19 @@ class UserProfileActivity : AppCompatActivity(){
             override fun onDataChange(snapshot: DataSnapshot) {
                 val personalInfo = snapshot.getValue(ProfileInfo::class.java)
                 val adress = personalInfo?.adress
+                textView_Location.text = adress
                 val bday = personalInfo?.bday
                 selfBirthday.text = bday
                 val bio = personalInfo?.bio
                 selfTextBio.text = bio
                 val city = personalInfo?.city
+                textView_Location3.text = city
                 val country = personalInfo?.country
+                textView_Location2.text = country
                 val gender = personalInfo?.gender
                 textView_LifeActivity2.text = gender
                 val zip = personalInfo?.zip
+                textView_Location4.text = zip
                 Log.d("userprofile", "Current user bday: $bday")
 
             }
@@ -79,6 +83,7 @@ class UserProfileActivity : AppCompatActivity(){
                 val mealPref = foodPreferences?.mealPreferences
                 textview_MealPreferences.text = mealPref
                 val meetPref = foodPreferences?.meetPreferences
+
                 Log.d("userprofile", "Current user lifeActivity: $lifeActivity")
 
             }
