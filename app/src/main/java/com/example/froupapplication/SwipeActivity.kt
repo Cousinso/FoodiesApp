@@ -1,32 +1,110 @@
 package com.example.froupapplication
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.recyclerview.widget.RecyclerView
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
-import com.yuyakaido.android.cardstackview.CardStackLayoutManager
-import com.yuyakaido.android.cardstackview.CardStackListener
-import com.yuyakaido.android.cardstackview.CardStackView
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.LayoutInflater;
-import android.widget.ArrayAdapter
+import android.view.animation.LinearInterpolator
 import android.widget.Toast
-import androidx.annotation.NonNull
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.lorentzos.flingswipe.SwipeFlingAdapterView
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.xwray.groupie.GroupieAdapter
+import androidx.recyclerview.widget.DefaultItemAnimator
+import com.yuyakaido.android.cardstackview.*
+import java.util.ArrayList
+import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 
 class SwipeActivity : AppCompatActivity() {
+
+    private var manager: CardStackLayoutManager? = null
+    private var adapter: CardStackAdapter? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(com.example.froupapplication.R.layout.activity_swipe)
+        val cardStackView = findViewById<CardStackView>(com.example.froupapplication.R.id.card_stack_view)
+        manager = CardStackLayoutManager(this, object : CardStackListener {
+            override fun onCardDragging(direction: Direction, ratio: Float) {
+                Log.d(TAG, "onCardDragging: d=" + direction.name + " ratio=" + ratio)
+            }
+
+            override fun onCardSwiped(direction: Direction) {
+                Log.d(TAG, "onCardSwiped: p=" + manager!!.topPosition + " d=" + direction)
+                if (direction == Direction.Right) {
+                    Toast.makeText(this@SwipeActivity, "Direction Right", Toast.LENGTH_SHORT).show()
+                }
+                if (direction == Direction.Top) {
+                    Toast.makeText(this@SwipeActivity, "Direction Top", Toast.LENGTH_SHORT).show()
+                }
+                if (direction == Direction.Left) {
+                    Toast.makeText(this@SwipeActivity, "Direction Left", Toast.LENGTH_SHORT).show()
+                }
+                if (direction == Direction.Bottom) {
+                    Toast.makeText(this@SwipeActivity, "Direction Bottom", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCardRewound() {
+                Log.d(TAG, "onCardRewound: " + manager!!.topPosition)
+            }
+
+            override fun onCardCanceled() {
+                Log.d(TAG, "onCardRewound: " + manager!!.topPosition)
+            }
+
+            override fun onCardAppeared(view: View, position: Int) {
+                val tv = view.findViewById<TextView>(com.example.froupapplication.R.id.item_name)
+                Log.d(TAG, "onCardAppeared: " + position + ", nama: " + tv.text)
+            }
+
+            override fun onCardDisappeared(view: View, position: Int) {
+                val tv = view.findViewById<TextView>(com.example.froupapplication.R.id.item_name)
+                Log.d(TAG, "onCardAppeared: " + position + ", nama: " + tv.text)
+            }
+        })
+        manager!!.setStackFrom(StackFrom.None)
+        manager!!.setVisibleCount(3)
+        manager!!.setTranslationInterval(8.0f)
+        manager!!.setScaleInterval(0.95f)
+        manager!!.setSwipeThreshold(0.3f)
+        manager!!.setMaxDegree(20.0f)
+        manager!!.setDirections(Direction.FREEDOM)
+        manager!!.setCanScrollHorizontal(true)
+        manager!!.setSwipeableMethod(SwipeableMethod.Manual)
+        manager!!.setOverlayInterpolator(LinearInterpolator())
+        adapter = CardStackAdapter(addList())
+        cardStackView.layoutManager = manager
+        cardStackView.adapter = adapter
+        cardStackView.itemAnimator = DefaultItemAnimator()
+    }
+
+    private fun addList(): List<ItemModel> {
+        val items: MutableList<ItemModel> = ArrayList()
+        val ref = FirebaseDatabase.getInstance().getReference("/users")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                snapshot.children.forEach {
+                    Log.d("NewMessageActivity", it.toString())
+                    val user = it.getValue(User::class.java)
+                    if (user != null) {
+                        items.add(ItemModel( R.drawable.sample1, user.username, user.Bio, user.food))
+                    }
+                }
+            }
+        })
+
+        items.add(ItemModel(R.drawable.sample1, "username", "user.Bio", "here"))
+        return items
+    }
+
+    companion object {
+        private const val TAG = "SwipeActivity"
+    }
+}
+/*class SwipeActivity : AppCompatActivity() {
 
         private var al: ArrayList<String>? = null
         var users: ArrayList<User>? = null
@@ -121,7 +199,7 @@ class SwipeActivity : AppCompatActivity() {
 
     //}
 //}
-/*
+
 public class CardStackAdapter(items: List<UserItem>) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>(){
     private var items: List<UserItem>
 
