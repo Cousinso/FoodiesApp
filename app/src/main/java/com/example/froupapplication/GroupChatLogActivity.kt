@@ -182,7 +182,7 @@ class GroupChatLogActivity : AppCompatActivity() {
                         if(it.value != null){
                             val map = it.value as HashMap<*,*>
                             Log.d("GroupChatLogActivity","Clicker profile, got map $map")
-                            val toUser = User(map.get("uid").toString(),map.get("username").toString(),map.get("profileImageUrl").toString(),map.get("food").toString(),map.get("Bio").toString())
+                            val toUser = User(map.get("uid").toString(),map.get("username").toString(),map.get("profileImageUrl").toString())
 
                             val myContext = context
                             val intent = Intent(myContext, ProfileTestActivity::class.java)
