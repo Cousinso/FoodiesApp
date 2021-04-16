@@ -53,7 +53,7 @@ class Register4Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
             val auth = FirebaseAuth.getInstance()
             val database = FirebaseDatabase.getInstance()
             val ref = database.getReference("/users/${auth.uid}")
-
+            selectedFood.dropLast(1)
             val foodtypes = FoodTypes(selectedFood)
             ref.child("foodTypes").setValue(foodtypes)
                     .addOnSuccessListener {
@@ -90,6 +90,7 @@ class Register4Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
 @Parcelize
 class FoodTypes(val items: String) :
         Parcelable {
+    constructor() : this("")
 }
 
 
