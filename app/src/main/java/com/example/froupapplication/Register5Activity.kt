@@ -2,19 +2,21 @@ package com.example.froupapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.parcel.Parcelize
 
 class Register5Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
+
+    var allergies =""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register5)
-
-//        register_ButtonNext.setOnClickListener{
-//            val intent = Intent(this, Register5Activity::class.java)
-//            startActivity(intent)
-//        }
 
         val searchView = findViewById<SearchView>(R.id.searchView)
         val listView = findViewById<ListView>(R.id.list_view)
@@ -44,6 +46,20 @@ class Register5Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
         })
         val Next2: Button = findViewById(R.id.NextButtonF)
         Next2.setOnClickListener {
+            val auth = FirebaseAuth.getInstance()
+            val database = FirebaseDatabase.getInstance()
+            val ref = database.getReference("/users/${auth.uid}")
+
+            val allergiesFB = Allergies(allergies)
+            ref.child("allergies").setValue(allergiesFB)
+                    .addOnSuccessListener {
+                        Log.d("register5", "allergies saved for user ${auth.uid} to Firebase Database")
+//                    Toast.makeText(this, "Registration done", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener {
+                        Log.d("register5", "Error : allergies not saved for user ${auth.uid}  to Firebase Database")
+                    }
+
             val intent = Intent(this, FoodSelectionActivity::class.java)
             startActivity(intent)
             Toast.makeText(this, "Registration done", Toast.LENGTH_SHORT).show()
@@ -58,11 +74,13 @@ class Register5Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         var items: String = parent?.getItemAtPosition(position) as String
-        Toast.makeText(applicationContext,
-                "Allergies/Intolerances : $items",
-                Toast.LENGTH_LONG).show()
+        allergies += "${items}, "
+        //Toast.makeText(applicationContext, "Allergies/Intolerances : $items", Toast.LENGTH_LONG).show()
     }
 }
 
 
-
+@Parcelize
+class Allergies(val items: String) :
+        Parcelable {
+}
