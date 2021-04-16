@@ -7,6 +7,11 @@
     android:background="@color/beige"
     tools:context=".Register1Activity">
 
+    <include
+        android:id="@+id/progressBar"
+        layout="@layout/activity_progressbar_1"
+        />
+
     <RadioGroup
         android:id="@+id/register_radioGroup_location"
         android:layout_width="308dp"
@@ -88,6 +93,22 @@
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
         app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_work" />
 
+    <Button
+        android:id="@+id/register_ButtonNext2"
+        android:layout_width="113dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/rounded_edittext"
+        android:text="back"
+        app:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/register_ButtonNext"
+        app:layout_constraintHorizontal_bias="0.217"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_radioGroup_work"
+        app:layout_constraintVertical_bias="0.0" />
+
     <EditText
         android:id="@+id/Register_Birthday"
         android:layout_width="wrap_content"
@@ -122,10 +143,12 @@
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
         app:layout_constraintTop_toBottomOf="@+id/editTextBio" />
 
+
     <EditText
         android:id="@+id/editLocation"
-        android:layout_width="328dp"
-        android:layout_height="41dp"
+        android:layout_width="256dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_edittext"
         android:hint="@string/your_location"
         android:inputType="textMultiLine"
@@ -137,7 +160,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/Food_Preference"
         app:layout_constraintTop_toBottomOf="@+id/Hint1_3" />
-
 
     <TextView
         android:id="@+id/Hint1_4"
@@ -210,6 +232,15 @@
             android:text="@string/work" />
     </RadioGroup>
 
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="-10dp"
+        android:layout_marginLeft="-10dp"
+        android:background="@drawable/ic_getlocation_foreground"
+        app:layout_constraintStart_toEndOf="@+id/editLocation"
+        app:layout_constraintTop_toBottomOf="@+id/Hint1_3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

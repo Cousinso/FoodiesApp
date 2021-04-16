@@ -17,90 +17,90 @@ class Register3Activity : AppCompatActivity() {
         setContentView(R.layout.activity_register_profile_2)
 
         //Handling the foodPreferences checkboxes
-        var foodPreferencesForDB = ""
-        ChFood.setOnCheckedChangeListener{ view, isChecked ->
-            if (isChecked) {
-                foodPreferencesForDB += "Chinese food, "
-            }
-            else {
-                foodPreferencesForDB = foodPreferencesForDB.replace("Chinese food, ", "")
-            }
-        }
-        IrFood.setOnCheckedChangeListener{ view, isChecked ->
-            if (isChecked) {
-                foodPreferencesForDB += "Irish food, "
-            }
-            else {
-                foodPreferencesForDB = foodPreferencesForDB.replace("Irish food, ", "")
-            }
-        }
-        BelgFood.setOnCheckedChangeListener{ view, isChecked ->
-            if (isChecked) {
-                foodPreferencesForDB += "Belgian food, "
-            }
-            else {
-                foodPreferencesForDB = foodPreferencesForDB.replace("Belgian food, ", "")
-            }
-        }
-        JapFood.setOnCheckedChangeListener{ view, isChecked ->
-            if (isChecked) {
-                foodPreferencesForDB += "Japanese food, "
-            }
-            else {
-                foodPreferencesForDB = foodPreferencesForDB.replace("Japanese food, ", "")
-            }
-        }
-        InFood.setOnCheckedChangeListener{ view, isChecked ->
-            if (isChecked) {
-                foodPreferencesForDB += "Indian food, "
-            }
-            else {
-                foodPreferencesForDB = foodPreferencesForDB.replace("Indian food, ", "")
-            }
-        }
-
-        //Handling the Allergies checkboxes
-        var allergiesForDB = ""
-        milk.setOnCheckedChangeListener{ view, isChecked ->
-            if (isChecked) {
-                allergiesForDB += "milk, "
-            }
-            else {
-                allergiesForDB = allergiesForDB.replace("milk, ", "")
-            }
-        }
-        lactose.setOnCheckedChangeListener{ view, isChecked ->
-            if (isChecked) {
-                allergiesForDB += "lactose, "
-            }
-            else {
-                allergiesForDB = allergiesForDB.replace("lactose, ", "")
-            }
-        }
-        fish.setOnCheckedChangeListener{ view, isChecked ->
-            if (isChecked) {
-                allergiesForDB += "fish, "
-            }
-            else {
-                allergiesForDB = allergiesForDB.replace("fish, ", "")
-            }
-        }
-        nuts.setOnCheckedChangeListener{ view, isChecked ->
-            if (isChecked) {
-                allergiesForDB += "nuts, "
-            }
-            else {
-                allergiesForDB = allergiesForDB.replace("nuts, ", "")
-            }
-        }
-        pork.setOnCheckedChangeListener{ view, isChecked ->
-            if (isChecked) {
-                allergiesForDB += "pork, "
-            }
-            else {
-                allergiesForDB = allergiesForDB.replace("pork, ", "")
-            }
-        }
+//        var foodPreferencesForDB = ""
+//        ChFood.setOnCheckedChangeListener{ view, isChecked ->
+//            if (isChecked) {
+//                foodPreferencesForDB += "Chinese food, "
+//            }
+//            else {
+//                foodPreferencesForDB = foodPreferencesForDB.replace("Chinese food, ", "")
+//            }
+//        }
+//        IrFood.setOnCheckedChangeListener{ view, isChecked ->
+//            if (isChecked) {
+//                foodPreferencesForDB += "Irish food, "
+//            }
+//            else {
+//                foodPreferencesForDB = foodPreferencesForDB.replace("Irish food, ", "")
+//            }
+//        }
+//        BelgFood.setOnCheckedChangeListener{ view, isChecked ->
+//            if (isChecked) {
+//                foodPreferencesForDB += "Belgian food, "
+//            }
+//            else {
+//                foodPreferencesForDB = foodPreferencesForDB.replace("Belgian food, ", "")
+//            }
+//        }
+//        JapFood.setOnCheckedChangeListener{ view, isChecked ->
+//            if (isChecked) {
+//                foodPreferencesForDB += "Japanese food, "
+//            }
+//            else {
+//                foodPreferencesForDB = foodPreferencesForDB.replace("Japanese food, ", "")
+//            }
+//        }
+//        InFood.setOnCheckedChangeListener{ view, isChecked ->
+//            if (isChecked) {
+//                foodPreferencesForDB += "Indian food, "
+//            }
+//            else {
+//                foodPreferencesForDB = foodPreferencesForDB.replace("Indian food, ", "")
+//            }
+//        }
+//
+//        Handling the Allergies checkboxes
+//        var allergiesForDB = ""
+//        milk.setOnCheckedChangeListener{ view, isChecked ->
+//            if (isChecked) {
+//                allergiesForDB += "milk, "
+//            }
+//            else {
+//                allergiesForDB = allergiesForDB.replace("milk, ", "")
+//            }
+//        }
+//        lactose.setOnCheckedChangeListener{ view, isChecked ->
+//            if (isChecked) {
+//                allergiesForDB += "lactose, "
+//            }
+//            else {
+//                allergiesForDB = allergiesForDB.replace("lactose, ", "")
+//            }
+//        }
+//        fish.setOnCheckedChangeListener{ view, isChecked ->
+//            if (isChecked) {
+//                allergiesForDB += "fish, "
+//            }
+//            else {
+//                allergiesForDB = allergiesForDB.replace("fish, ", "")
+//            }
+//        }
+//        nuts.setOnCheckedChangeListener{ view, isChecked ->
+//            if (isChecked) {
+//                allergiesForDB += "nuts, "
+//            }
+//            else {
+//                allergiesForDB = allergiesForDB.replace("nuts, ", "")
+//            }
+//        }
+//        pork.setOnCheckedChangeListener{ view, isChecked ->
+//            if (isChecked) {
+//                allergiesForDB += "pork, "
+//            }
+//            else {
+//                allergiesForDB = allergiesForDB.replace("pork, ", "")
+//            }
+//        }
 
         //Handling the meat preferences
         var meatPreferencesForDB = ""
@@ -170,7 +170,7 @@ class Register3Activity : AppCompatActivity() {
             val database = FirebaseDatabase.getInstance()
             val ref = database.getReference("/users/${auth.uid}")
 
-            val pref = Preferences(foodPreferencesForDB, allergiesForDB, meatPreferencesForDB, mealPreferencesForDB)
+            val pref = Preferences(meatPreferencesForDB, mealPreferencesForDB)
             ref.child("foodPreferences").setValue(pref)
                 .addOnSuccessListener {
                     Log.d("register3", "foodPreferences saved for user ${auth.uid} to Firebase Database")
@@ -190,6 +190,6 @@ class Register3Activity : AppCompatActivity() {
 }
 
 @Parcelize
-class Preferences(val foodPreferences: String, val allergies: String, val meatPreferences: String, val mealPreferences: String) :
+class Preferences(val meatPreferences: String, val mealPreferences: String) :
     Parcelable {
 }

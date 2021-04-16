@@ -2,10 +2,11 @@ package com.example.froupapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
-class Register5Activity: AppCompatActivity() {
+class Register5Activity: AppCompatActivity(), AdapterView.OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_profile_4)
@@ -20,8 +21,10 @@ class Register5Activity: AppCompatActivity() {
 
         val listName = arrayOf("Milk", "Peanut", "Egg", "Wheat", "Soy", "Fin fish", "Fish", "Tree nut","Chicken", "Beef", "Shell Fish", "Cheese")
 
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listName)
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, listName)
         listView.adapter = arrayAdapter
+        listView.onItemClickListener  = this
+        listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -50,6 +53,13 @@ class Register5Activity: AppCompatActivity() {
             val intent = Intent(this, Register4Activity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        var items: String = parent?.getItemAtPosition(position) as String
+        Toast.makeText(applicationContext,
+                "Allergies/Intolerances : $items",
+                Toast.LENGTH_LONG).show()
     }
 }
 
