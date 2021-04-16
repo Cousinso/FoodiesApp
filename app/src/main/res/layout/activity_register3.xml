@@ -6,9 +6,22 @@
     android:layout_height="match_parent"
     android:background="@color/beige"
     tools:context=".Register1Activity">
+
     <include
-        android:id="@+id/progressBar"
-        layout="@layout/activity_progressbar_1" />
+        android:id="@+id/progressBar1"
+        layout="@layout/activity_progressbar_1"
+        android:layout_width="216dp"
+        android:layout_height="603dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/progressBar2"
+        layout="@layout/activity_progressbar_2"
+        android:layout_width="196dp"
+        android:layout_height="601dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"

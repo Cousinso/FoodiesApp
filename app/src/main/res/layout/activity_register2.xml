@@ -8,10 +8,20 @@
     tools:context=".Register1Activity">
 
     <include
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBar1"
         layout="@layout/activity_progressbar_1"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_width="110dp"
+        android:layout_height="603dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/progressBar2"
+        layout="@layout/activity_progressbar_2"
+        android:layout_width="303dp"
+        android:layout_height="603dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView10"
