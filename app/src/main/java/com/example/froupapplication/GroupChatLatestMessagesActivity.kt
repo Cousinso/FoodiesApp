@@ -95,7 +95,7 @@ class GroupChatSelectionActivity : AppCompatActivity() {
                 refreshRecyclerViewMessages()
             }
             override fun onCancelled(error: DatabaseError) {
-
+                refreshRecyclerViewMessages()
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -106,11 +106,11 @@ class GroupChatSelectionActivity : AppCompatActivity() {
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-
+                refreshRecyclerViewMessages()
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
-
+                refreshRecyclerViewMessages()
             }
         })
     }

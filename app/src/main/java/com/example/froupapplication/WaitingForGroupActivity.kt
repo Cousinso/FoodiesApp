@@ -50,6 +50,10 @@ class WaitingForGroupActivity : AppCompatActivity() {
                     createGroupChat()
                     // Need to go to group chat after 4 users found
                 }
+                else {
+                    Log.d("WaitingForGroupActivity", "Waiting for more users...")
+                    goToLatestGroupChat()
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -59,6 +63,11 @@ class WaitingForGroupActivity : AppCompatActivity() {
         })
     }
 
+    private fun goToLatestGroupChat() {
+        Toast.makeText(this, "Finding users and creating the group chat...", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, GroupChatSelectionActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun createGroupChat(){
         val fid = currentFood?.fid
