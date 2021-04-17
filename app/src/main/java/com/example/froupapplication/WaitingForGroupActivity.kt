@@ -109,11 +109,11 @@ class WaitingForGroupActivity : AppCompatActivity() {
         val fromID = gcid
         val toID = gcid
 
-        val reference = FirebaseDatabase.getInstance().getReference("/group-messages/$toID").push()
+        //val reference = FirebaseDatabase.getInstance().getReference("/group-messages/$toID").push()
 
-        val chatMessage = ChatMessage(reference.key!!, fromID, toID, System.currentTimeMillis() / 1000, text)
+        val chatMessage = ChatMessage("", fromID, toID, System.currentTimeMillis() / 1000, text)
 
-        reference.setValue(chatMessage)
+        //reference.setValue(chatMessage)
 
         val latestMessageReference = FirebaseDatabase.getInstance().getReference("/latest-group-messages/$toID/message")
         latestMessageReference.setValue(chatMessage)
