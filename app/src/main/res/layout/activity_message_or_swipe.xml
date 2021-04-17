@@ -41,11 +41,12 @@
 
     <ImageView
         android:id="@+id/imageViewUserProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/swipeButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserTextView"
         tools:srcCompat="@tools:sample/avatars" />
