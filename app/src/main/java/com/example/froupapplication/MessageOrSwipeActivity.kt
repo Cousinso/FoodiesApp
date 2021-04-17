@@ -29,7 +29,7 @@ class MessageOrSwipeActivity : AppCompatActivity() {
             var uri = ""
             if(it.value != null){
                 val map = it.value as HashMap<*,*>
-                toUser = User(map.get("uid").toString(),map.get("username").toString(),map.get("profileImageUrl").toString(),map.get("food").toString(),map.get("bio").toString())
+                toUser = User(map.get("uid").toString(),map.get("username").toString(),map.get("profileImageUrl").toString())
                 Picasso.get().load(toUser!!.profileImageUrl).into(image)
                 text.setText(toUser!!.username)
 
