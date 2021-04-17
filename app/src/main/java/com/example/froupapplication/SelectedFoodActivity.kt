@@ -32,6 +32,7 @@ class SelectedFoodActivity : AppCompatActivity() {
 
         val currentUser = LatestMessagesActivity.currentUser
 
+        val auth = FirebaseAuth.getInstance()
         val uid = currentUser?.uid
         val username = currentUser?.username
 
@@ -39,13 +40,17 @@ class SelectedFoodActivity : AppCompatActivity() {
         Log.d("SelectedFoodActivity", "Current User: $username")
 
         confirmButtonSelectedFood.setOnClickListener {
-            val ref = FirebaseDatabase.getInstance().getReference("/foods/${food?.fid}/group-users").push()
+            //val intent = Intent(it.context, NewMessageActivity::class.java)
+//            val intent = Intent(it.context, SwipeActivity::class.java)
+            val ref = FirebaseDatabase.getInstance().getReference("/foods/${food?.fid}/users").push()
 
-            val user = UserGroupItem(uid!!, username!!)
+            val user = LatestMessagesActivity.currentUser
             ref.setValue(user)
-
-            val intent = Intent(it.context, WaitingForGroupActivity::class.java)
-            intent.putExtra(FOOD_KEY, food)
+            val intent = Intent(it.context, GroupVsPairActivity::class.java)
+            var foodRef = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("food")
+            user?.food = food?.name.toString()
+            foodRef.setValue(user?.food)
+            intent.putExtra("food", FoodSelectionActivity.FOOD_KEY)
             startActivity(intent)
             finish()
         }
