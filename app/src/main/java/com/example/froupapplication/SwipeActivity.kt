@@ -1,5 +1,6 @@
 package com.example.froupapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -116,6 +117,9 @@ class SwipeActivity : AppCompatActivity() {
                             Log.d(TAG, "Equal")
                             createMessage(uid)
                             bool = true
+                            val intent = Intent(this, MessageOrSwipeActivity::class.java)
+
+                            startActivity(intent)
                         }
                     }
 
