@@ -40,6 +40,8 @@ class CardStackAdapter(var items: List<ItemModel>) : RecyclerView.Adapter<CardSt
                     .fit()
                     .centerCrop()
                     .into(image)
+
+
             nama.text = data.name.toString()
             usia.text = data.age
             kota.text = data.city
