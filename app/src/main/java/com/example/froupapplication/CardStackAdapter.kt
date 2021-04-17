@@ -33,7 +33,7 @@ class CardStackAdapter(var items: List<ItemModel>) : RecyclerView.Adapter<CardSt
         var kota: TextView
         var uid: TextView
         fun setData(data: ItemModel) {
-            Log.d("SwipeActivity","image link ${data.image}, all data: $data")
+            //Log.d("SwipeActivity","image link ${data.image}, all data: $data")
 
             Picasso.get()
                     .load(data.image)

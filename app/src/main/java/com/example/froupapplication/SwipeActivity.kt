@@ -53,11 +53,13 @@ class SwipeActivity : AppCompatActivity() {
             override fun onCardSwiped(direction: Direction) {
                 Log.d(TAG, "onCardSwiped: p=" + manager!!.topPosition + " d=" + direction)
                 if (direction == Direction.Right) {
-                    checkOtherUserSwipe(profileUid)
-                    addToSwipeRight(profileUid)
+                    if(profileUid != ""){
+                        checkOtherUserSwipe(profileUid)
+                        addToSwipeRight(profileUid)
+                    }
                     //Toast.makeText(this@SwipeActivity, "Direction Right", Toast.LENGTH_SHORT).show()
                 }
-                if (direction == Direction.Top) {
+                /*if (direction == Direction.Top) {
                     TODO()
                     //Toast.makeText(this@SwipeActivity, "Direction Top", Toast.LENGTH_SHORT).show()
                 }
@@ -68,7 +70,7 @@ class SwipeActivity : AppCompatActivity() {
                 if (direction == Direction.Bottom) {
                     TODO()
                     //Toast.makeText(this@SwipeActivity, "Direction Bottom", Toast.LENGTH_SHORT).show()
-                }
+                }*/
             }
 
 
@@ -81,12 +83,12 @@ class SwipeActivity : AppCompatActivity() {
             }
 
             override fun onCardAppeared(view: View, position: Int) {
-                val tv = view.findViewById<TextView>(com.example.froupapplication.R.id.item_name)
-                val tv2 = view.findViewById<TextView>(com.example.froupapplication.R.id.item_uid)
-                Log.d(
-                    TAG,
-                    "onCardAppeared: " + position + ", nama: " + tv.text + ", id: " + tv2.text
-                )
+                //val tv = view.findViewById<TextView>(com.example.froupapplication.R.id.item_name)
+                //val tv2 = view.findViewById<TextView>(com.example.froupapplication.R.id.item_uid)
+                //Log.d(
+                  //  TAG,
+                    //"onCardAppeared: " + position + ", nama: " + tv.text + ", id: " + tv2.text
+                //)
             }
 
             override fun onCardDisappeared(view: View, position: Int) {
@@ -118,10 +120,10 @@ class SwipeActivity : AppCompatActivity() {
         FirebaseDatabase.getInstance().getReference("/users/$uid/right-swiped").get()
 
                 .addOnSuccessListener {
-                    Log.d("SwipeActivity","Got ${it.value} as other user right swipes")
+                    //Log.d("SwipeActivity","Got ${it.value} as other user right swipes")
                     it.children.forEach() {
                         val ituid = it.value.toString()
-                        Log.d(TAG, "curuid value: ${curUser!!.uid}, ituid value: $ituid")
+                        //Log.d(TAG, "curuid value: ${curUser!!.uid}, ituid value: $ituid")
                         if (ituid == curUser!!.uid) {
                             Log.d(TAG, "Equal")
                             createMessage(uid)
@@ -140,12 +142,44 @@ class SwipeActivity : AppCompatActivity() {
     }
 
     private fun addToSwipeRight(uid: String){
-        val userRef =  FirebaseDatabase.getInstance().getReference("/users/${curUser!!.uid}/right-swiped").push()
-        userRef.setValue(uid)
+        val userRef =  FirebaseDatabase.getInstance().getReference("/users/${curUser!!.uid}/right-swiped")
+        /*userRef.setValue(uid)
             .addOnSuccessListener {
                 Log.d("SwipeActivity", "Saved right swipe: $uid")
                 //chatLogRecyclerViewChatLog.scrollToPosition(adapter.itemCount - 1)
+            }*/
+
+        val ref1 = FirebaseDatabase.getInstance().getReference("/users/${curUser!!.uid}/right-swiped").push()
+
+
+
+        userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
             }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("SwipeActivity","snapshot: $snapshot")
+                snapshot.children.forEach {
+                    //Log.d("NewMessageActivity", it.toString())
+                    Log.d("SwipeActivity","got ${it.value}")
+                    //var user: User? = null
+                    if(it.value != null) {
+                        val newuid = it.value as String
+
+                        Log.d("SwipeActivity", "uid found: ${newuid}, uid checking: $uid")
+                        if (newuid == uid) {
+                            Log.d("SwipeActivity", "removing ref, ${it.key}")
+                            FirebaseDatabase.getInstance()
+                                .getReference("/users/${curUser.uid}/right-swiped/${it.key}")
+                                .removeValue()
+                        }
+                    }
+                }
+                Log.d("SwipeActivity", "end of checks for /users/rightswiped")
+                ref1.setValue(uid)
+            }
+        })
     }
 
     private fun createMessage(uid: String){
@@ -182,7 +216,7 @@ class SwipeActivity : AppCompatActivity() {
 
                 snapshot.children.forEach {
                     //Log.d("NewMessageActivity", it.toString())
-                    Log.d("SwipeActivity","got ${it.value}")
+                    //Log.d("SwipeActivity","got ${it.value}")
                     var user: User? = null
                     if(it.value != null){
                         val map = it.value as HashMap<*,*>
@@ -196,7 +230,7 @@ class SwipeActivity : AppCompatActivity() {
             }
         })
 
-        items.add(ItemModel("https://firebasestorage.googleapis.com/v0/b/test-538b3.appspot.com/o/images%2F63e058f7-4de2-473a-aa65-607597ceecef?alt=media&token=2c163b8c-7493-4106-bfbe-8e4cc221d9f9", "username", "user.Bio", "here","null"))
+        items.add(ItemModel("https://previews.123rf.com/images/martialred/martialred1910/martialred191000006/131619575-hand-with-finger-swiping-or-swipe-left-and-right-gesture-line-art-vector-icon-for-apps-and-websites.jpg", "", "", "",""))
         return items
     }
 
