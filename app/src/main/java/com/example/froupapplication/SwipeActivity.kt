@@ -118,7 +118,7 @@ class SwipeActivity : AppCompatActivity() {
                             createMessage(uid)
                             bool = true
                             val intent = Intent(this, MessageOrSwipeActivity::class.java)
-
+                            intent.putExtra("User",uid)
                             startActivity(intent)
                         }
                     }
