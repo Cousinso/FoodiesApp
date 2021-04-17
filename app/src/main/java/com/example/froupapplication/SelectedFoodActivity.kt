@@ -73,13 +73,10 @@ class SelectedFoodActivity : AppCompatActivity() {
             val intent = Intent(it.context, GroupVsPairActivity::class.java)
             var foodRef = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("food")
             foodRef.setValue(food?.name.toString())
-            intent.putExtra("foodid", food?.fid)
+
+            intent.putExtra(FOOD_KEY, food)
             startActivity(intent)
             finish()
         }
     }
-}
-
-private class UserGroupItem(val uid: String, val name: String){
-    constructor() : this("", "")
 }
