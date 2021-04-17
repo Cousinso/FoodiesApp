@@ -1,26 +1,23 @@
 package com.example.froupapplication
 
-import android.widget.ImageView
-import com.squareup.picasso.RequestCreator
-
 class ItemModel {
     var image: String? = null
         private set
-    var nama: String? = null
+    var name: String? = null
         private set
-    var usia: String? = null
+    var age: String? = null
         private set
-    var kota: String? = null
+    var city: String? = null
         private set
     var uid: String? = null
         private set
 
     constructor() {}
-    constructor(image: String, nama: String, usia: String?, kota: String?,uid: String?) {
+    constructor(image: String, name: String, age: String?, city: String?, uid: String?) {
         this.image = image
-        this.nama = nama
-        this.usia = usia
-        this.kota = kota
+        this.name = name
+        this.age = age
+        this.city = city
         this.uid = uid
     }
 }

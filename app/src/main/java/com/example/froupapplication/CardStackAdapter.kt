@@ -1,5 +1,6 @@
 package com.example.froupapplication
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,14 +33,16 @@ class CardStackAdapter(var items: List<ItemModel>) : RecyclerView.Adapter<CardSt
         var kota: TextView
         var uid: TextView
         fun setData(data: ItemModel) {
+            Log.d("SwipeActivity","image link ${data.image}, all data: $data")
+
             Picasso.get()
                     .load(data.image)
                     .fit()
                     .centerCrop()
                     .into(image)
-            nama.text = data.nama.toString()
-            usia.text = data.usia
-            kota.text = data.kota
+            nama.text = data.name.toString()
+            usia.text = data.age
+            kota.text = data.city
             uid.text = data.uid
         }
 

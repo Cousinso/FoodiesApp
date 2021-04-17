@@ -7,11 +7,13 @@ import kotlinx.android.synthetic.main.activity_group_vs_pair.*
 
 class GroupVsPairActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        val fid = intent.getStringExtra("foodid")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_vs_pair)
 
         pairButton.setOnClickListener {
             val intent = Intent(it.context, SwipeActivity::class.java)
+            intent.putExtra("foodid",fid)
             startActivity(intent)
             finish()
         }

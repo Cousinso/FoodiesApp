@@ -49,7 +49,7 @@ class SelectedFoodActivity : AppCompatActivity() {
             val intent = Intent(it.context, GroupVsPairActivity::class.java)
             var foodRef = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("food")
             foodRef.setValue(food?.name.toString())
-            intent.putExtra("food", FoodSelectionActivity.FOOD_KEY)
+            intent.putExtra("foodid", food?.fid)
             startActivity(intent)
             finish()
         }

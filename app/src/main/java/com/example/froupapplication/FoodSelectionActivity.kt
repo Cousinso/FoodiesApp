@@ -88,6 +88,7 @@ class FoodSelectionActivity : AppCompatActivity() {
                     val foodItem = item as FoodItem
                     val intent = Intent(view.context, SelectedFoodActivity::class.java)
 //                    currentUser?.food = foodItem.toString()
+                    Log.d("SwipeActivity","food intent extra ${foodItem.food.fid}")
                     intent.putExtra(FOOD_KEY, foodItem.food)
                     startActivity(intent)
                 }

@@ -33,12 +33,14 @@ class SwipeActivity : AppCompatActivity() {
     private var manager: CardStackLayoutManager? = null
     private var adapter: CardStackAdapter? = null
     val curUser = LatestMessagesActivity.currentUser
+    var fid = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.froupapplication.R.layout.activity_swipe)
         val cardStackView = findViewById<CardStackView>(com.example.froupapplication.R.id.card_stack_view)
         //getCurrentSwipes()
+        fid = intent.getStringExtra("foodid")!!
         manager = CardStackLayoutManager(this, object : CardStackListener {
             override fun onCardDragging(direction: Direction, ratio: Float) {
                 //Log.d(TAG, "onCardDragging: d=" + direction.name + " ratio=" + ratio)
@@ -163,7 +165,7 @@ class SwipeActivity : AppCompatActivity() {
 
     private fun addList(): List<ItemModel> {
         val items: MutableList<ItemModel> = ArrayList()
-        val ref = FirebaseDatabase.getInstance().getReference("/users")
+        val ref = FirebaseDatabase.getInstance().getReference("/foods/$fid/users")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -172,19 +174,19 @@ class SwipeActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 snapshot.children.forEach {
-                    Log.d("NewMessageActivity", it.toString())
-                    val user = it.getValue(User::class.java)
-                    if (user != null && user.food == curUser?.food) {
+                    //Log.d("NewMessageActivity", it.toString())
+                    Log.d("SwipeActivity","got ${it.value}")
+                    var user: User? = null
+                    if(it.value != null){
+                        val map = it.value as HashMap<*,*>
+                        user = User(map.get("uid").toString(),map.get("username").toString(),map.get("profileImageUrl").toString())
+                    }
+
+                    if (user != null) {
 
                         // Load user image into chat log
-                        var uri = ""
-                        FirebaseDatabase.getInstance().getReference("/users/${user.uid}").child("profileImageUrl").get().addOnSuccessListener {
-                            Log.d("GroupChatLogActivity","Got ${it.value}")
-                            if(it.value != null){
-                                uri = it.value as String
-                            }
-                            items.add(ItemModel( uri, user.username, user.Bio, user.food,user.uid))
-                        }
+                        items.add(ItemModel( user.profileImageUrl, user.username,"","",user.uid))
+
                     }
                 }
             }
