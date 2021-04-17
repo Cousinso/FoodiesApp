@@ -46,6 +46,7 @@ class SwipeActivity : AppCompatActivity() {
                 //Log.d(TAG, "onCardDragging: d=" + direction.name + " ratio=" + ratio)
 
             }
+
             var profileUid = ""
 
 
@@ -54,19 +55,21 @@ class SwipeActivity : AppCompatActivity() {
                 if (direction == Direction.Right) {
                     checkOtherUserSwipe(profileUid)
                     addToSwipeRight(profileUid)
-                    Toast.makeText(this@SwipeActivity, "Direction Right", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@SwipeActivity, "Direction Right", Toast.LENGTH_SHORT).show()
                 }
                 if (direction == Direction.Top) {
-                    Toast.makeText(this@SwipeActivity, "Direction Top", Toast.LENGTH_SHORT).show()
+                    TODO()
+                    //Toast.makeText(this@SwipeActivity, "Direction Top", Toast.LENGTH_SHORT).show()
                 }
                 if (direction == Direction.Left) {
-                    Toast.makeText(this@SwipeActivity, "Direction Left", Toast.LENGTH_SHORT).show()
+                    TODO()
+                    //Toast.makeText(this@SwipeActivity, "Direction Left", Toast.LENGTH_SHORT).show()
                 }
                 if (direction == Direction.Bottom) {
-                    Toast.makeText(this@SwipeActivity, "Direction Bottom", Toast.LENGTH_SHORT).show()
+                    TODO()
+                    //Toast.makeText(this@SwipeActivity, "Direction Bottom", Toast.LENGTH_SHORT).show()
                 }
             }
-
 
 
             override fun onCardRewound() {
@@ -80,11 +83,15 @@ class SwipeActivity : AppCompatActivity() {
             override fun onCardAppeared(view: View, position: Int) {
                 val tv = view.findViewById<TextView>(com.example.froupapplication.R.id.item_name)
                 val tv2 = view.findViewById<TextView>(com.example.froupapplication.R.id.item_uid)
-                Log.d(TAG, "onCardAppeared: " + position + ", nama: " + tv.text + ", id: " + tv2.text)
+                Log.d(
+                    TAG,
+                    "onCardAppeared: " + position + ", nama: " + tv.text + ", id: " + tv2.text
+                )
             }
 
             override fun onCardDisappeared(view: View, position: Int) {
-                profileUid = view.findViewById<TextView>(com.example.froupapplication.R.id.item_uid).text.toString()
+                profileUid =
+                    view.findViewById<TextView>(com.example.froupapplication.R.id.item_uid).text.toString()
                 //val tv = view.findViewById<TextView>(com.example.froupapplication.R.id.item_name)
                 //Log.d(TAG, "onCardAppeared: " + position + ", nama: " + tv.text)
             }
