@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:visibility="visible"
     tools:context=".ProfileTestActivity"
+    android:background="@color/beige"
     tools:visibility="visible">
 
     <ImageView
