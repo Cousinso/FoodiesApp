@@ -13,7 +13,7 @@
         <activity android:name=".GroupChatLogActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".GroupChatSelectionActivity" />
+                android:value=".FoodSelectionActivity" />
         </activity>
         <activity android:name=".NewGroupChatActivity">
             <meta-data
@@ -23,7 +23,7 @@
         <activity android:name=".GroupChatSelectionActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LatestMessagesActivity" />
+                android:value=".FoodSelectionActivity" />
         </activity>
         <activity android:name=".ProfileTestActivity" />
         <activity android:name=".SelectedFoodActivity">
@@ -56,7 +56,11 @@
         <activity android:name=".Register1Activity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".Register2Activity" />
-        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".UserProfileActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FoodSelectionActivity" />
+        </activity>
         <activity android:name=".Register3Activity" />
         <activity android:name=".Register4Activity"/>
         <activity android:name=".Register5Activity"/>

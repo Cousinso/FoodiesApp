@@ -114,7 +114,6 @@ class FoodSelectionActivity : AppCompatActivity() {
             }
             R.id.food_my_profile -> {
                 val intent = Intent(this, UserProfileActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
         }
