@@ -41,7 +41,7 @@ class MessageOrSwipeActivity : AppCompatActivity() {
 
         message.setOnClickListener{
                 val intent = Intent(this, ChatLogActivity::class.java)
-                intent.putExtra("User", toUser)
+                intent.putExtra(NewMessageActivity.USER_KEY, toUser)
                 startActivity(intent)
         }
         swipe.setOnClickListener{
