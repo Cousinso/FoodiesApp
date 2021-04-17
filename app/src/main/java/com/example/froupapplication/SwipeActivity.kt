@@ -181,12 +181,9 @@ class SwipeActivity : AppCompatActivity() {
                         val map = it.value as HashMap<*,*>
                         user = User(map.get("uid").toString(),map.get("username").toString(),map.get("profileImageUrl").toString())
                     }
-
                     if (user != null) {
-
                         // Load user image into chat log
                         items.add(ItemModel( user.profileImageUrl, user.username,"","",user.uid))
-
                     }
                 }
             }

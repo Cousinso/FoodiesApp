@@ -42,6 +42,30 @@ class SelectedFoodActivity : AppCompatActivity() {
         confirmButtonSelectedFood.setOnClickListener {
             //val intent = Intent(it.context, NewMessageActivity::class.java)
 //            val intent = Intent(it.context, SwipeActivity::class.java)
+            val ref1 = FirebaseDatabase.getInstance().getReference("/foods/${food?.fid}/users")
+
+            ref1.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                    snapshot.children.forEach {
+                        //Log.d("NewMessageActivity", it.toString())
+                        Log.d("SwipeActivity","got ${it.value}")
+                        var user: User? = null
+                        if(it.value != null){
+                            val map = it.value as HashMap<*,*>
+                            user = User(map.get("uid").toString(),map.get("username").toString(),map.get("profileImageUrl").toString())
+                        }
+                        if (user?.uid == currentUser?.uid) {
+                            Log.d("SelectedFoodActivity","removing ref, ${it.key}")
+                            FirebaseDatabase.getInstance().getReference("/foods/${food?.fid}/users/${it.key}").removeValue()
+                        }
+                    }
+                }
+            })
             val ref = FirebaseDatabase.getInstance().getReference("/foods/${food?.fid}/users").push()
 
             val user = LatestMessagesActivity.currentUser
