@@ -8,11 +8,11 @@ import kotlinx.android.synthetic.main.activity_group_vs_pair.*
 
 class GroupVsPairActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        val fid = intent.getStringExtra("foodid")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_vs_pair)
 
         val food = intent.getParcelableExtra<Food>(SelectedFoodActivity.FOOD_KEY)
+        val fid = food?.fid
 
         val currentUser = LatestMessagesActivity.currentUser
         val uid = currentUser?.uid
