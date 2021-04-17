@@ -22,8 +22,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Looking for a group now... Please wait"
+        android:text="Looking for group..."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foodImageImageViewWaitingForGroupActivity" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Go back and check the group chats again"
+        app:layout_constraintEnd_toEndOf="@+id/pleaseWaitTextViewWaitingForGroup"
+        app:layout_constraintStart_toStartOf="@+id/pleaseWaitTextViewWaitingForGroup"
+        app:layout_constraintTop_toBottomOf="@+id/pleaseWaitTextViewWaitingForGroup" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Group chat might already be made"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

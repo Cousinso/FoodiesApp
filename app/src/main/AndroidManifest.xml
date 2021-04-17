@@ -9,11 +9,15 @@
         android:roundIcon="@mipmap/burger_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FroupApplication">
-        <activity android:name=".WaitingForGroupActivity"/>
+        <activity android:name=".WaitingForGroupActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".FoodSelectionActivity" />
+        </activity>
         <activity android:name=".GroupChatLogActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FoodSelectionActivity" />
+                android:value=".GroupChatSelectionActivity" />
         </activity>
         <activity android:name=".NewGroupChatActivity">
             <meta-data
@@ -23,7 +27,7 @@
         <activity android:name=".GroupChatSelectionActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FoodSelectionActivity" />
+                android:value=".LatestMessagesActivity" />
         </activity>
         <activity android:name=".ProfileTestActivity" />
         <activity android:name=".SelectedFoodActivity">
