@@ -12,9 +12,14 @@ class GroupVsPairActivity : AppCompatActivity() {
         setContentView(R.layout.activity_group_vs_pair)
 
         val food = intent.getParcelableExtra<Food>(SelectedFoodActivity.FOOD_KEY)
+
+        val ref = FirebaseDatabase.getInstance().getReference("/foods/${food?.fid}/users").push()
+        val currentUser = LatestMessagesActivity.currentUser
+        //val user = LatestMessagesActivity.currentUser
+        ref.setValue(currentUser)
         val fid = food?.fid
 
-        val currentUser = LatestMessagesActivity.currentUser
+
         val uid = currentUser?.uid
         val username = currentUser?.username
 

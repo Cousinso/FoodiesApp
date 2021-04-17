@@ -66,10 +66,7 @@ class SelectedFoodActivity : AppCompatActivity() {
                     }
                 }
             })
-            val ref = FirebaseDatabase.getInstance().getReference("/foods/${food?.fid}/users").push()
 
-            val user = LatestMessagesActivity.currentUser
-            ref.setValue(user)
             val intent = Intent(it.context, GroupVsPairActivity::class.java)
             var foodRef = FirebaseDatabase.getInstance().reference.child("users").child(auth.uid?:"").child("food")
             foodRef.setValue(food?.name.toString())
